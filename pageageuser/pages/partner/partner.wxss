@@ -1,0 +1,21 @@
+/* pageageuser/pages/partner/partner.wxss */
+.t-partner-content{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:linear-gradient(137.4deg,rgba(255,147,147,1),rgba(255,90,90,1));
+}
+.invitationcode{
+  position: relative;
+  margin: 112rpx auto 0 ;
+  width:586rpx;
+  height:808rpx;
+  background:white;
+  border-radius:20rpx;
+}
+.t-invitationcode-left{
+  width: 56rpx;
+  height: 56rpx;
+}

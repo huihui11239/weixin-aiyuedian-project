@@ -1,0 +1,50 @@
+<!--pages/addressmanagement/addressmanagement.wxml-->
+<!--地址管理-->
+<collect>
+   <view class="items itemsconteot {{isIphoneX?'h-linkCont':''}}" > 
+    <!-- <movable-area class='t-horizontal'> -->
+    <!-- <movable-view direction='horizontal' damping='30' friction='4' class='t-horizontal' bindchange="slideMove" > -->
+      <view class='h-moveblock' wx:for="{{list}}" wx:key="{{item.id}}">
+        <view class='h-addlist' >
+          
+          <view class='h-addlist-box'>
+            <view class='t-content-box'>
+              <view class='h-addlist-list1_name'>{{item.receiverName}}</view>
+               <view class='h-addlist-list1_phone'>{{item.reveiverPhone}}</view>
+            </view>
+            <view class='h-addlist-list2'> {{item.province}} {{item.city}} {{item.area}} {{item.street}}</view>
+            <view class='t-default-address'>
+            <image class='h-addlist-true1' wx:if="{{item.isDefault==1}}" src='https://img.iyuedian.com/mini/confirm.png' />
+          <view class='h-addlist-true' wx:if="{{item.isDefault!=1}}" data-item="{{item}}" bindtap='setUpdefault'></view>
+            <text  data-item="{{item}}" bindtap='setUpdefault'>设为默认地址</text>
+              <view class='t-default-operation' data-item="{{item.id}}" data-type="{{item}}" bindtap='moveblockDeleting'>
+              <view class='t-default-operation-icon'>
+                <image class='w-100 h-100' src='https://img.iyuedian.com/mini/garbage.png'></image>
+              </view>
+              删除</view>
+              <view class='t-default-operation' data-item="{{item.id}}" bindtap='moveblockEdit'>
+              <view class='t-default-operation-icon'>
+                <image class='w-100 h-100' src='https://img.iyuedian.com/mini/modify.png'></image>
+              </view>
+              编辑</view>
+            </view>
+          </view>
+          <view class='h-addlist-line'></view>
+        </view>
+      </view>
+     <view class='t-back-white'>
+       <view class='t-order-noMore' wx:if="{{dataShow===true}}">没有更多啦～</view>
+     </view>
+    <!-- </movable-view>  -->
+   <!-- </movable-area>   -->
+
+ <!-- 还没有收货地址呢～388rpx -->
+<view class="t-addressque " wx:if='{{show}}'>
+  <image class='w-100 h-100' src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+  <view class='t-address-queshen'>还没有收货地址呢～</view>
+</view>
+  <button class="h-madd-newbtn {{isIphoneX?'linkCon':''}}" bindtap='newAdd'>
+    添加新地址
+  </button>
+</view>
+</collect>

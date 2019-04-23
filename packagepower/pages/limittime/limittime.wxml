@@ -1,0 +1,139 @@
+<!--packagepower/pages/limittime/limittime.wxml-->
+<import src="/utils/pagestates/pagestates.wxml" />
+<collect>
+    <template is="pagestates" data="{{...pageState}}" />
+    <dialog id='dialog' bindmyCallb='autoBook'/>
+    <view style="background-color: white">
+        <view class="k-sticky">
+            <view class="k-time-vip-content" hidden="{{vipBl}}" bindtap="vipSkip">
+                <image class="k-image" src="/img/limit_vip_head.png"></image>
+                <view class="k-time-vip-content1 qj-dis-b-c">
+                    <text class="k-time-vip-text">加入VIP会员，购买如下商品自己立省<text class="k-time-vip-text1">{{cheap}}</text>元\n分享给好友成单最多可得<text class="k-time-vip-text1">{{obtain}}</text>元</text>
+                    <view class="k-time-vip-button qj-dis-c-c">立即加入</view>
+                </view>
+            </view>
+            <scroll-view class='k-scroll-h' scroll-into-view="{{'ID'+(sessionIndex-2>0?sessionIndex-2:0)}}" scroll-x scroll-with-animation='true' hidden="{{sessionList.length<2}}" scroll-with-animation="true">
+                <block wx:for='{{sessionList}}' wx:key='id'>
+                    <view class="k-title-content" id="ID{{index}}" data-item='{{index}}' style="width: {{sessionWith}}rpx;" bindtap="clickTitle">
+                        <view class="k-title-text-content qj-disc-s-c" style="width: {{sessionWith}}rpx;">
+                            <text class="{{index==sessionIndex?'k-title-name':'k-title-name-normal'}}">{{item.shortName}}</text>
+                            <text class="{{index==sessionIndex?'k-title-tag':'k-title-tag-normal'}}">{{item.statusFlag==1?'正在抢':'即将开始'}}</text>
+                        </view>
+                    </view>
+                    <view class='t-state-line' style="left:{{distance}}rpx;width:{{120}}rpx"></view>
+                </block>
+            </scroll-view>
+            <view class="k-share-content qj-dis-b-c" catchtap="sharePop" hidden="{{true}}">
+                <view class="k-share-title">抢购专场</view>
+                <view class="qj-dis-s-c">
+                    <view class="k-share-text">分享给朋友</view>
+                    <image src="../../../img/share-del.png" class="k-share-image"></image>
+                </view>
+            </view>
+        </view>
+        <view class="{{vipBl?'k-holder-vip':'k-holder'}}" hidden="{{sessionList.length<2}}"></view>
+        <view class="{{vipBl?'k-holder-vip-0':'k-holder-0'}}" hidden="{{sessionList.length>=2}}"></view>
+        <scroll-view scroll-y='true' scroll-into-view='{{idIndex}}'>
+            <view class="k-share-content qj-dis-b-c">
+                <view class="k-session-time qj-dis-c-c" hidden="{{sessionList[sessionIndex].statusFlag!=1}}">
+                    <!--<view class="k-time-line"></view>-->
+                    <image class="k-time-icon" src="/img/time_icon.png"></image>
+                    <view class="k-session-time-name">距离结束：</view>
+                    <view class="k-time-l-text2 qj-dis-c-c" hidden="{{timelist[sessionIndex].day==0||!timelist[sessionIndex].day}}">{{timelist[sessionIndex].day}}天</view>
+                    <view class="k-time-l-t ">{{timelist[sessionIndex]==undefined?'--':timelist[sessionIndex].hour}}</view>
+                    <view class="qj-dis-c-c k-time-l-s">:</view>
+                    <view class="k-time-l-t ">{{timelist[sessionIndex]==undefined?'--':timelist[sessionIndex].minute}}</view>
+                    <view class="qj-dis-c-c k-time-l-s">:</view>
+                    <view class="k-time-l-t-red ">{{timelist[sessionIndex]==undefined?'--':timelist[sessionIndex].second}}</view>
+                    <!--<view class="qj-dis-c-c k-time-l-s">:</view>-->
+                    <!--<view class="k-time-l-t-red ">{{timelist[sessionIndex]==undefined?'&#45;&#45;':timelist[sessionIndex].msecond}}</view>-->
+                    <!--<view class="k-time-line"></view>-->
+                </view>
+                <view class="k-session-time qj-dis-c-c" hidden="{{sessionList[sessionIndex]==undefined||sessionList[sessionIndex].statusFlag==1}}">
+                    <!--<view class="k-time-line"></view>-->
+                    <image class="k-time-icon" src="/img/time_icon.png"></image>
+                    <view class="k-session-time-name">开始时间：</view>
+                    <view class="k-session-time-str">{{sessionList[sessionIndex].startDate}}</view>
+                    <!--<view class="k-time-line"></view>-->
+                </view>
+                <view class='qj-dis-s-c' wx:if="{{!isDraw}}">
+                    <view class="k-share-text">分享</view>
+                    <button open-type='share' class='button-open-user k-share-btn'>
+                        <image src="../../../img/share-del.png" class="k-share-image"></image>
+                    </button>
+                </view>
+            </view>
+            <block wx:for="{{limitData}}">
+                <view class="k-five">
+                    <view class='qj-dis-s-c' bindtap='detSkip' data-comid='{{item.goodsId}}' data-tag="首页-疯狂星期五">
+                        <view class='k-five-image1 '>
+                            <image class="k-five-image" src="{{item.listImg}}"></image>
+                            <view class='h-sellout-text' wx:if='{{item.storageNum<1}}'>抢光了...</view>
+                        </view>
+                        <view class="k-five-text qj-disc-b-c">
+                            <view class="k-item-t-c">
+                                <view class="k-five-name">{{item.shortName}}</view>
+                                <view class="k-five-size">{{item.specification}}</view>
+                                <view hidden='{{!vipBl||(item.earningsPercentage==0)}}' class='h-suk-box_one qj-family-m'>返{{item.earningsPercentage}}%</view>
+                            </view>
+                            <view class="k-time-num">
+                                <view class="qj-dis-b-c" >
+                                    <view class="qj-dis-s-c k-five-price">
+                                        <!--<view class="k-price-flag">抢购价</view>-->
+                                        <view class='qj-ls-4028 qj-color-ff6a6a qj-dis-s-b'>
+                                            <view class=' qj-ls-2820 font-w qj-color-ff6a6a'>¥</view>
+                                            <text class=' font-w qj-color-ff6a6a qj-marginl-3 qj-marginr-1 k-time-over'>{{item.sellPrice}}</text>
+                                            <view class='qj-marginl-16 qj-size-24 qj-color-cbcbcc qj-deltext k-lighter' hidden='{{item.marketPrice==item.sellPrice||item.marketPrice==0||item.marketPrice==null||item.marketPrice==""||item.marketPrice=="0.00"}}'>￥{{item.marketPrice}}</view>
+                                        </view>
+                                    </view>
+                                    <view class="{{item.storageNum<1?'k-time-bt1':'k-time-bt'}}" hidden="{{sessionList[sessionIndex].statusFlag!=1}}">去抢购</view>
+                                    <!--<view class="{{item.isSub?'k-time-bt2':'k-time-bt'}}" hidden="{{(!sessionList[sessionIndex])||sessionList[sessionIndex].statusFlag==1||timelist[sessionIndex]==undefined||timelist[sessionIndex].remainTime<300}}" data-item="{{item}}" catchtap="bookMessage">{{item.isSub?'已设置提醒':'提醒我'}}</view>-->
+                                    <view class="k-time-bt1" hidden="{{(!sessionList[sessionIndex])||sessionList[sessionIndex].statusFlag==1||timelist[sessionIndex]==undefined}}" data-item="{{item}}" catchtap="">未开始</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="k-line"></view>
+            </block>
+            <block wx:if='{{limitData.length}}'>
+                <view class='h-bottom-hint'>
+                    没有更多啦~
+                </view>
+            </block>
+            <block wx:else>
+                <view class='nonedata-box'>
+                    <view class='nonedata-box-img'>
+                        <image class='img100' src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+                    </view>
+                    <view class='nonedata-box-text' wx:if="{{isLoad}}">商品信息加载中</view>
+                    <view class='nonedata-box-text' wx:else>暂无商品</view>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+    <view class="share-shadow" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' catchtap="boxCancel"></view>
+    <view class="h-sharelist {{isIphoneX?'p-b-68':''}}" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent'>
+        <view class='h-sharelist-list1'>
+            <view></view>
+            <view class='qj-dis-s-b'>
+                <view>分享给小伙伴</view>
+            </view>
+            <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='boxCancel'></image>
+        </view>
+        <view class='h-sharelist-list2 '>
+            <button open-type='share' class='button-open-user h-sharelist-box '>
+                <image class='img100 ' src='https://img.iyuedian.com/mini/chat.png'></image>
+                <view class="share-text1">转发到微信</view>
+            </button>
+            <view class='h-sharelist-box ' bindtap='sendCircle'>
+                <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+                <view class="share-text">保存图片</view>
+            </view>
+        </view>
+    </view>
+    <back-top/>
+    <canvas canvas-id="shareCanvasMini" class="k-share-canvas" hidden="{{true}}"></canvas>
+</collect>
+
+

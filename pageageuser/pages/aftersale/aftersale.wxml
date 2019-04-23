@@ -1,0 +1,71 @@
+<!--pageageuser/pages/aftersale/aftersale.wxml-->
+<collect>
+
+  <!-- <view class='t-tianchong'></view>
+  <view class='t-back-white' wx:if='{{show}}'>
+    <view class='t-addressque1'>
+      <image class='w-100 h-100' src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+      <view class='t-address-queshen'>还没有订单呢～</view>
+    </view>
+  </view> -->
+  <view wx:for="{{afterList}}" wx:key="*this" class="t-order-list ">
+    <view wx:for="{{item}}">
+      <view class="h-afterList" data-del="{{item}}" bindtap="delskip">
+        <view class='t-order-title'>
+          <text class='t-order-order' decode="{{true}}">订单号&nbsp;{{item.tradeCode}}</text>
+          <view class='t-order-type' wx:if="{{item.status==101}}">审核中</view>
+          <view class='t-order-type' wx:if="{{item.status==102}}">拒绝退款</view>
+          <view class='t-order-type' wx:if="{{item.status==103||item.status==113||item.status==111}}">退款中</view>
+          <view class='t-order-type' wx:if="{{item.status==104||item.status==114}}">退款成功</view>
+          <view class='t-order-type' wx:if="{{item.status==105||item.status==115||item.status==112}}">退款失败</view>
+        </view>
+        <view class='t-order-list-logo'>
+          <view class='t-order-list-picture'>
+            <image src='{{item.goodsFocusImg}}' mode="aspectFill" class='w-100 h-100'></image>
+          </view>
+          <view class='t-order-list-content'>
+            <view class='t-order-list-content-title'>{{item.goodsName}}</view>
+            <!--<view class='t-order-list-content-sku'>3斤装，无核荔枝</view>-->
+          </view>
+        </view>
+        <view class="t-order-list-content-commodity ">
+          <view class='t-order-list-content-price'>
+            <text>¥</text>{{item.refundsMoney}}</view>
+          <view class='t-order-list-content-payment'>合计金额</view>
+          <view class='t-order-list-content-line'></view>
+          <view class='t-order-list-content-payment'>共1件商品</view>
+        </view>
+        <!--支付的按钮操作  -->
+        <view class="t-order-list-content-action ">
+          <view>
+            <view class='t-order-buttom-type'>
+              <view class='t-order-commodity-b'>查看详情</view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+  <view class="h-back-white">
+    <block wx:if='{{afterList[0].length}}'>
+      <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+        滑动查看更多
+      </view>
+      <view class='h-bottom-hint' wx:else>
+        没有更多啦~
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nonedata-box'>
+        <view class='nonedata-box-img'>
+          <image class='img100' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+        </view>
+        <view class='nonedata-box-text' wx:if='{{hasNextPage}}'> 售后数据加载中...</view>
+        <view class='nonedata-box-text' wx:else>~ 还没有售后订单 ~</view>
+      </view>
+    </block>
+  </view>
+
+  <back-top />
+</collect>

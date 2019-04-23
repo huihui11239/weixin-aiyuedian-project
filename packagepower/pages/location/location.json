@@ -1,0 +1,10 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "切换城市",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee",
+    "usingComponents": {
+        "collect": "/pagekagelist/pages/collect-fromid/collect-fromid"
+    }
+}

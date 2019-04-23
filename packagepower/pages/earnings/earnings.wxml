@@ -1,0 +1,163 @@
+<!--packagepower/pages/earnings/earnings.wxml-->
+<collect>
+  <view class='h-posi-hear'>
+    <view class='h-bar1'>
+      <view class='h-bar1-box' wx:for='{{bar1}}' wx:key='types' bindtap='condition1' data-status='{{item.types}}'>
+        <view class='h-bar1-one  {{item.types==atType1? "h-bar1-one1":""}}'>
+          {{item.name}}
+        </view>
+        <view class='h-bar1-one-fill1 {{item.types==atType1? "h-bar1-one-fill2":""}}'></view>
+      </view>
+    </view>
+  </view>
+  <view class='h-hear-text' wx:if='{{atType1>0}}'>
+    <view class='h-hear-text1'>
+      {{barState[atType1-1]}}
+    </view>
+  </view>
+  <view class='h-select-box' style='margin-top:{{atType1>0? "136":"80"}}rpx;'>
+    <view class='h-select-bar1'>
+      <view class='h-select-bar-one1'>
+        状态:
+      </view>
+      <blocK wx:for="{{bar2}}" wx:key='types'>
+        <view class='h-select-bar-one2  {{item.types==atType2? "h-select-bar-one3":""}}' bindtap='condition2' data-status='{{item.types}}'>
+          {{item.name}}
+        </view>
+      </blocK>
+    </view>
+    <view class='h-select-bar2'>
+      <view class='h-select-bar-one1'>
+        时间:
+      </view>
+      <blocK wx:for="{{bar3}}" wx:key='types'>
+        <view class='h-select-bar-one2  {{item.types==atType3? "h-select-bar-one3":""}}' bindtap='condition3' data-status='{{item.types}}'>
+          {{item.name}}
+        </view>
+      </blocK>
+    </view>
+    <view class='h-heji-money'>
+      合计: ￥
+      <block wx:if='{{totalMoney||totalMoney=="0.00"}}'>{{totalMoney}}</block>
+      <block wx:else>--.--</block>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view class='h-elist'>
+    <scroll-view scroll-y scroll-into-view='{{idIndex}}'>
+      <view class='' wx:for='{{earningsList}}' wx:key='index' id="id{{index}}">
+        <block wx:for='{{item}}' wx:key='tradeCode'>
+          <!-- <view class='h-elist-box'>
+                        <view class='h-header-list1'>
+                            <view class='h-header-text'>订单号
+                                <text class='h-ordernum'>{{item.tradeCode}}</text>
+                            </view>
+                            <view class='h-header-text'>{{item.profitIncomeTypeName}}</view>
+                        </view>
+                        <view class='h-title-list2'>
+                            <view class='h-text-yangshi1 margin'>{{item.profitTypeName}}</view>
+                            <view class='h-text-yangshi2 margin' hidden='{{item.profitType=="3"}}'>
+                                比例{{item.profitPercent}}%
+                            </view>
+                            <view class='h-text-yangshi3 margin' wx:if='{{item.profitMoney>=0}}'>收益
+                                ￥{{item.profitMoney}}
+                            </view>
+                            <view class='h-text-yangshi4 margin' wx:else>退款 ￥{{item.profitMoney}}</view>
+                        </view>
+                        <view class='h-title-list3'>
+                            <view class='userimg'>
+                                <image class='user100' src='{{item.headImgUrl}}'></image>
+                            </view>
+                            <view class='qj-marginl-20'>
+                                <view class='h-title-list4'>
+                                    <view class='h-user-name'>{{item.nickName}}</view>
+                                    <view class='h-vipbox margin' wx:if='{{item.userLevel==2}}'>
+                                        <image class='vipcon-ddd' src='../../../img/vip-iocn.png'></image>
+                                    </view>
+                                    <view class='h-vipbox margin' wx:elif='{{item.userLevel==3}}'>
+                                        <image class='vipcon-ddd1' src='../../../img/vip-giocn.png'></image>
+                                    </view>
+                                </view>
+                                <view class='h-buyorder-money'>订单金额: ¥ {{item.totalPayMoney}}</view>
+                                <view class='h-buy-date'>购买时间 {{item.orderCreateDate}}</view>
+                            </view>
+                        </view>
+                    </view> -->
+          <view class='h-elist-box'>
+            <!-- ui第一行 -->
+            <view class='h-header-list1'>
+              <view>{{item.profitTypeName}}</view>
+              <view class='h-header-list1-text1'>
+                <view>¥{{item.profitMoney||item.profitMoney=='0.00'? item.profitMoney:'-.--'}}</view>
+                <view class='h-header-list1-text2'>{{item.statusName}}</view>
+              </view>
+            </view>
+            <view class='h-header-list2' wx:if='{{item.profitLevel==3&&item.profitType!=4}}'>
+              <view class='h-header-list2-text1'>{{item.teamUserName}}</view>
+              <block wx:if='{{item.profitTo==1}}'>团队成员成单</block>
+              <block wx:elif='{{item.profitTo==2}}'>分享成单</block>
+            </view>
+            <view class='h-minbox'>
+              <image class='h-yet-img' src='/img/yet-img1.png' wx:if='{{item.isRefund==2&&item.isRefundProfit===0}}'></image>
+              <image class='h-yet-img' src='/img/yet-img2.png' wx:if='{{item.isRefund==1&&item.isRefundProfit===0}}'></image>
+              <!-- <view class='h-yet-img1' wx:elif='{{item.isRefund==1}}'>部分退款</view> -->
+              <view class='h-minbox1'>
+                <image class='h-minbox1-userimg' src='{{item.headImgUrl}}'></image>
+                <view>
+                  <view class='h-minbox1-list1'>
+                    <view class='h-minbox1-list1-name'>{{item.nickName}}</view>
+                    <block wx:if='{{item.buyUserLevel==2}}'>
+                      <image class='h-minbox1-list1-img1' src='../../../img/vip-iocn.png'></image>
+                    </block>
+                    <block wx:elif='{{item.buyUserLevel==3}}'>
+                      <image class='h-minbox1-list1-img2' src='../../../img/vip-giocn.png'></image>
+                    </block>
+                  </view>
+                  <view class='h-minbox1-list1'>
+                    <view class='h-minbox1-list1-text1'>购买时间</view>
+                    <view class='h-minbox1-list1-text2'>{{item.orderTime}}</view>
+                  </view>
+                </view>
+              </view>
+              <view class='h-minbox2'>
+                <view class='h-minbox2-list1'>
+                  <view class='h-minbox2-list1-text1'>商品名称</view> ：
+                  <view class='h-minbox2-list1-text2'>{{item.goodsName}}</view>
+                </view>
+                <view class='h-minbox2-list1'>
+                  <view class='h-minbox2-list1-text1'>订单号</view> ：
+                  <view class='h-minbox2-list1-text2'>{{item.tradeCode}}</view>
+                </view>
+                <view class='h-minbox2-list1'>
+                  <view class='h-minbox2-list1-text1'>支付金额</view> ：
+                  <view class='h-minbox2-list1-text2'>¥{{item.orderMoney||item.orderMoney=='0.00'? item.orderMoney:'-.--'}}</view>
+                </view>
+              </view>
+              <view>
+              </view>
+            </view>
+            <view class='h-bottom-time'>最后更新时间 {{item.updateTime}}</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <block wx:if='{{earningsList[0].length}}'>
+      <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+        滑动查看更多
+      </view>
+      <view class='h-bottom-hint' wx:else>
+        没有更多啦~
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nonedata-box'>
+        <view class='nonedata-box-img'>
+          <image class='img100' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+        </view>
+        <view class='nonedata-box-text' wx:if='{{hasNextPage}}'> 收益数据加载中...</view>
+        <view class='nonedata-box-text' wx:else>~ 暂无数据 ~</view>
+      </view>
+    </block>
+  </view>
+  <back-top/>
+</collect>

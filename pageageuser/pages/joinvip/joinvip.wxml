@@ -1,0 +1,74 @@
+<!--pageageuser/pages/joinvip/joinvip.wxml-->
+<collect>
+  <dialog id='dialog' />
+    <view class="h-color-fff">
+        <!-- <view class=''></view>
+      <view class=''></view>
+      <view class=''></view>
+      <view class=''></view> -->
+        <swiper indicator-dots='true'  duration='500' circular="true" indicator-color='#FFF8DC'
+                indicator-active-color='#FFC93D'>
+            <swiper-item wx:for="{{banner}}">
+                <view class='h-banner'>
+                    <view class='h-bannerone'>
+                        <image src='{{item.url}}' class='h-bannerone-img'></image>
+                        <view class='h-bannerone-text {{(index==0)?"h-bannerone-text2":""}}'><text class="h-bannerone-text1">「{{userData.nickName}}」</text> 邀请你加入悦店<image class="joinvip-iocn" src="{{(index==0)?'/img/gold_vip.png':'/img/gray_vip.png'}}"></image></view>
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper>
+        <view class='h-joinvip'>
+            <button class='h-joinvip-btn'  bindtap="{{(hintNum===0)?'joinvip':''}}">
+                去开通
+            </button>
+        </view>
+        <view class="h-hintfexl" wx:if='{{hintNum===1}}' bindtap="kong">
+            <view class='h-hint1' style='background-image: url("https://img.iyuedian.com/mini/govip/vip-hint1.png")'>
+                <view class='h-pos1-text1'>恭喜您成功开通vip</view>
+                <view class='h-pos2-text1'>关于VIP的玩法介绍已经为您准备好都在<text class="vip-none">VIP</text>广场，快逛逛吧～</view>
+                <view class='h-pos3-text1' bindtap="govippages">去VIP广场逛逛</view>
+            </view>
+        </view>
+
+        <view class="h-hintfexl" wx:if='{{hintNum===2}}' bindtap="kong">
+            <view class='h-hint1' style='background-image: url("https://img.iyuedian.com/mini/govip/vip-hint2.png")'>
+                <view class='h-pos1-text1'>加入失败</view>
+                <view class="h-pos2-text1">{{failtext}}</view>
+                <view class="h-pos3-text1" bindtap="govippages">知道了</view>
+            </view>
+        </view>
+
+        <view class="h-hintfexl" wx:if='{{hintNum===3}}' bindtap="kong">
+            <view class='h-hint2' >
+                <view class="h-pos1-text1 h-pos86">您已有悦店VIP身份</view>
+                <view class="h-pos2-text1 h-pos160">是否接受「{{userData.nickName}}」的邀请加入TA的团队</view>
+                <view class="h-pos3-box1">
+                    <view class="h-pos3-btn" bindtap="goclose">暂不</view>
+                    <view class="h-pos3-btn left-btn" bindtap="jointeam">立即加入</view>
+                </view>
+            </view>
+        </view>
+
+        <view class="h-hintfexl" wx:if='{{hintNum===4}}' bindtap="kong">
+            <view class='h-hint2' >
+                <view class="h-pos1-text2">您的账号有等待支付的<text class="vip-none">VIP</text>礼包订单，点击"查看订单"，可前往管理订单继续支付或者取消订单～</view>
+                <view class="h-pos3-box1">
+                    <view class="h-pos3-btn" bindtap="goclose">知道了</view>
+                    <view class="h-pos3-btn left-btn" bindtap="goorder">查看订单</view>
+                </view>
+            </view>
+        </view>
+
+        <view class="h-hintfexl" wx:if='{{hintNum===5}}' bindtap="kong">
+            <view class='h-hint2' >
+                <view class="h-pos1-text1 h-pos86">您已经有VIP身份</view>
+                <view class="h-pos2-text1  h-pos160">关于VIP的玩法介绍已经为您准备好都在<text class="vip-none">VIP</text>广场，快逛逛吧～</view>
+                <view class="h-pos3-text1" bindtap="govippages">
+                    去VIP广场逛逛
+                </view>
+            </view>
+        </view>
+    </view>
+
+  <back-top/>
+</collect>

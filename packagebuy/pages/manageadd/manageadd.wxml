@@ -1,0 +1,36 @@
+<!--pages/manageadd/manageadd.wxml-->
+<!--地址管理-->
+<collect>
+  <view class="items itemsconteot {{isIphoneX?'h-linkCont':''}}">
+    <!-- <movable-area class='t-horizontal'> -->
+    <!-- <movable-view direction='horizontal' damping='30' friction='4' class='t-horizontal' bindchange="slideMove" > -->
+    <view class='h-moveblock' wx:for="{{list}}" wx:key="{{item.id}}" data-item="{{item}}" bindtap='moveblockChoice'>
+      <view class='h-addlist'>
+        <view class='h-addlist-true' wx:if='{{item.isDefault!=1}}'></view>
+        <image class='h-addlist-true1' wx:if='{{item.isDefault==1}}' src='https://img.iyuedian.com/mini/confirm.png' />
+        <view class='h-addlist-box'>
+          <view class='t-content-box'>
+            <view class='h-addlist-list1_name'>{{item.receiverName}}</view>
+            <view class='h-addlist-list1_phone'>{{item.reveiverPhone}}</view>
+            <view class='h-addlist-list1_default' wx:if='{{item.isDefault==1}}'>默认</view>
+          </view>
+          <view class='h-addlist-list2'> {{item.province}} {{item.city}} {{item.area}} {{item.street}}</view>
+        </view>
+        <view class='h-addlist-line'></view>
+      </view>
+    </view>
+    <view class='t-back-white'>
+      <view class='t-order-noMore' wx:if="{{dataShow===true}}">没有更多啦～</view>
+    </view>
+    <!-- </movable-view>  -->
+    <!-- </movable-area>   -->
+    <button class="h-madd-newbtn {{isIphoneX?'linkCon':''}}" bindtap='newAdd'>
+      新增地址
+    </button>
+    <!-- 还没有收货地址呢～388rpx -->
+  <view class='t-addressque' wx:if='{{show}}'>
+    <image class='w-100 h-100' src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+    <view class='t-address-queshen'>还没有收货地址呢～</view>
+  </view>
+  </view>
+</collect>

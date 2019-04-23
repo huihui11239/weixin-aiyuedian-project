@@ -1,0 +1,14 @@
+<!--packagepower/pages/vippay/vippay.wxml-->
+<collect>
+  <view class='t-content'>
+    <image class='t-content-img w-100 h-100' src='https://img.iyuedian.com/mini/govipsue.png'></image>
+  </view>
+  <view class='t-content-agree'>
+    <view class='t-content-quan' bindtap='govipsuego' wx:if="{{show==false}}"></view> 
+    <view class='t-content-quan1' bindtap='govipsuego' wx:if="{{show==true}}">
+      <image class='w-100 h-100' src='https://img.iyuedian.com/mini/govipsuego.png'></image>
+    </view>
+    <view class='t-content-sue'><text bindtap='govipsuego'>我已阅读并同意</text><text class='t-content-sue2' bindtap='agreement'>《悦店VIP购买须知》</text></view>
+  </view>
+  <view class='t-content-agreement' bindtap='govippay'>立即开通VIP（¥399）</view>
+</collect>

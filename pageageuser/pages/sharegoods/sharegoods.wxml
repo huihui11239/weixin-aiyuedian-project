@@ -1,0 +1,68 @@
+<!--pageageuser/pages/sharegoods/sharespell.wxml-->
+<import src="../../../utils/pagestates/pagestates.wxml"/>
+<collect>
+    <template is="pagestates" data="{{...pageState}}"/>
+    <view class="page_sty">
+         <!--<image src="https://img.iyuedian.com/mini/share_bg.png" class="bg-image"></image>-->
+        <view class="canvas-wh1" hidden="{{shareBoxBl}}" catchtouchmove='nullEvent'>
+            <view class='canvas-wh-con-logo'>
+                <image class='w-100 h-100' wx:if="{{delAllData.product_deatilCarouselImg[0].detailValue}}"
+                       src='{{delAllData.product_deatilCarouselImg[0].detailValue}}'></image>
+                <image class='t-yudianlogo-logo' src='/img/yudianlogo.png'></image>
+                <!--限时购-->
+                <view class="qj-dis-s-c time-bg" style="background-image: url('https://img.iyuedian.com/mini/activity/t_bg_share.png')" hidden="{{isTime}}">
+                    <image class="k-time-l-text" src="https://img.iyuedian.com/mini/activity/t_icon_detail.png"></image>
+                    <view class="k-time-di">/</view>
+                    <view class="k-time-di2">{{btime}}</view>
+                    <view class="k-time-di">/</view>
+                    <view class="k-time-di1">{{start+'—'+end}}</view>
+                </view>
+                <!--拼团-->
+                <view class="qj-dis-s-b time-bg" style="background-image: url('https://img.iyuedian.com/mini/activity/spell_share_bar.png')"
+                      wx:if="{{delAllData.activityGoods!=null&&delAllData.activityGoods.type == 3}}">
+                    <text class="spell-text-n">{{delAllData.activityGoods.peopleNum}}</text>
+                    <text class="spell-text">人团</text>
+                </view>
+            </view>
+            <view class='canvas-wh-content'>
+                <!-- <view class="content-text"> -->
+
+                <view class="price-1">
+                    <text class='t-pirce-moe2'>￥</text>
+                    <view class='t-pirce-moe1'>{{delAllData.activityGoods!=null&&(delAllData.activityGoods.type == 1||delAllData.activityGoods.type == 3)?delAllData.product_info.discountPrice:delAllData.product_info.sellPrice}}</view>
+
+                    <text class="price-2"
+                          hidden='{{delAllData.activityGoods==null&&delAllData.product_info.marketPrice==delAllData.product_info.sellPrice||delAllData.product_info.marketPrice==0||delAllData.product_info.marketPrice==null||delAllData.product_info.marketPrice==""||delAllData.product_info.marketPrice=="0.00"}}'>￥{{delAllData.product_info.marketPrice}}
+                    </text>
+                    <view class='t-con-priceReduction' wx:if="{{delAllData.product_info.saveMoney>0}}">
+                        <view class='t-com-saveMoney'>省</view>
+                        直降{{delAllData.product_info.saveMoney}}
+                    </view>
+                </view>
+
+                <view class='t-name-content-tv'>
+                    <view class="name-tv">{{delAllData.product_info.name}}</view>
+                    <view class="slogan-tv">{{delAllData.product_info.subName}}</view>
+                </view>
+                <view class='qj-dis-c-s content-qrcode '>
+                    <image class="qrcode-image" src='{{qrCodeimage}}'></image>
+                     <view class="qrcode-tv">长按识别前往购买</view>
+                </view>
+                <!-- </view> -->
+
+            </view>
+            <view class='bt-slogan'>
+                <view class='bt-slogan-logo'>
+                    <image class='w-100 h-100' src='{{headImage}}'></image>
+                </view>
+                来自「{{name}}」的推荐
+                <view class='t-ren-price' wx:if="{{delAllData.product_info.showSellBaseCount>99}}">{{delAllData.product_info.showSellBaseCount}}人已购买</view>
+            </view>
+        </view>
+        <canvas canvas-id="shareCanvas" class="canvas-wh" hidden="{{true}}"></canvas>
+        <view class="tv-info">保存你的专属海报，可以从手机相册查看</view>
+        <view class="qj-dis-c-c" bindtap='saveCard'>
+            <view class="bt-save" bindtap='saveClick'>保存图片</view>
+        </view>
+    </view>
+</collect>

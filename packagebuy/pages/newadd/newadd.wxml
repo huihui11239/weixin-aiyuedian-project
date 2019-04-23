@@ -1,0 +1,71 @@
+<!--pages/newadd/newadd.wxml-->
+<collect>
+  <view class='t-back-white'>
+  <view class='h-inputbox qj-dis-s-c t-form-col'>
+    <view class='h-inputbox-text1 h-inputbox-text2'>
+      收货人:
+    </view>
+    <input class='h-inputbox-input' value="{{form.receiverName}}" placeholder-class="phcolor" data-input="receiverName" bindinput="getInputValue"></input>
+  </view>
+  <view class='h-inputbox qj-dis-s-c t-form-col'>
+    <view class='h-inputbox-text1 h-inputbox-text2'>
+      联系电话:
+    </view>
+    <input class='h-inputbox-input' value="{{form.reveiverPhone}}" type="number"   placeholder-class="phcolor"  data-input="reveiverPhone" bindinput="getInputValue"></input>
+  </view>
+  <view class='h-inputbox  qj-dis-b-c t-form-col po-r'>
+    <view class='h-inputbox-text1 h-inputbox-text2' >
+      所在地区:
+    </view>
+    <view class='h-inputbox-address ' bindtap="translate"  wx:if="{{area}}">{{province}} {{city}} {{area}}</view>
+     <view class="infoText"bindtap="translate" wx:if="{{!area}}">请选择</view> 
+     <image bindtap="translate" class="h-addlist-go" src='https://img.iyuedian.com/mini/go.png'></image>
+     <!-- animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" -->
+  <view class="animation-element-wrapper" wx:if="{{cityShow}}"  bindtap="hiddenFloatView" data-id="444">
+     <view class="animation-element" catchtap="nono">
+        <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
+        <text class="right-bt" catchtap="hiddenFloatView" data-id="666">确定</text>
+          <view class="line"></view> 
+<!--省市区的处理  -->
+        <picker-view indicator-style = "height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+        <!--省-->
+        <picker-view-column>
+           <view wx:for="{{provinces}}" wx:key="item.areaCode" >
+             {{item.areaName}}
+          </view>
+        </picker-view-column>
+        <!--地级市-->
+        <picker-view-column>
+          <view wx:for="{{citys}}" wx:key="item.areaCode" >
+            {{item.areaName}}
+          </view>
+        </picker-view-column>
+        <!--区县-->
+        <picker-view-column>
+          <view wx:for="{{countys}}" wx:key="item.areaCode" >
+            {{item.areaName}}
+          </view>
+        </picker-view-column>
+        </picker-view>
+    </view>
+  </view>
+  </view>
+  <view class="h-inputbox  qj-dis-b-c t-form-col po-r {{system=='iOS'?'p-50-0':''}}">
+    <view class="h-inputbox-text1 h-inputbox-text2 ">
+      详细地址:
+    </view>
+    <textarea class='t-inputbox-textarea' maxlength='50'  value="{{form.street}}"  placeholder-class="phcolor"  placeholder='请输入详细地址信息，如道路、门牌号、小区、楼栋号、单元室等' data-input="street" bindinput="getInputValue"></textarea>    
+  </view>
+  <view class='h-inputbox qj-dis-b-c t-form-col'>
+    <view class='h-inputbox-text1 h-inputbox-text3' >
+      设置为默认地址
+    </view>
+    <view class='t-switch-da'>
+        <switch data-input="isDefault" class='k-switch'  color="#FFB22D" placeholder-class="phcolor"  checked="{{isDefault}}" bindchange="getInputValue"/>
+    </view>
+  </view>
+</view>
+<button class="h-madd-newbtn {{isIphoneX?'linkCon':''}}" bindtap='newAdd' disabled="{{disabled}}" >
+    保存并使用
+  </button>
+</collect>

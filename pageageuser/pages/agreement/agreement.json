@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "使用协议",
+  "usingComponents": {
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid"
+  }
+}

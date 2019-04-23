@@ -1,0 +1,254 @@
+<!--packagebuy/pages/spelldel/spelldel.wxml-->
+<collect>
+  <import src="../../../wxParse/wxParse.wxml" />
+  <view class='h-spelldel1'>
+    <view class="h-comdatabox">
+      <image class="h-indent-img1" mode="aspectFill" src="{{delData.group.productImg}}">
+      </image>
+      <view class="h-comdatabox-text">
+        <view class="qj-ls-4028 qj-color-333 h-productName">{{delData.group.productName}}</view>
+        <view class="qj-ls-3424 qj-color-808080 qj-margint-2">规格：{{delData.group.specification}}</view>
+        <view class="h-spellpirce">
+          <view class='h-spellpirce-text'>拼团价</view>
+          <view class='h-spellpirce-spell'>
+            <view class='h-spellpirce-spell3'>¥</view>
+            <view class='h-spellpirce-spell1'>{{delData.group.activityPrice||delData.group.activityPrice==0? delData.group.activityPrice:'-.--'}}</view>
+          </view>
+          <view class='h-spellpirce-del'>
+            <view>¥</view>
+            <view class='h-spellpirce-del1'>{{delData.group.skuPrice||delData.group.skuPrice==0?delData.group.skuPrice:'-.--'}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='h-spellnum-pos'>{{delData.group.partakeNumMax}}人团</view>
+      <image class='h-timeend' wx:if='{{timeEnd}}' src='https://img.iyuedian.com/mini/activity/activityEnd.png'></image>
+    </view>
+    <view class='h-spellnum'>
+      <view class='h-spellnum-text1'>团编号</view>
+      <view class='h-spellnum-text2'>{{delData.group.groupCode}}</view>
+      <view class='t-order-details-copy' bindtap='copy' data-id="{{delData.group.groupCode}}">复制</view>
+    </view>
+    <view class='h-spellresult'>
+      <block wx:if='{{delData.group.groupStatus==10||(delData.group.groupStatus==11&&delData.group.payNum==delData.group.partakeNumMax)}}'>
+        <view class='h-spellresult-title'>
+          <block>
+            <image src='/img/spellfill1.png' class='h-spellresult-title-img1'></image>
+            <view class='h-spellresult-title-text1' wx:if='{{delData.group.groupStatus==10}}'>拼团中</view>
+            <view class='h-spellresult-title-text1' wx:else>拼团截止</view>
+            <image src='/img/spellfill1.png' class='h-spellresult-title-img2'></image>
+          </block>
+        </view>
+        <block>
+          <view class='h-spellresult-bar1' wx:if='{{delData.group.groupStatus==10}}'>还差
+            <view class='h-spellresult-bar1-text1'>{{delData.group.partakeNumMax-delData.group.partakeNum}}</view>人成团
+          </view>
+          <view class="k-session-time qj-dis-c-c" wx:if='{{showTime}}'>
+            <view class="k-session-time-name">距离结束</view>
+            <view class="k-time-l-text2 qj-dis-c-c" wx:if="{{day!=0}}">{{day}}天</view>
+            <view class="k-time-l-t ">{{hour}}</view>
+            <view class="qj-dis-c-c k-time-l-s">:</view>
+            <view class="k-time-l-t ">{{minute}}</view>
+            <view class="qj-dis-c-c k-time-l-s">:</view>
+            <view class="k-time-l-t">{{second}}</view>
+          </view>
+          <view class="k-session-time qj-dis-c-c" wx:else>
+            <view class="k-session-time-name">距离结束</view>
+            <view class="k-time-l-t ">00</view>
+            <view class="qj-dis-c-c k-time-l-s">:</view>
+            <view class="k-time-l-t ">00</view>
+            <view class="qj-dis-c-c k-time-l-s">:</view>
+            <view class="k-time-l-t">00</view>
+          </view>
+        </block>
+      </block>
+      <block wx:if='{{delData.group.groupStatus==52||delData.group.groupStatus==12||delData.group.groupStatus==51||delData.group.groupStatus==50}}'>
+        <block wx:if='{{delData.identity=="2"}}'>
+          <view class='h-spellresult-title'>
+            <image src='/img/spellfill2.png' class='h-spellresult-title-img1'></image>
+            <view class='h-spellresult-title-text2'>人数已满晚来一步</view>
+            <image src='/img/spellfill2.png' class='h-spellresult-title-img2'></image>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='h-spellresult-title'>
+            <image src='/img/spellfill1.png' class='h-spellresult-title-img1'></image>
+            <view class='h-spellresult-title-text1'>拼团成功</view>
+            <image src='/img/spellfill1.png' class='h-spellresult-title-img2'></image>
+          </view>
+          <view class='h-spellresult-bar3' wx:if='{{delData.group.groupStatus==12||delData.group.groupStatus==50}}'>正在生成订单，请稍后…</view>
+          <view class='h-spellresult-bar2' data-trandid='{{delData.groupOrder.tradeId}}' wx:if='{{delData.groupOrder.tradeId&&delData.group.groupStatus==52}}' bindtap='goOrder'>查看订单详情</view>
+        </block>
+      </block>
+      <block wx:if='{{delData.group.groupStatus==53||(delData.group.groupStatus==11&&delData.group.payNum!=delData.group.partakeNumMax)}}'>
+        <block wx:if='{{delData.identity=="2"}}'>
+          <view class='h-spellresult-title'>
+            <image src='/img/spellfill2.png' class='h-spellresult-title-img1'></image>
+            <view class='h-spellresult-title-text2'>拼团时间到</view>
+            <image src='/img/spellfill2.png' class='h-spellresult-title-img2'></image>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='h-spellresult-title'>
+            <image src='/img/spellfill2.png' class='h-spellresult-title-img1'></image>
+            <view class='h-spellresult-title-text2'>拼团失败</view>
+            <image src='/img/spellfill2.png' class='h-spellresult-title-img2'></image>
+          </view>
+          <view class='h-spellresult-bar3' wx:if='{{delData.group.payStatus==0}}'>超时未支付，拼团取消</view>
+          <view class='h-spellresult-bar3' wx:elif='{{delData.group.payStatus==3}}'>退款中</view>
+          <view class='h-spellresult-bar3' wx:elif='{{delData.group.payStatus==5}}'>退款完成</view>
+          <view class='h-spellresult-bar3' wx:else>拼团时间已到，支付金额24小时内原路返回</view>
+        </block>
+      </block>
+      <view class='h-spellresult-user'>
+        <view wx:for='{{groupUser}}' wx:if='{{index<10||(allUserBl)}}' class='h-spellresult-userbox'>
+          <image class='h-spellresult-userhear' src='{{item.userImg}}' wx:if='{{item.userImg}}'></image>
+          <image class='h-spellresult-userhear-nb' src='/img/spell_head_holder.png' wx:else></image>
+          <view class='h-spellresult-text2' wx:if='{{item.payStatus<2}}'>待支付</view>
+          <view class='h-spellresult-text1' wx:if='{{item.isHeader==1}}'>团长</view>
+        </view>
+      </view>
+      <view class='h-spellresult-userbtm' wx:if='{{groupUser.length>100}}' bindtap='watchUser'>
+        查看全部成员
+        <image class='h-spellresult-userbtm-img' src='https://img.iyuedian.com/mini/go.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='h-spelldel2' bindtap='spellState'>
+    <view class='h-spelldel2-text1'>拼团说明</view>
+    <view class='h-spelldel2-text2'>支付开团·邀请新用户参团·成功等待发货·失败退款
+      <image class='h-h-spelldel2-img' src='https://img.iyuedian.com/mini/go.png'></image>
+    </view>
+  </view>
+  <!-- 加入团队模块 -->
+  <view class="k-guide-adv-content-join" wx:if="{{joinTeamShow}}">
+    <image class="k-guide-bg" src="/img/team_guide.png" />
+    <image class="k-guide-adv-head-img" src="{{delData.group.headerImg}}" />
+    <text class="k-guide-adv-name">「{{delData.group.headerNickName}}」:</text>
+    <text class="k-guide-adv-text-join">“咱们拼团成功了，快来加入我的团队, 还有更多福利发放～”</text>
+    <view class="k-guide-btn-bg-first" />
+    <view class="k-guide-btn-first qj-dis-c-c" bindtap="joinTeam">立即加入</view>
+  </view>
+  <!-- 加入团队主动弹框-->
+  <view class="k-guide-content" catchtouchmove="nullEvent" wx:if='{{isGuideTeam}}'>
+    <view class="k-guide-card">
+      <image class="k-guide-bg" src="/img/team_guide_card.png" />
+      <image class="k-guide-head" src="{{delData.group.headerImg}}" />
+      <text class="k-guide-name">「{{delData.group.headerNickName}}」</text>
+      <text class="k-guide-text">咱们拼团成功了，快来加入我的团队, 还有更多福利发放～</text>
+      <view class="k-guide-btn-bg" />
+      <view class="k-guide-btn qj-dis-c-c" bindtap="joinTeam">立即加入</view>
+      <checkbox-group bindchange="checkboxChange">
+        <label class="k-checkbox qj-dis-c-s">
+          <checkbox class="checkbox" value="" checked="{{checked}}" />7天内不再提醒
+        </label>
+      </checkbox-group>
+    </view>
+    <image class="k-guide-close" src="/img/btn_close.png" bindtap="closeGuideTeam" />
+  </view>
+  <view class='h-spelldel3'>
+    <!-- 我的优点 -->
+    <view wx:if='{{comVirtue.length}}'>
+      <view class='h-spelldel3-text1'>- 我的优点 -</view>
+      <view class='h-spelldel3-box'>
+        <view class='h-spelldel3-list' wx:for='{{comVirtue}}' wx:key='id'>
+          <view class='h-spelldel3-text2'>.</view>
+          <view class=''>{{item.detailValue}}</view>
+        </view>
+      </view>
+    </view>
+    <!--富文本编辑器-->
+    <view class='h-wxParsebox'>
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <!--  -->
+    <view class='h-delform' wx:if="{{comCpe.length}}">
+      <view class='h-delform-tite'>- 我的详情 -</view>
+      <view class='h-delform-box'>
+        <block wx:for='{{comCpe}}' wx:key="id">
+          <view class='{{index===0? "h-delform-box-list1":"h-delform-box-list2"}}'>
+            <view class='h-delform-box-list-left'>{{item.detailName}}</view>
+            <view class='h-delform-box-list-right'>{{item.detailValue}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='h-youkown' wx:if="{{youKnow.length}}">
+      <view class='h-youkown-title'>- 你还要知道 -</view>
+      <view class='h-youkown-text' wx:for="{{youKnow}}" wx:key="sort">
+        {{index+1}}.{{item.detailValue}}
+      </view>
+    </view>
+  </view>
+  <!-- 判断支付状态 下面未支付-->
+  <view class='{{isIphoneX? "h-bigbtn-red1-x":"h-bigbtn-red1"}}' wx:if='{{timeEnd}}' bindtap='goHome'>去首页</view>
+  <block wx:else>
+    <block wx:if='{{delData.groupOrder.payStatus==0}}'>
+      <view class='{{isIphoneX? "h-bigbtn-red1-x":"h-bigbtn-red1"}}' wx:if='{{delData.identity==2&&(delData.group.groupStatus==0||delData.group.groupStatus==1||delData.group.groupStatus==2||delData.group.groupStatus==10)&&delData.group.groupStatus!="11"}}'
+        bindtap='spellJoin'>参团</view>
+      <view class='{{isIphoneX? "h-bigbtn-red1-x":"h-bigbtn-red1"}}' wx:if='{{(delData.identity==0||delData.identity==1)&&delData.group.groupStatus<=11}}' bindtap='payAgin'>待支付</view>
+      <view class='{{isIphoneX? "h-bigbtn-red1-x":"h-bigbtn-red1"}}' wx:if='{{delData.group.groupStatus>11&&delData.identity==2}}' bindtap='spellNew'>去开团</view>
+    </block>
+    <!-- 已支付 -->
+    <block wx:else>
+      <view class='{{isIphoneX? "h-bigbtn-red1-x":"h-bigbtn-red1"}}' wx:if='{{(delData.group.groupStatus==11&&delData.group.payNum==delData.group.partakeNumMax)||(delData.group.groupStatus==12||delData.group.groupStatus==50||delData.group.groupStatus==51||delData.group.groupStatus==52||delData.group.groupStatus==53)}}'
+        bindtap='spellNew'>去开团</view>
+      <view class='{{isIphoneX? "h-bigbtn-red1-x":"h-bigbtn-red1"}}' wx:if='{{delData.group.groupStatus==10&&delData.group.groupStatus!="11"}}' bindtap='shareOpen'>邀请好友</view>
+    </block>
+  </block>
+  <view class="share-shadow" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' catchtap="shareChose"></view>
+  <view class="h-sharelist {{isIphoneX?'p-b-68':''}}" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' animation='{{animationData}}'>
+    <view class='h-sharelist-list1'>
+      <view></view>
+      <view class='qj-dis-s-b'>
+        <view>分享给小伙伴</view>
+      </view>
+      <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='shareChose'></image>
+    </view>
+    <view class='h-sharelist-list2 '>
+      <button open-type='share' class='button-open-user h-sharelist-box '>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/chat.png'></image>
+        <view class="share-text1">转发到微信</view>
+      </button>
+      <view class='h-sharelist-box ' bindtap='sendCircle'>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+        <view class="share-text">保存图片</view>
+      </view>
+    </view>
+  </view>
+  <view class='h-delshop' hidden='{{shopboxBl}}' bindtap='choseNumBox' catchtouchmove='nullEvent'>
+    <view class="h-delshopbox" catchtap='kong' animation='{{animationData}}'>
+      <view class='po-r'>
+        <view class='h-delshopbox-com qj-dis-s-c'>
+          <image class='h-delshopbox-com-img  qj-marginl-8' src='{{delData.group.productImg}}'></image>
+          <view class='qj-marginl-28'>
+            <view class='qj-ls-4432  qj-color-333'>{{delData.group.productName}}</view>
+            <view class='qj-ls-3424 qj-color-808080 qj-margint-8'>规格 {{delData.group.specification}}</view>
+            <view class='qj-dis-s-b'>
+              <!-- <view class='qj-ls-3424 qj-color-ff6a6a qj-margint-22'>会员价：</view> -->
+              <view class=' qj-ls-2820 font-w qj-color-ff6a6a'>¥</view>
+              <view class='qj-ls-4028 qj-color-ff6a6a qj-margint-22 font-w'>{{delData.group.activityPrice*comNum}}</view>
+            </view>
+          </view>
+        </view>
+        <view class='qj-dis-b-c h-delshopbox-num'>
+          <view class='qj-ls-4028 qj-color-525252'>
+            数量
+          </view>
+          <view class="qj-dis-s-c">
+            <view class="k-time-by-number" wx:if='{{spellNumber||spellNumber===0}}'>{{spellNumber||spellNumber===0?'您还可购买'+spellNumber+'件':''}}</view>
+            <view class='qj-dis-s-c h-delshopbox-num-add'>
+              <view class='h-num-add-btn {{(comNum<=1)? "h-color-c5c5c5":""}} ' bindtap='{{(comNum>1)? "comNumJ":""}}'>-</view>
+              <view class='h-num-add-btn'>{{comNum}}</view>
+              <view class='h-num-add-btn {{(comNum>(comOkNum))? "h-color-c5c5c5":""}}' bindtap='comNumA'>+</view>
+            </view>
+          </view>
+        </view>
+        <view class="h-delshopbox-btn  {{isIphoneX?'h-166':'h-98'}}" bindtap='spellJionEnter' wx:if='{{comNum<=spellNumber&&comNum!=0&&spellBackBl}}'>确定</view>
+        <view class="h-delshopbox-btn2  {{isIphoneX?'h-166':'h-98'}}" wx:else>确定</view>
+      </view>
+    </view>
+  </view>
+  <back-top />
+  <dialog id='dialog' bindmyCallb='getBack' />
+  <canvas canvas-id="shareCanvasMini" class="k-share-canvas" hidden="{{true}}"></canvas>
+</collect>

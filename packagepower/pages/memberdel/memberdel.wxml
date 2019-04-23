@@ -1,0 +1,217 @@
+<!--packagepower/pages/memberdel/memberdel.wxml-->
+<!-- <text>packagepower/pages/memberdel/memberdel.wxml</text> -->
+<!--注意要做ihonex兼容-->
+<import src="/utils/pagestates/pagestates.wxml" />
+<collect>
+  <template is="pagestates" data="{{...pageState}}" />
+  <back-top/>
+  <view class='h-main'>
+    <!-- 团队成员信息 -->
+    <view class='h-info'>
+      <!-- 团队成员头像 -->
+      <image class='h-info-photo' src='{{infoData.headImgUrl}}'></image>
+      <!--团队成员头像后盒子 -->
+      <view class='h-info-box' data-phone="{{infoData.mobile}}" bindlongtap='getPhone'>
+        <!-- 团队成员信息第一行 -->
+        <view class='h-ibox-list1'>
+          <view class='h-ibox-list3'>
+            <view class='h-ibox-name'>{{infoData.nickName}}</view>
+            <!--<view class='h-ibox-vipicon'></view>-->
+            <image class="h-ibox-vipicon1" src="/img/vip-iocn.png" wx:if='{{infoData.levelId==2}}'></image>
+            <image class="h-ibox-vipicon2" src="/img/vip-giocn.png" wx:if='{{infoData.levelId==3}}'></image>
+            <view class='h-ibox-phone'>{{infoData.mobile}}</view>
+          </view>
+          <view class='h-ibox-lasttime'>{{lasttime}}</view>
+        </view>
+        <!-- 团队成员信息第二行 -->
+        <view class='h-ibox-list2 h-ibox-jiontime'>
+          <!-- <view class='h-ibox-'></view>
+          <view class=''></view>
+          <view class=''></view> -->
+          加入时间 {{infoData.inviteDate}}
+        </view>
+      </view>
+    </view>
+    <!-- vip成员数据模块-->
+    <!-- 暂时这么处理方便看样式 -->
+    <view class='h-vipdata' style='background-image: url("https://img.iyuedian.com/mini/govip/memberback.png")' wx:if='{{infoData.levelId>1}}'>
+      <!--VIP成员数据模块返利-->
+      <!--自购返现数据-->
+      <!-- 自购返现数据-->
+      <view class='h-earnings'>
+        <view class='h-ebox-text'>自购成单</view>
+        <view class='h-earnings-box'>
+          <view class='h-ebox-data1'>
+            {{infoData.monthBuyOrderNum}}
+            <text class='h-ebox-data1-son'>笔</text>
+          </view>
+          <view class='h-ebox-data2'>
+            <text class='h-ebox-data2-son'>¥</text> {{infoData.monthBuyOrderMoney}}
+          </view>
+          <view class='h-ebox-data3'>本月</view>
+        </view>
+        <view class='h-vipdata-fills'></view>
+        <view class='h-earnings-box'>
+          <view class='h-ebox-data1'>
+            {{infoData.buyOrderNum}}
+            <text class='h-ebox-data1-son'>笔</text>
+          </view>
+          <view class='h-ebox-data2'>
+            <text class='h-ebox-data2-son'>¥</text> {{infoData.buyOrderMoney}}
+          </view>
+          <view class='h-ebox-data3'>累计</view>
+        </view>
+      </view>
+      <view class='h-earnings'>
+        <view class='h-ebox-text'>分享成单</view>
+        <view class='h-earnings-box'>
+          <view class='h-ebox-data1'>
+            {{infoData.monthCpsOrderNum}}
+            <text class='h-ebox-data1-son'>笔</text>
+          </view>
+          <view class='h-ebox-data2'>
+            <text class='h-ebox-data2-son'>¥</text> {{infoData.monthCpsOrderMoney}}
+          </view>
+          <view class='h-ebox-data3'>本月</view>
+        </view>
+        <view class='h-vipdata-fills'></view>
+        <view class='h-earnings-box'>
+          <view class='h-ebox-data1'>
+            {{infoData.cpsOrderNum}}
+            <text class='h-ebox-data1-son'>笔</text>
+          </view>
+          <view class='h-ebox-data2'>
+            <text class='h-ebox-data2-son'>¥</text> {{infoData.cpsOrderMoney}}
+          </view>
+          <view class='h-ebox-data3'>累计</view>
+        </view>
+      </view>
+      <!-- 分享成单 -->
+      <!--团队成员的团队成员人数-->
+      <view class='h-team'>
+        <view class='h-team-text'>团队成员</view>
+        <view class='h-team-box'>
+          <view class='h-team-number1'>{{infoData.teamCount}}</view>
+          <view class='h-team-number2'>总人数</view>
+        </view>
+        <view class='h-vipdata-fills'></view>
+        <view class='h-team-box'>
+          <view class='h-team-number1'>{{infoData.level3Count}}</view>
+          <view class='h-team-number2'>黄金VIP</view>
+        </view>
+        <view class='h-vipdata-fills'></view>
+        <view class='h-team-box'>
+          <view class='h-team-number1'>{{infoData.level2Count}}</view>
+          <view class='h-team-number2'>VIP</view>
+        </view>
+        <view class='h-vipdata-fills'></view>
+        <view class='h-team-box'>
+          <view class='h-team-number1'>{{infoData.level1Count}}</view>
+          <view class='h-team-number2'>悦粉</view>
+        </view>
+      </view>
+    </view>
+    <!-- 非VIP成员数据模块 -->
+    <view class='h-deldata' wx:else>
+      <view class='h-deldata-text'>自购订单</view>
+      <view class='h-delbox'>
+        <view class='h-delbox-data1'>
+          {{infoData.monthBuyOrderNum}}
+          <text class='h-delbox-data1-son'>笔</text>
+        </view>
+        <view class='h-delbox-data2'>
+          <text class='h-delbox-data2-son'>¥</text> {{infoData.monthBuyOrderMoney}}
+        </view>
+        <view class='h-delbox-data3'>本月</view>
+      </view>
+      <view class='h-delbox-fills'></view>
+      <view class='h-delbox'>
+        <view class='h-delbox-data1'>
+          {{infoData.buyOrderNum}}
+          <text class='h-delbox-data1-son'>笔</text>
+        </view>
+        <view class='h-delbox-data2'>
+          <text class='h-delbox-data2-son'>¥</text> {{infoData.buyOrderMoney}}
+        </view>
+        <view class='h-delbox-data3'>累计</view>
+      </view>
+    </view>
+    <!-- 选择条件模块 -->
+    <view class='h-change'>
+      <view class='h-change-left'>
+        <view class='h-change-left-text1'>自购订单：</view>
+        <view class='h-change-left-text2'>{{total}}笔</view>
+      </view>
+      <view class='h-change-right' bindtap='changeStatus'>
+        <view class='h-change-right-text1'>购买时间：</view>
+        <view class='h-change-right-text2'>
+          <block wx:if="{{yearIndex}}">{{allTime[yearIndex].year+"-"+allTime[yearIndex].month[monthIndex]}}</block>
+          <block wx:else>全部</block>
+          <image class='h-change-right-img' src='/img/arrow4.png'></image>
+        </view>
+      </view>
+    </view>
+    <!-- 订单列表模块 -->
+    <view wx:for="{{partnerList}}">
+
+      <view class='h-inddata' wx:for="{{item}}">
+        <view class='h-indlist1'>
+          <view class='h-indlist1-left'>
+            <view class='h-indlist1-left1'>订单号：</view>
+            <view class='h-indlist1-left2'>{{item.tradeCode}}</view>
+          </view>
+          <view class='h-indlist1-right'>
+            <view class='h-indlist1-right1'>订单金额：</view>
+            <view >¥{{item.payMoney}}</view>
+          </view>
+        </view>
+        <view class='h-indlist2'>
+          <view class='h-indlist2-left'>商品名称：</view>
+          <view class='h-indlist2-right'>{{item.goodsName}}</view>
+        </view>
+        <view class='h-indlist2'>
+          <view class='h-indlist2-left'>购买时间：</view>
+          <view class='h-indlist2-right'>{{item.payTime}}</view>
+        </view>
+      </view>
+    </view>
+    <block wx:if='{{partnerList[0].length}}'>
+      <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+        滑动查看更多
+      </view>
+      <view class='h-bottom-hint' wx:else>
+        没有更多啦~
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nonedata-box'>
+        <view class='nonedata-box-img'>
+          <image class='img100' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+        </view>
+        <view class='nonedata-box-text' wx:if='{{hasNextPage}}'>团队数据加载中...</view>
+        <view class='nonedata-box-text' wx:else>~ 暂无数据 ~</view>
+      </view>
+    </block>
+  </view>
+  <view class='pickertime' catchtap="enterTime" catchtouchmove='nullEvent'  hidden='{{pickerTiemBL}}'>
+    <view class="animation-element">
+      <text class="left-bt" catchtap="closeTime" data-id="555">取消</text>
+      <text class="right-bt" catchtap="enterTime" data-id="666">确定</text>
+      <view class="line"></view>
+      <!--省市区的处理  -->
+      <picker-view class='pickertime-box' indicator-style="height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+        <!--省-->
+        <picker-view-column>
+          <view class='pickertime-list' wx:for="{{allTime}}" wx:key="item.year">
+            {{item.year}}
+          </view>
+        </picker-view-column>
+        <picker-view-column>
+          <view class='pickertime-list' wx:for="{{allTime[yearIndexDome].month}}" wx:key="index">
+            {{item}}
+          </view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+</collect>

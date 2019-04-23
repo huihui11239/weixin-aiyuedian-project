@@ -1,0 +1,55 @@
+<!--pageageuser/pages/sharegoods/sharespell.wxml-->
+<import src="../../../utils/pagestates/pagestates.wxml"/>
+<collect>
+    <template is="pagestates" data="{{...pageState}}"/>
+    <view class="page_sty">
+        <view class="canvas-wh1" hidden="{{shareBoxBl}}" catchtouchmove='nullEvent'>
+            <view class='canvas-wh-con-logo'>
+                <image class='w-100 h-100' wx:if="{{spellData.group.productImg}}"
+                       src='{{spellData.deatilCarouselImg}}'></image>
+                <image class='t-yudianlogo-logo' src='/img/yudianlogo.png'></image>
+                <view class="qj-dis-b-c time-bg" style="background-image: url('https://img.iyuedian.com/mini/activity/spell_share_bar.png')">
+                    <view class="k-number">【仅剩{{spellData.group.partakeNumMax?spellData.group.partakeNumMax-spellData.group.partakeNum:'-'}}个名额】</view>
+                    <view class='t-ren-price' wx:if="{{spellData.showSellBaseCount>99}}">{{spellData.showSellBaseCount}}人已购买</view>
+                </view>
+            </view>
+            <view class='canvas-wh-content'>
+                <view class='t-name-content-tv'>
+                    <view class="name-tv">{{spellData.group.productName}}</view>
+                </view>
+
+                <view class="qj-dis-s-b k-price-content">
+                    <view class="k-spell-tag">拼团价</view>
+                    <text class='t-pirce-moe2'>￥</text>
+                    <view class='t-pirce-moe1'>{{spellData.group.activityPrice}}</view>
+                    <view class="qj-dis-s-b k-price-content-s">
+                        <view class="k-spell-tag-s">单买价</view>
+                        <text class='t-pirce-moe2-s'>￥</text>
+                        <view class='t-pirce-moe1-s'>{{spellData.productSellPrice}}</view>
+                        <view class='k-spell-dev'></view>
+                    </view>
+                    <view></view>
+                </view>
+
+            </view>
+            <view class='qj-dis-c-s content-qrcode '>
+                <image class="qrcode-image" src='{{qrCodeimage}}'/>
+            </view>
+            <scroll-view class='k-scroll-head' scroll-x>
+                <block wx:for='{{spellData.groupOrderList}}' wx:key='id'>
+                    <view class="k-spell-member" wx:if="{{index<5}}">
+                        <view class='{{(item==null||!item.userImg)?"bt-slogan-logo-nb":"bt-slogan-logo"}}'>
+                            <image class='w-100 h-100' src='{{(item==null||!item.userImg)?"/img/spell_head_holder.png":item.userImg}}'></image>
+                        </view>
+                        <view class="k-spell-master-tag" wx:if="{{item.isHeader==1}}">团长</view>
+                    </view>
+                </block>
+            </scroll-view>
+        </view>
+        <canvas canvas-id="shareCanvas" class="canvas-wh" hidden="{{true}}"></canvas>
+        <view class="tv-info">长按识别小程序，立即参加</view>
+        <view class="qj-dis-c-c" bindtap='saveCard'>
+            <view class="bt-save" bindtap='saveClick'>保存并分享，成团更快</view>
+        </view>
+    </view>
+</collect>

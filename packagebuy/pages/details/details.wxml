@@ -1,0 +1,419 @@
+<!--pages/details/details.wxml-->
+<import src="../../../utils/pagestates/pagestates.wxml" />
+<collect wx:if="{{delAllData}}">
+  <template is="pagestates" data="{{...pageState}}" />
+  <import src="../../../wxParse/wxParse.wxml" />
+  <dialog id='dialog' />
+  <back-top statusFlag="{{statusFlag}}" acttype='{{delAllData.activityGoods.type}}' bindgoLimit="goLimit" />
+  <view class='pages'>
+    <!--轮播图-->
+    <swiper indicator-dots='true' autoplay='true' class='h-banner swiper-box h-banner-img' interval="4000" duration='500' circular="true">
+      <block wx:for='{{delAllData.product_deatilCarouselImg}}' wx:key='image_url'>
+        <swiper-item class="h-banner-img">
+          <load-image src="{{item.detailValue}}" type="{{index%3+1}}" debug="{{100}}" key="{{index}}" bind:success="imageLoadSuccess" bind:error="imageLoadError">
+            <image class="h-banner-img" src='{{item.detailValue}}' data-src="{{item.originalImg}}" bindtap="previewImage" />
+          </load-image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="k-time-l1 qj-dis-b-c" wx:if="{{delAllData.activityGoods.type==3}}" style="background-image: url('https://img.iyuedian.com/mini/activity/spellBackBar.png')">
+      <view class="qj-dis-s-c">
+        <!-- <image class="k-time-l-text" src="/img/limit_mini.png"></image> -->
+        <!--<view class="k-time-di">/</view>-->
+        <!--<view class="k-time-di1">{{btime}}</view>-->
+        <view class='h-spellback-text'>
+          <image class='h-spelltext-img' src='/img/spelltext.png'></image>
+          <text class='h-spellback-text1'>{{delAllData.activityGoods.peopleNum}}</text>
+          <text class='h-spellback-text2'>人团</text>
+        </view>
+      </view>
+      <view class="qj-dis-s-c k-time-l-t-content">
+        <view class="k-time-l-text1">距离结束还剩：</view>
+        <view class="k-time-l-text2" hidden="{{day==0}}">{{day}}天</view>
+        <view class="k-time-l-t qj-dis-c-c">{{hour}}</view>
+        <view class="qj-dis-c-c k-time-l-s">:</view>
+        <view class="k-time-l-t qj-dis-c-c">{{minute}}</view>
+        <view class="qj-dis-c-c k-time-l-s">:</view>
+        <view class="k-time-l-t qj-dis-c-c">{{second}}</view>
+      </view>
+    </view>
+    <view class="k-time-l qj-dis-b-c" wx:elif="{{delAllData.activityGoods.type==1&&time!=0&&statusFlag!=3}}" style="background-image: url('https://img.iyuedian.com/mini/activity/t_bg_detail.png')">
+      <view class="qj-dis-s-c">
+        <image class="k-time-l-text" src="/img/limit_mini.png"></image>
+      </view>
+      <view class="qj-dis-s-c k-time-l-t-content">
+        <view class="k-time-l-text1">距离结束还剩：</view>
+        <view class="k-time-l-text2" hidden="{{day==0}}">{{day}}天</view>
+        <view class="k-time-l-t qj-dis-c-c">{{hour}}</view>
+        <view class="qj-dis-c-c k-time-l-s">:</view>
+        <view class="k-time-l-t qj-dis-c-c">{{minute}}</view>
+        <view class="qj-dis-c-c k-time-l-s">:</view>
+        <view class="k-time-l-t qj-dis-c-c">{{second}}</view>
+      </view>
+    </view>
+    <view class="k-time-left-content" wx:if="{{time!=0&&delAllData.activityGoods.type==1&&statusFlag==3}}">
+      <view class="k-time-l-1 qj-dis-e-c">
+        <view class="qj-dis-s-b k-time-l-t-content">
+          <view class="k-time-l-text3">{{startTime}}</view>
+          <view class="k-time-l-text1">开抢</view>
+        </view>
+        <!--<view class="k-book-btn qj-dis-c-c" hidden="{{delAllData.activityGoods.isSub||time<=300}}" catchtap="bookMessage">提醒我</view>-->
+        <!--<view class="k-book-btn1 qj-dis-c-c" hidden="{{!delAllData.activityGoods.isSub||time<=300}}" catchtap="bookMessage">已设置</view>-->
+      </view>
+      <view class="k-time-price-bg" style="background-image: url('https://img.iyuedian.com/mini/activity/detial_time_left_bg.png')">
+        <image class="k-time-text-img" src="/img/detail_time_text.png"></image>
+        <view class="k-time-di1">
+          <view class="k-time-di">￥</view>
+          <text class="t-pirce-moe3">{{delAllData.product_info.discountPrice}}</text>
+        </view>
+      </view>
+    </view>
+    <!--价格-->
+    <view class='h-pricebox qj-backc-fff'>
+      <view class='t-content-price'>
+        <view class='qj-dis-s-e'>
+          <view class='h-del-price qj-dis-s-e qj-color-ff6a6a t-float t-commodity-price'>
+            <text class='t-pirce-moe'>¥</text>{{delAllData.activityGoods.type==3? delAllData.activityGoods.price:delAllData.product_info.sellPrice}}</view>
+            <view class='t-float t-commodity-oldPrice qj-family-m' hidden='{{statusFlag!=1&&delAllData.product_info.marketPrice==delAllData.product_info.sellPrice||delAllData.product_info.marketPrice==0||delAllData.product_info.marketPrice==null||delAllData.product_info.marketPrice==""||delAllData.product_info.marketPrice=="0.00"}}'>￥{{delAllData.product_info.marketPrice}}</view>
+        </view>
+        <view class='qj-ls-2820 qj-color-b7a368 qj-dis-s-e t-float-right' hidden='{{delAllData.product_info.showSellBaseCount==null||delAllData.product_info.showSellBaseCount<100}}'>{{delAllData.product_info.showSellBaseCount}}人已抢购</view>
+      </view>
+      <view class='qj-margint-24 h-del-ddd  qj-color-333 font-w qj-family-m h-ovoeroffw'><text class='h-straight-hint' wx:if='{{isDirectDelivery==1}}'>【产地直发】</text>{{delAllData.product_info.name}}</view>
+      <view class='h-del-vipbar' bindtap='vipSkip' wx:if="{{(delAllData.displayConcealmentVO.isShow==1)&&delAllData.activityGoods.type!=3}}">
+        <image class='vipbar100' src="{{vipBl?'/img/detail_back.png':'/img/detail_save.png'}}"></image>
+        <view class="k-ad-text" wx:if="{{vipBl}}">邀请好友成单奖励
+          <text style="color: #FF5A5A">¥{{delAllData.product_info.shareEarningsPrice}}</text>元
+        </view>
+        <view class="k-ad-text qj-dis-s-c" wx:else>开通
+          <image class="k-ad-img-vip" src="/img/detail_ad_vip.png"></image>本商品省
+          <text style="color: #FF5A5A">¥{{delAllData.product_info.selfEarningsPrice}}</text>元
+        </view>
+
+        <view class="k-ad-share-text">{{vipBl?'':'去开通'}}</view>
+      </view>
+    </view>
+    <!--团提示-->
+    <view class='h-delspell' wx:if='{{delAllData.activityGoods.subType==301}}' bindtap='spellState'>
+      <view class='h-delspell-box'>
+        <view>【全民邀新团】</view>
+        <view class='h-delspell-text1'> 老用户可开团，新用户可开团/参团</view>
+      </view>
+      <image class='h-delspell-img' src='https://img.iyuedian.com/mini/arrowimg1.png' />
+    </view>
+    <view class='h-delspell' wx:elif='{{delAllData.activityGoods.subType==303}}' bindtap='spellState'>
+      <view class='h-delspell-box'>
+        <view>【VIP邀新团】</view>
+        <view class='h-delspell-text1'> VIP才可开团，新用户可参团</view>
+      </view>
+      <image class='h-delspell-img' src='https://img.iyuedian.com/mini/arrowimg1.png' />
+    </view>
+
+    <!--产地直发-->
+    <view class="k-area-send qj-dis-b-c" wx:if="{{delAllData.product_info.isProductareaSend}}">
+      <view class="k-area-city qj-dis-s-c"><image class="k-area-img-local" src="/img/local.png"/><text class="k-area-send-text">发货地：{{delAllData.product_info.productArea}}</text></view>
+      <view class="k-area-time qj-dis-s-c"><image class="k-area-img" src="/img/time.png"/><text class="k-area-send-text">到货时间：{{delAllData.product_info.productSendTime}}</text></view>
+    </view>
+
+    <!--suk-->
+    <view class='qj-margintb-16 h-sukadd qj-paddinglr-24 qj-backc-fff'>
+      <view class='t-content-sku'>
+        <view class='h-suk-title1 '>
+          规格
+        </view>
+        <view class='h-suk-box'>
+          <block wx:for='{{delAllData.product_specification}}' wx:key='item.goodsId'>
+            <view class='h-suk-box_one qj-family-m  {{(delAllData.product_info.id==item.goodsId)? "h-suk-box_onea":""}}' data-suk='{{item.goodsId}}' bindtap='{{(delAllData.product_info.id==item.goodsId)? "":"sukClick"}}'>{{item.detailName}}</view>
+          </block>
+        </view>
+      </view>
+      <!-- 地址-->
+      <button class='button-open-user t-address-content' bindtap="addSkip">
+        <view class='h-suk-title2'>
+          送至
+        </view>
+        <view class='h-address-textbox'>
+          <view class='h-address-textbox-son'>{{addresstext}}</view>
+        </view>
+        <view>
+          <view class='h-address-textbox1'>
+            <!-- <view class='h-address-textbox1' bindtap='addSkip'> -->
+            <view class='h-arrowimg1 t-address-Choice-icon'>
+              <image class='w-100 h-100' src='https://img.iyuedian.com/mini/arrowimg1.png' />
+            </view>
+            <block wx:if='{{addressData||addLocaText||defaultAddress}}'>
+              <view class='qj-ls-4028 qj-color-ff6a6a h-float-r' wx:if='{{comOkNum<1}}'>无货</view>
+              <view class='qj-ls-4028 qj-color-ff6a6a h-float-r' wx:else>
+                <block wx:if='{{!dispatching}}'>无法配送</block>
+                <!-- <block wx:else></block> -->
+              </view>
+              <!-- <view class='qj-ls-4028 qj-color-ff6a6a h-float-r' wx:else>无货</view> -->
+            </block>
+            <block wx:else>
+              <view class='qj-ls-4028 qj-color-333 t-address-Choice'>选择配送地址</view>
+            </block>
+            <!-- </view> -->
+          </view>
+        </view>
+      </button>
+      <view class='h-straight' wx:if='{{promiseTitle}}'>
+        {{promiseTitle}}
+      </view>
+      <!--包邮-->
+      <view class='h-express'>
+        <view class='h-suk-title1'>快递</view>
+        <view class='h-express-money'>包邮</view>
+      </view>
+    </view>
+    <!--品控-->
+    <view class='qj-backc-fff' wx:if="{{QualityArr.length}}">
+      <view class='h-qualitylist {{index==(QualityArr.length-1)||!moreQuality? "":"h-qualitylistb"}}' wx:for='{{QualityArr}}' wx:if='{{moreQuality? true:index<1}}'>
+        <!-- <view class='h-qualitylist-text1'>{{item.product_name}}</view> -->
+        <view class=' {{moreQuality?"h-qualitylist-text1":"h-qualitylist-text2"}}' bindtap='{{QualityArr.length<2? "sMoreQuality1":""}}'> {{item.product_name? '【'+item.product_name+'】':'' }}{{item.quality_text}}</view>
+        <scroll-view class='h-qualitylist-scroll' scroll-x>
+          <block wx:for='{{item.product_quality}}' wx:key='tag_id'>
+            <view class='h-scrollone' data-url='{{item.link}}' data-list='{{item.img_list}}' data-title='{{item.name}}' bindtap='skipQuality'>
+              <image class='h-scrollone-img' src='{{item.tag_icon}}'></image>
+              <view class='h-scrollone-text'>{{item.name}}</view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+      <view class='h-quality-btn' wx:if='{{QualityArr.length>1&&moreQuality===false}}' bindtap='sMoreQuality'>更多详情
+        <image class='h-quality-arrowimg1' src='https://img.iyuedian.com/mini/arrowimg1.png'></image>
+      </view>
+      <view class='h-quality-btn' wx:elif='{{QualityArr.length>1&&moreQuality===true}}' bindtap='hMoreQuality'>收起
+        <image class='h-quality-arrowimg2' src='https://img.iyuedian.com/mini/arrowimg1.png'></image>
+      </view>
+    </view>
+    <view class='h-cominfo qj-backc-fff'>
+      <block wx:if='{{delAllData.product_recommend.detailValue}}'>
+        <view class='t-Buyer-Recommend'>- 买手推荐 -</view>
+        <view class='t-Buyer-Recommend-box' wx:if="{{delAllData.product_recommend_user.detailName&&delAllData.product_recommend_user.detailValue}}">
+          <view class='t-Buyer-Recommend-boxleft'>
+            <image class='t-Buyer-Recommend-boximg' src='{{delAllData.product_recommend_user.detailValue}}'></image>
+            <view class='t-Buyer-Recommend-boxtext1'>{{delAllData.product_recommend_user.detailName}}</view>
+            <view class='t-Buyer-Recommend-boxtext2'>春播买手</view>
+          </view>
+          <view class='t-Buyer-Recommend-boxright'>{{delAllData.product_recommend.detailValue}}</view>
+        </view>
+        <view class='t-Buyer-Recommend-content' wx:else>{{delAllData.product_recommend.detailValue}}</view>
+      </block>
+
+      <block wx:if='{{delAllData.product_merit.length}}'>
+        <view class='t-Buyer-Recommend t-Buyer-Recommend1'>- 我的优点 -</view>
+        <view class='t-dddd'>
+          <view class='t-Buyer-Advantage-content' wx:for="{{delAllData.product_merit}}" wx:key="*this">
+            {{item.detailValue}}
+            <view class='t-Buyer-Advantage-content-line'>·</view>
+          </view>
+        </view>
+      </block>
+      <view>
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      </view>
+      <view class='h-delform' wx:if="{{delAllData.product_deatil[0]}}">
+        <view class='h-delform-tite'>- 我的详情 -</view>
+        <view class='h-delform-box'>
+          <block wx:for='{{delAllData.product_deatil}}' wx:key="id">
+            <view class='{{index===0? "h-delform-box-list1":"h-delform-box-list2"}}'>
+              <view class='h-delform-box-list-left'>{{item.detailName}}</view>
+              <view class='h-delform-box-list-right'>{{item.detailValue}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='h-youkown' wx:if="{{delAllData.product_youKnow[0]}}">
+        <view class='h-youkown-title'>- 你还要知道 -</view>
+        <view class='h-youkown-text' wx:for="{{delAllData.product_youKnow}}" wx:key="sort">
+          {{index+1}}.{{item.detailValue}}
+        </view>
+      </view>
+    </view>
+    <view class="linkCon2 {{isIphoneX?'p-b-68':'h-98'}}">
+      <view class='h-btnb' wx:if='{{delAllData.activityGoods.type==3}}'>
+        <view class='h-btnb-share-spell' bindtap='hoemF'>
+          <image class='h-home-img1' src='/img/home-del.png' />
+          <view class='h-btnb-text qj-margint-9'>首页</view>
+        </view>
+        <view class='h-btnb-share-spell' bindtap='shareF'>
+          <image class='h-home-img1' src='../../../img/share-del.png' />
+          <view class='h-btnb-text qj-margint-9'>分享</view>
+        </view>
+        <view class='h-btnb-com' bindtap='bindGetUserInfo'>
+          <view class='h-btnb-com-top'>
+            <view class='h-btnb-com-text1'>¥</view>
+            <view class='h-btnb-com-text2'>{{delAllData.product_info.sellPrice}}</view>
+          </view>
+          <view class='h-btnb-com-bottom'>单独买</view>
+        </view>
+        <view class='h-btnb-buy-spell1' wx:if='{{(comOkNum>0&&delAllData.activityGoods.alarmStorage<=comOkNum)||comOkNum==undefined}}' bindtap='spellBuy'>立即拼团</view>
+        <view class='h-btnb-buy-spell2' wx:else>抢光了</view>
+      </view>
+      <view class='h-btnb ' wx:elif='{{vipBl}}'>
+        <view class='h-btnb-share-vip button-open-user' bindtap='hoemF'>
+          <image class='h-home-img1' src='/img/home-del.png' />
+          <view class='h-btnb-text qj-margint-9'>首页</view>
+        </view>
+        <button class=' h-btnb-buy1-vip qj-dis-c-c button-open-user' bindtap="shareBox">
+          <view class="k-price-text">分享</view>
+          <view class="k-price-number">奖
+            <text style="font-size: 18rpx">¥</text>{{delAllData.product_info.shareEarningsPrice==undefined?'--.--':delAllData.product_info.shareEarningsPrice}}</view>
+        </button>
+        <button class='{{comOkNum==undefined?"h-btnb-s-vip-gray":"h-btnb-s-vip"}} qj-disc-c-c button-open-user' wx:if='{{comOkNum>0||comOkNum==undefined}}' bindtap="{{comOkNum==undefined?'':'bindGetUserInfo'}}">
+          <view class="k-price-text">立即购买</view>
+          <view class="k-price-number">返
+            <text style="font-size: 18rpx">¥</text>{{delAllData.product_info.selfEarningsPrice==undefined?'--.--':delAllData.product_info.selfEarningsPrice}}</view>
+        </button>
+        <button class='h-btnb-buy1-d-vip qj-dis-c-c button-open-user' wx:else>抢光了</button>
+      </view>
+      <view class='h-btnb ' wx:else>
+        <view class='h-btnb-share button-open-user' bindtap='hoemF'>
+          <image class='h-home-img1' src='/img/home-del.png' />
+          <view class='h-btnb-text qj-margint-9'>首页</view>
+        </view>
+        <button class=' h-btnb-share button-open-user' bindtap='shareF'>
+          <image class='h-home-img2' src='../../../img/share-del.png' />
+          <view class='h-btnb-text qj-margint-9'>分享</view>
+        </button>
+        <button class='{{comOkNum==undefined?"h-btnb-buy1-gray":"h-btnb-buy1"}} qj-dis-c-c button-open-user' wx:if='{{comOkNum>0||comOkNum==undefined}}' bindtap="{{comOkNum==undefined?'':'bindGetUserInfo'}}">立即购买</button>
+        <button class='h-btnb-buy1-d qj-dis-c-c button-open-user' wx:else>抢光了</button>
+      </view>
+
+    </view>
+  </view>
+  <view class='h-delshop' hidden='{{shopboxBl}}' bindtap='closeShopBox' catchtouchmove='nullEvent'>
+    <view class="h-delshopbox {{isIphoneX?'h-608':''}}" catchtap='kong' animation='{{animationData}}'>
+      <view class='po-r'>
+        <view class='qj-dis-b-c h-delshopbox-add'>
+          <view class='qj-dis-s-c'>
+            <image class='local-image-wh' src='https://img.iyuedian.com/mini/locaimg2.png'></image>
+            <view class='qj-ls-3424 qj-marginl-16 qj-color-808080'>配送至
+              <block wx:if='{{addressData.city}}'>{{addressData.city}}</block>
+              <block wx:else>{{defaultAddress.city?defaultAddress.city:addLocaText.areaName}}</block>
+            </view>
+            <view class='qj-marginl-28 qj-ls-3424 qj-color-ff6a6a' wx:if='{{comOkNum<1}}'>无货</view>
+          </view>
+          <image class="pop-image-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='closeShopBox'></image>
+        </view>
+        <view class='qj-dis-c-c'>
+          <view class='qj-color-f3f3f3 pop-div-line'></view>
+        </view>
+        <view class='h-delshopbox-com qj-dis-s-c'>
+          <image class='h-delshopbox-com-img  qj-marginl-8' src='{{delAllData.product_listImg.detailValue}}'></image>
+          <view class='qj-marginl-28'>
+            <view class='qj-ls-4432  qj-color-333'>{{delAllData.product_info.shortName}}</view>
+            <view class='qj-ls-3424 qj-color-808080 qj-margint-8'>规格 {{delAllData.product_info.specification}}</view>
+            <view class='qj-dis-s-b'>
+              <!-- <view class='qj-ls-3424 qj-color-ff6a6a qj-margint-22'>会员价：</view> -->
+              <view class=' qj-ls-2820 font-w qj-color-ff6a6a'>¥</view>
+              <view class='qj-ls-4028 qj-color-ff6a6a qj-margint-22 font-w' wx:if='{{openSpellBuy}}'>{{delAllData.activityGoods.price*comNum}}</view>
+              <view class='qj-ls-4028 qj-color-ff6a6a qj-margint-22 font-w' wx:else>{{totalNumber}}</view>
+              <view class='qj-ls-2820 k-buy-pop-info' wx:if="{{vipBl&&!openSpellBuy}}">（付款后返现
+                <text class='k-buy-pop-info-price-s'>￥</text>
+                <text class='k-buy-pop-info-price'>{{saveNumber}}</text>）</view>
+            </view>
+          </view>
+        </view>
+        <view class='qj-dis-b-c h-delshopbox-num'>
+          <view class='qj-ls-4028 qj-color-525252'>
+            数量
+          </view>
+          <view class="qj-dis-s-c">
+            <view class="k-time-by-number" wx:if="{{delAllData.activityGoods!=null&&delAllData.activityGoods.type==3&&openSpellBuy}}">{{spellNumber||spellNumber===0?'您可购买'+spellNumber+'件':''}}</view>
+            <view class="k-time-by-number" wx:elif="{{delAllData.activityGoods!=null&&statusFlag==1&&(delAllData.activityGoods.type==1||delAllData.activityGoods.type==5)}}">{{buyNumber!=99999||buyNumber==-1?buyNumber==0?'您已到购买上限':'您可购买'+buyNumber+'件':''}}</view>
+            <view class='qj-dis-s-c h-delshopbox-num-add'>
+              <view class='h-num-add-btn {{(comNum<=1)? "h-color-c5c5c5":""}} ' bindtap='{{(comNum>1)? "comNumJ":""}}'>-</view>
+              <view class='h-num-add-btn'>{{comNum}}</view>
+              <view class='h-num-add-btn {{(comNum>(comOkNum))? "h-color-c5c5c5":""}}' bindtap='comNumA'>+</view>
+            </view>
+          </view>
+        </view>
+        <block wx:if="{{openSpellBuy}}">
+            <view class="h-delshopbox-btn  {{isIphoneX?'h-166':'h-98'}}" bindtap='createOrder' wx:if='{{comNum<=comOkNum&&comNum!=0&&spellBackBl }}'>确定</view>                           
+          <view class="h-delshopbox-btn2  {{isIphoneX?'h-166':'h-98'}}" wx:else>确定</view>
+        </block>
+        <block wx:else>
+          <view class="h-delshopbox-btn  {{isIphoneX?'h-166':'h-98'}}" bindtap='createOrder' wx:if='{{comNum<=comOkNum&&comNum!=0}}'>确定</view>
+          <view class="h-delshopbox-btn2  {{isIphoneX?'h-166':'h-98'}}" wx:else>确定</view>
+        </block>
+      </view>
+
+    </view>
+  </view>
+  <view class="share-shadow" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' catchtap="boxCancel"></view>
+  <view class="h-sharelist {{isIphoneX?'p-b-68':''}}" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' animation='{{animationData}}'>
+    <view class='h-sharelist-list1'>
+      <view></view>
+      <view class='qj-dis-s-b' wx:if="{{!vipBl}}">
+        <view>分享给小伙伴</view>
+      </view>
+      <view class='qj-dis-s-b' wx:if="{{vipBl}}">
+        <view>邀请好友成单奖励</view>
+        <view style="color: #FF5A5A">¥{{delAllData.product_info.shareEarningsPrice}}</view>
+      </view>
+      <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='boxCancel'></image>
+    </view>
+    <view class='h-sharelist-list2 '>
+      <button open-type='share' class='button-open-user h-sharelist-box '>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/chat.png'></image>
+        <view class="share-text1">转发到微信</view>
+      </button>
+      <view class='h-sharelist-box ' bindtap='sendCircle'>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+        <view class="share-text">保存图片</view>
+      </view>
+    </view>
+  </view>
+  <!--<view class="canvas-wh" hidden="{{shareBoxBl}}" catchtouchmove='nullEvent'>-->
+  <!--<view class='canvas-wh-con-logo'>-->
+  <!--<image class='w-100 h-100' wx:if="{{delAllData.product_deatilCarouselImg[0].detailValue}}" src='{{delAllData.product_deatilCarouselImg[0].detailValue}}'></image>-->
+  <!--<image class='t-yudianlogo-logo' src='/img/yudianlogo.png'></image>-->
+  <!--</view>-->
+  <!--<view class='canvas-wh-content'>-->
+  <!--&lt;!&ndash; <view class="content-text"> &ndash;&gt;-->
+
+  <!--<view class="price-1">-->
+  <!--<text class='t-pirce-moe2'>￥</text>-->
+  <!--<view class='t-pirce-moe1'>{{delAllData.product_info.sellPrice}}</view>-->
+
+  <!--<text class="price-2" hidden='{{delAllData.product_info.marketPrice==delAllData.product_info.sellPrice||delAllData.product_info.marketPrice==0||delAllData.product_info.marketPrice==null||delAllData.product_info.marketPrice==""||delAllData.product_info.marketPrice=="0.00"}}'>￥{{delAllData.product_info.marketPrice}}</text>-->
+  <!--<view class='t-con-priceReduction' wx:if="{{delAllData.product_info.saveMoney>0}}">-->
+  <!--<view class='t-com-saveMoney'>省</view>-->
+  <!--直降{{delAllData.product_info.saveMoney}}-->
+  <!--</view>-->
+  <!--</view>-->
+
+  <!--<view class='t-name-content-tv'>-->
+  <!--<view class="name-tv">{{delAllData.product_info.name}}</view>-->
+  <!--<view class="slogan-tv">{{delAllData.product_info.subName}}</view>-->
+  <!--</view>-->
+  <!--<view class='qj-dis-c-s content-qrcode '>-->
+  <!--<image class="qrcode-image" src='{{qrCode}}'></image>-->
+  <!--&lt;!&ndash; <view class="qrcode-tv">扫码立即抢购</view> &ndash;&gt;-->
+  <!--</view>-->
+  <!--&lt;!&ndash; </view> &ndash;&gt;-->
+
+  <!--</view>-->
+  <!--<view class='bt-slogan'>-->
+  <!--<view class='bt-slogan-logo'>-->
+  <!--<image class='w-100 h-100' src='{{user.avatarUrl}}'></image>-->
+  <!--</view>-->
+  <!--来自「{{user.nickName}}」的推荐-->
+  <!--<view class='t-ren-price' wx:if="{{delAllData.product_info.showSellBaseCount>99}}">{{delAllData.product_info.showSellBaseCount}}人已购买</view>-->
+  <!--</view>-->
+  <!--</view>-->
+  <!--会话分享canvas-->
+  <canvas canvas-id="shareCanvasMini" class="k-share-canvas" hidden="true"></canvas>
+</collect>
+<collect wx:else>
+  <view class='h-empty'>
+    <image class='h-empty-img' src='https://img.iyuedian.com/mini/noneimg3.png'>
+    </image>
+    <view class='h-empty-box' bindtap='backHome'>
+      <view class='h-empty-text1'>该商品已下架</view>
+      <view class='h-empty-text2'>可以去
+        <text class='h-empty-text3'>逛逛其他好货</text>
+      </view>
+    </view>
+  </view>
+</collect>

@@ -1,0 +1,58 @@
+<!--pageageuser/pages/refund/refund.wxml-->
+<collect>
+  <view class=''>
+    <view class='h-box1'>
+      <view class='h-box1-content'>
+        <image class='h-box1-content-img' src='{{refunddata.img}}'></image>
+        <view class='h-box1-content-text'>
+          {{refunddata.name}}
+          <!--<view class='h-box1-content-text1'></view>-->
+          <!--<view class='h-box1-content-text2'></view>-->
+        </view>
+      </view>
+    </view>
+    <view class='h-box2'>
+      <view class='h-box2-text1'>退款原因</view>
+      <view class='h-box2-text2' bindtap='openshow'>
+        <block wx:if='{{sindex>=0}}'>{{select[sindex].text}}</block>
+        <block wx:else>请选择</block>
+        <image class='h-box2-text2-img' src='https://img.iyuedian.com/mini/arrowimg1.png'></image>
+      </view>
+    </view>
+    <view class='h-box3'>
+      <view class='h-box3-text1'>退款金额：</view>
+      <view class='h-box3-text2'>¥{{refunddata.money}}</view>
+    </view>
+  </view>
+  <view class='h-select' wx:if='{{selshow}}' bindtap='choseshow'>
+    <view class='h-selectb' catchtap='kong'>
+      <view class='h-selectb-delete' bindtap='choseshow'>
+        <image class='h-selectb-delete-son'  src='https://img.iyuedian.com/mini/closeimg1.png' ></image>
+      </view>
+      <view class='h-selectb-list1'>退款原因</view>
+      <block wx:for='{{select}}'>
+        <view class='h-selectb-list2' data-sindex='{{index}}' bindtap='select'>
+          <view class='h-selectb-list2-text1'>{{item.text}}</view>
+          <image class='h-selectb-list2-img' src='/img/car-yellow.png' wx:if='{{index===sindex}}'></image>
+          <view class='h-selectb-list2-fill' wx:else></view>
+        </view>
+      </block>
+      <!--<view class=''>-->
+      <!--<view class=''>重复下单</view>-->
+      <!--<view class=''></view>-->
+      <!--<image class='' src='../../car-yellow.png'></image>-->
+      <!--</view>-->
+      <!--<view class=''>-->
+      <!--<view class=''>其他渠道价格更低</view>-->
+      <!--<view class=''></view>-->
+      <!--<image class='' src='../../car-yellow.png'></image>-->
+      <!--</view>-->
+      <!--<view class=''>-->
+      <!--<view class=''>其他原因</view>-->
+      <!--<view class=''></view>-->
+      <!--<image class='' src='../../car-yellow.png'></image>-->
+      <!--</view>-->
+    </view>
+  </view>
+  <view class='h-enter' bindtap='{{selshow? "enter2":"enter1"}}'>提交</view>
+</collect>

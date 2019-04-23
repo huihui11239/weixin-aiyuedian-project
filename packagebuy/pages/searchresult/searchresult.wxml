@@ -1,0 +1,146 @@
+<!--packagebuy/pages/searchresult/searchresult.wxml-->
+
+<!-- 滑动bar -->
+<!--商品列表-->
+<import src="../../utils/pagestates/pagestates.wxml"/>
+<collect>
+    <template is="pagestates" data="{{...pageState}}"/>
+    <view class='h-search' wx:if='{{showbl}}'>
+        <form   bindsubmit="formSubmit" bindreset="formReset" class='h-form'>
+            <view class='h-search-pbox1'>
+                <view class='h-search-box'>
+                    <image class='h-search-img' src='https://img.iyuedian.com/mini/searchimg1.png'></image>
+                    <input class='h-search-input' name="input" type='text' confirm-type='search' placeholder='搜索商品'  value='{{attext}}' placeholder-class='h-search-inputp' bindinput	='timelygettext' bindblur='(timely)? "":"gettext"' bindconfirm='clicksearch2' focus='{{focusbl}}'></input>
+                    <image class='delete1' src='/img/delete2.png' wx:if='{{attext}}' bindtap='deleteinput'></image>
+                </view>
+                <button class='h-search-text' formType='submit'>搜索</button>
+            </view>
+        </form>
+        <view class='h-search-hisbar' hidden="{{hisdata.length==0}}">
+            <view class='h-search-hisbar-text'>历史搜索:</view>
+            <image class='h-search-hisbar-img' src='https://img.iyuedian.com/mini/garbage.png' bindtap="clearhis"></image>
+        </view>
+        <view class='h-search-history' hidden="{{hisdata.length==0}}">
+            <block wx:for='{{hisdata}}' wx:key='index'>
+                <view class='h-search-history-one' bindtap='clickhis' data-histext='{{item}}' >{{item}}</view>
+            </block>
+        </view>
+    </view>
+    <block  wx:else>
+        <view class=' qj-disc-s-c qj-backc-fff top-margin'>
+            <scroll-view class='h-scrollall qj-margint-12 ' scroll-y scroll-into-view='{{idindex}}'
+                         scroll-with-animation='true'>
+                <view wx:for='{{comSList}}' wx:key='index' id='comid{{index}}'>
+                    <view class='h-scrollnew-box' wx:key='id'>
+                        <block wx:for='{{item}}' wx:key='url'>
+                            <view class=' h-scrollall-combox qj-backc-fff ' data-comid='{{item.goodsId}}' bindtap='detSkip'>
+                                <view class='h-scrollall-combox--img'>
+                                    <load-image src="{{item.listImg}}" type="{{index%3+1}}" debug="{{100}}" key="{{index}}"
+                                                bind:success="imageLoadSuccess" bind:error="imageLoadError">
+                                        <image class="image" src="{{item.listImg}}"/>
+                                    </load-image>
+                                    <view class='h-people-num' hidden="{{item.showSellBaseCount==null}}">{{item.showSellBaseCount}}人已抢购</view>
+                                    <view class='h-sellout-text' wx:if='{{item.storageNum<1}}'>抢光了...</view>
+                                    <image class="k-time-flag" src="/img/flag_time.png" hidden="{{item.activityGoods==null||(item.activityGoods.statusFlag!=1&&item.activityGoods.type==1)||item.activityGoods.type!=1}}"></image>
+                                </view>
+                                <view class="h-scrollall-combox--cotent">
+                                    <view class='qj-slh qj-ls-4028 qj-color-333 h-scrollall-combox--name qj-family-m font-w'>{{item.shortName}}</view>
+                                    <view class='qj-slh qj-margint-6 qj-ls-3424 qj-color-808080'>{{item.subName}}</view>
+                                    <view class='h-suk-num qj-slh'>{{item.specification}}</view>
+                                    <view class="{{vipBl?'qj-dis-b-c':'qj-dis-s-c'}} t-margint-14">
+                                        <!-- <view hidden='{{vipBl}}' class=' qj-ls-2820 qj-color-ff6a6a ' hidden='{{item.marketPrice==item.sellPrice||item.marketPrice==0||item.marketPrice==null||item.marketPrice==""||vipBl||item.marketPrice=="0.00"}}'>折后：</view> -->
+                                        <view class='qj-ls-4028 qj-color-ff6a6a qj-dis-s-b h-hidden'>
+                                            <view class=' qj-ls-2820 font-w qj-color-ff6a6a'>¥</view>
+                                            <text class='qj-ls-4036 font-w qj-color-ff6a6a qj-marginl-3 k-number'>{{(item.activityGoods!=null&&item.activityGoods.statusFlag==1)?item.discountPrice:item.sellPrice}}</text>
+                                            <view class='qj-ls-2820 qj-color-cbcbcc qj-deltext ' hidden='{{item.activityGoods.statusFlag!=1&&item.marketPrice==item.sellPrice||item.marketPrice==0||item.marketPrice==null||item.marketPrice==""||item.marketPrice=="0.00"}}'>￥{{item.marketPrice}}</view>
+                                        </view>
+                                        <view hidden='{{!vipBl||(item.activityGoods!=null&&item.activityGoods.type==3)||(item.selfEarningsPercentage==0)}}' class='h-suk-box_one qj-family-m'>返{{item.selfEarningsPercentage}}%</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+            </scroll-view>
+            <block wx:if='{{comSList[0].length}}'>
+                <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+                    滑动查看更多
+                </view>
+                <view class='h-bottom-hint' wx:else>
+                    没有更多啦~
+                </view>
+            </block>
+            <block wx:else>
+                <view class='nonedata-box'>
+                    <view class='nonedata-box-img'>
+                        <image class='img100' src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+                    </view>
+                    <view class='nonedata-box-text' wx:if="{{hasNextPage}}">商品信息加载中</view>
+                    <view class='nonedata-box-text' wx:else>没有找到
+                        <text class='nonedata-box-text-000'>{{attext}}</text>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <!--bar-->
+        <form bindsubmit="formSubmit" bindreset="formReset">
+            <view class='top-bar'>
+                <view class='h-search1' bindtap='showsearch1'>
+                    <view class='h-search-box'>
+                        <image class='h-search-img' src='https://img.iyuedian.com/mini/searchimg1.png'></image>
+                        <view class='h-search-input'> <block wx:if='{{attext}}'>{{attext}}</block><block wx:else>搜索商品</block></view>
+                        <!--<input class='h-search-input' name="input" type='text' placeholder='搜索商品' placeholder-class='h-search-inputp'  value='{{attext}}'></input>-->
+                        <image class='delete1' src='/img/delete2.png' wx:if='{{attext}}' catchtap='showsearch2'></image>
+                    </view>
+                    <button class='h-search-text' formType='submit'>搜索</button>
+                </view>
+
+                <!--条件排序1-->
+                <block wx:if='{{barbl}}'>
+                    <view class='qj-dis-c-c h-conditon-box' wx:if='{{vipBl}}'>
+                        <block wx:for='{{conditonT}}' wx:key='{{conditon}}'>
+                            <view class=' qj-dis-c-c {{conditonT.length===index? "":"h-conditon-one"}}'
+                                  bindtap='conditonClick' style='width:{{100/conditonT.length}}%;'
+                                  data-typeid='{{item.typeid}}'>
+                                <view class="h-conditon-one-text {{(listCode.orderType===item.typeid)? 'h-color-333':''}}">
+                                    {{item.name}}
+                                </view>
+                                <view hidden='{{item.typeid===0}}' class='h-conditonn-trianglebox qj-disc-c-s'>
+                                    <image src="{{(listCode.orderBy===2&&listCode.orderType===item.typeid)?  'https://img.iyuedian.com/mini/arrows/arrows-up1.png' :'https://img.iyuedian.com/mini/arrows/arrows-up2.png'}}"
+                                           class="img-arr-up"></image>
+                                    <image src="{{(listCode.orderBy===1&&listCode.orderType===item.typeid)?  'https://img.iyuedian.com/mini/arrows/arrows-up1.png' :'https://img.iyuedian.com/mini/arrows/arrows-up2.png'}}"
+                                           class="img-arr-down"></image>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                    <!--条件排序2-->
+                    <view class='qj-dis-c-c h-conditon-box' wx:else>
+                        <block wx:for='{{conditonO}}' wx:key='{{conditon}}'>
+                            <view class='qj-dis-c-c {{conditonO.length-1==index? "":"h-conditon-one"}}'
+                                  bindtap='conditonClick' style='width:{{100/conditonO.length}}%; '
+                                  data-typeid='{{item.typeid}}'>
+                                <view class="h-conditon-one-text {{(listCode.orderType===item.typeid)? 'h-color-333':''}}">
+                                    {{item.name}}
+                                </view>
+                                <view hidden='{{item.typeid==0}}' class='h-conditonn-trianglebox qj-disc-c-s'>
+                                    <image src="{{(listCode.orderBy===2&&listCode.orderType===item.typeid)?  'https://img.iyuedian.com/mini/arr_d.png' :'https://img.iyuedian.com/mini/arr_u.png'}}"
+                                           class="img-arr-up"></image>
+                                    <image src="{{(listCode.orderBy===1&&listCode.orderType===item.typeid)?  'https://img.iyuedian.com/mini/arr_d.png' :'https://img.iyuedian.com/mini/arr_u.png'}}"
+                                           class="img-arr-down"></image>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                </block>
+            </view>
+        </form>
+    </block>
+    <back-top/>
+</collect>
+
+<!-- <view class='h-classbox '>
+  <block wx:for='{{allClassify}} ' wx:key='url '>
+    <image class='h-classbox-alone ' src='{{item.icon_url}} ' ></image>
+  </block>
+</view> -->

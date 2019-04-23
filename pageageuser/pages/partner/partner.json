@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "邀请新伙伴",
+  "usingComponents": {
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid"
+  }
+}

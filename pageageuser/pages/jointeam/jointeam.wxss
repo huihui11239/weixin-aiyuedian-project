@@ -1,0 +1,168 @@
+swiper{
+  height: 950rpx;
+}
+.h-banner{
+  padding: 10rpx 72rpx;
+  width: 100%;
+  height: 910rpx;
+}
+.h-bannerone{
+  position: relative;
+  width: 100%;
+  height: 860rpx;
+  overflow: hidden;
+}
+.h-joinvip{
+  margin-top: 60rpx;
+  text-align: center;
+  height: 85rpx;
+}
+.h-joinvip-btn{
+width:358rpx;
+height:80rpx;
+font-size: 28rpx;
+color: #fff;
+  background:linear-gradient(137.4deg,rgba(255,101,57,1),rgba(255,51,51,1));
+border-radius:40rpx;
+line-height: 80rpx;
+outline: #FFE8C1;
+}
+.h-bannerone-img{
+  width: 100%;
+  height: 100%;
+}
+.h-bannerone-text {
+  z-index: 9999;
+  position: absolute;
+  left: 46rpx;
+  bottom: 38rpx;
+  font-size: 24rpx;
+  color: #808080;
+}
+.h-bannerone-text2{
+  color: #fff;
+}
+.h-color-fff{
+  background-color: #fff;
+}
+.h-bannerone-text1{
+   max-width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.h-hint1{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 580rpx;
+  height: 470rpx;
+  transform:translate(-50%,-50%);
+  background-image: url("https://img.iyuedian.com/mini/govip/vip-hint1.png");
+  background-size: 580rpx 470rpx;
+}
+
+
+.h-pos1-text1{
+  position: absolute;
+  top: 170rpx;
+  left: 135rpx;
+  width: 310rpx;
+  font-size: 36rpx;
+  color: #333;
+  text-align: center;
+  font-family:PingFangSC-Medium;
+}
+.h-pos1-text2{
+  position: absolute;
+  top: 86rpx;
+  left: 44rpx;
+  width: 494rpx;
+  font-size: 28rpx;
+  color: #808080;
+  text-align: center;
+  font-family:PingFangSC-Medium;
+}
+
+.h-pos2-text1{
+  position: absolute;
+  top: 237rpx;
+  left: 32rpx;
+  font-size: 28rpx;
+  width: 516rpx;
+  text-align:center;
+  color: #808080;
+}
+.h-pos3-text1{
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  color: #FF5A5A;
+  font-size: 28rpx;
+}
+.h-hint2{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 580rpx;
+  height: 380rpx;
+  transform:translate(-50%,-50%);
+  border-radius: 20rpx;
+  background-color: #fff;
+}
+.h-pos86{
+  top: 86rpx;
+}
+.h-pos160{
+  top:160rpx;
+}
+.h-pos3-box1{
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100rpx;
+  border-top: 1rpx solid #F3F3F3;
+}
+.h-pos3-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  font-size: 28rpx;
+  color: #333;
+}
+.left-btn{
+  color: #FF5A5A;
+  border-left: 1rpx solid #F3F3F3;
+}
+.h-hintfexl{
+    z-index: 20000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color:rgba(0,0,0,0.35);
+    overflow: hidden;
+}
+.vip-none{
+    white-space:nowrap;
+}
+.h-shareimage{
+    position:absolute;
+    width:558rpx;
+    height:396rpx;
+    left:24rpx;
+    top:340rpx;
+}

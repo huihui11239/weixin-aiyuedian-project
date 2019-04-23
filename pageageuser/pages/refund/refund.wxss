@@ -1,0 +1,135 @@
+/* pageageuser/pages/refund/refund.wxss */
+.h-box1{
+    padding: 36rpx 24rpx 14rpx;
+    background-color: #fff;
+}
+.h-box1-content{
+    display: flex;
+    padding: 12rpx;
+    background-color: #f9f9f9;
+}
+.h-box1-content-img{
+    width: 100rpx;
+    height: 100rpx;
+}
+.h-box1-content-text{
+    padding-left: 24rpx;
+    font-size: 24rpx;
+    line-height: 34rpx;
+    color:  #333333;
+}
+/*.h-box1-content-text1{*/
+
+/*}*/
+
+.h-box2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6rpx;
+    padding: 24rpx;
+    background-color: #fff;
+}
+.h-box2-text1{
+    line-height: 40rpx;
+    color: #303030;
+    font-size: 28rpx;
+}
+.h-box2-text2{
+    line-height: 40rpx;
+    color: #808080;
+    font-size: 28rpx;
+}
+.h-box2-text2-img{
+    margin-left: 8rpx;
+    width: 22rpx;
+    height: 24rpx;
+}
+
+.h-box3{
+    display: flex;
+    margin-top: 6rpx;
+    padding: 24rpx;
+    background-color: #fff;
+    font-size: 28rpx;
+}
+.h-box3-text1{
+    color: #808080;
+    line-height: 40rpx;
+}
+.h-box3-text2{
+    color: #FF5A5A;
+    line-height: 40rpx;
+}
+.h-select{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+}
+.h-selectb{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 98rpx;
+    width: 100%;
+    background-color: #fff;
+}
+.h-selectb-delete{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 40rpx 46rpx 40rpx 40rpx;
+}
+.h-selectb-delete-son{
+  position: absolute;  
+  top: 50%;
+  left: 50%;
+  width: 20rpx;
+  height: 20rpx;
+  transform: translate(-50%,-50%);
+}
+.h-selectb-list1{
+    padding: 22rpx 0 12rpx 0;
+    color: #303030;
+    font-size: 32rpx;
+    text-align: center;
+}
+.h-selectb-list2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 38rpx 40rpx 32rpx;
+    border-bottom: 1rpx dotted #F3F3F3;
+}
+.h-selectb-list2-text1{
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #808080;
+}
+.h-selectb-list2-fill{
+    width: 34rpx;
+    height: 34rpx;
+    border: 2rpx solid #DBDBDB;
+    border-radius: 50%;
+}
+.h-selectb-list2-img{
+    width: 34rpx;
+    height: 34rpx;
+}
+.h-enter{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98rpx;
+    width: 100%;
+    background:linear-gradient(137.4deg,rgba(255,101,57,1),rgba(255,51,51,1));
+    color: #fff;
+}
+
+

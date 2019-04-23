@@ -1,0 +1,109 @@
+  {
+  "pages": [
+    "pages/home/home",
+    "pages/classify/classify",
+    "pages/vip/vip",
+    "pages/mine/mine"
+  ],
+  "subPackages": [
+    {
+      "root": "packagebuy",
+      "pages": [
+        "pages/details/details",
+        "pages/payresult/payresult",
+        "pages/indent/indent",
+        "pages/newadd/newadd",
+        "pages/manageadd/manageadd",
+        "pages/collect/collect",
+        "pages/search/search",
+        "pages/searchresult/searchresult",
+        "pages/quality/quality",
+        "pages/spellstate/spellstate",
+        "pages/spelllist/spelllist",
+        "pages/spelldel/spelldel",
+        "pages/sharespell/sharespell"
+      ]
+    },
+    {
+      "root": "packagepower",
+      "pages": [
+        "pages/location/location",
+        "pages/binding/binding",
+        "pages/vipbalance/vipbalance",
+        "pages/earnings/earnings",
+        "pages/teamdetails/teamdetails",
+        "pages/partner/partner",
+        "pages/newwebview/newwebview",
+        "pages/vippay/vippay",
+        "pages/vippurchase/vippurchase",
+        "pages/sharecardv2/sharecardv2",
+        "pages/sharevip/sharevip",
+        "pages/retryinfo/retryinfo",
+        "pages/queryGID/queryGID",
+        "pages/limittime/limittime",
+        "pages/pullnew/pullnew",
+        "pages/memberdel/memberdel",
+        "pages/latent/latent",
+        "pages/searchmem/searchmem"
+      ]
+    },
+    {
+      "root": "pageageuser",
+      "pages": [
+        "pages/user/user",
+        "pages/addressmanagement/addressmanagement",
+        "pages/order/order",
+        "pages/orderdetails/orderdetails",
+        "pages/logistics/logistics",
+        "pages/partner/partner",
+        "pages/agreement/agreement",
+        "pages/jointeam/jointeam",
+        "pages/sharegoods/sharegoods",
+        "pages/joinvip/joinvip",
+        "pages/aftersale/aftersale",
+        "pages/aftersaledel/aftersaledel",
+        "pages/refund/refund",
+        "pages/myspelllist/myspelllist",
+        "pages/getdiscounts/getdiscounts"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "悦店",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "color": "#8a8a8a",
+    "selectedColor": "#d81e06",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "selectedIconPath": "img/home-s.png",
+        "iconPath": "img/home-d.png"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "text": "分类",
+        "selectedIconPath": "img/classify-s.png",
+        "iconPath": "img/classify-d.png"
+      },
+      {
+        "pagePath": "pages/vip/vip",
+        "text": "VIP",
+        "selectedIconPath": "img/vip-s.png",
+        "iconPath": "img/vip-d.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "selectedIconPath": "img/mine-s.png",
+        "iconPath": "img/mine-d.png"
+      }
+    ]
+  }
+}

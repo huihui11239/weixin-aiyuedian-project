@@ -1,0 +1,46 @@
+<!--packagepower/pages/vipbalance/vipbalance.wxml-->
+<collect>
+  <view class='h-header-box' style="background-image: url('https://img.iyuedian.com/mini/govip/vipback3.jpg')">
+    <view class='h-header-text'>账户余额</view>
+    <view class='h-header-num'>
+      <text class='h-header-num1'>¥</text>{{(allMoney||allMoney==0)? allMoney : "--.--"}}</view>
+    <view class='h-header-btn' bindtap='getMoney'>提现</view>
+  </view>
+  <view class='h-bottom-box'>
+    <view class='h-bar-box'>
+      <view class='h-bar-box-one1 {{item.types===attype? "h-bar-box-one2":""}}' wx:for='{{barData}}' wx:key='index' data-status='{{item.types}}' bindtap='barChane'>
+        <view>{{item.name}}</view>
+        <view class='h-bar-box-fill1 {{item.types===attype? "h-bar-box-fill2":""}}'></view>
+      </view>
+    </view>
+
+    <view >
+      <scroll-view scroll-y='true' scroll-into-view='{{idIndex}}'>
+        <view wx:for="{{balanceList}}">
+          <view class='h-balanslist' wx:for='{{item}}' wx:key='index'>
+            <view class='qj-dis-b-c'>
+              <view class='h-balanslist-text'>{{item.remark}}</view>
+              <view class='h-balanslist-num' wx:if='{{item.money>=0}}'>+ {{item.money}}</view>
+              <view class='h-balanslist-num1' wx:else>{{item.money}}</view>
+            </view>
+            <view class='h-balanslist-date'>{{item.createDate}}</view>
+          </view>
+        </view>
+      </scroll-view>
+
+    </view>
+    <view class='marginb' wx:if='{{balanceList[0].length}}'>
+      <block wx:if='{{hasNextPage}}'>滑动查看更多</block>
+      <block wx:else>没有更多</block>
+    </view>
+    <view class='h-elsebox' wx:else>
+      <view class='else-img'>
+        <image class='img100' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+      </view>
+      <view class='else-text' wx:if="{{hasNextPage}}">余额数据数据加载中...</view>
+      <view class='else-text' wx:else>~ 暂无数据 ~</view>
+    </view>
+  </view>
+
+  <back-top />
+</collect>

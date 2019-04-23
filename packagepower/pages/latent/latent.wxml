@@ -1,0 +1,74 @@
+<!--packagepower/pages/latent/latent.wxml-->
+<!-- <text>packagepower/pages/latent/latent.wxml</text> -->
+<collect>
+  <view class='h-latent-header' style="background-image: url('https://img.iyuedian.com/mini/govip/team-bar1.png')">    
+    <view class='h-latent-header-text1'>潜在成员人数：<text class='h-latent-header-text3'>{{total||total===0? total:"-"}}人</text>
+    </view>
+    <view class='h-latent-header-text2'>近期通过您分享购买的商品，暂无团队的悦粉</view>
+    <view class='h-latent-btn' bindtap='shareOpen'>邀请加入</view>
+  </view>
+  <view class='h-latentlist'>
+    <scroll-view scroll-y>
+      <block wx:for='{{latentList}}'>
+        <view class='h-latentbox' wx:for='{{item}}'>
+          <image class='h-latent-img' src='{{item.headImgUrl}}'></image>
+          <view class='h-latentbox-after' data-phone="{{item.mobile}}" bindlongtap='getPhone'>
+            <view class='h-latentbox-list'>
+              <view class='h-latentbox-name'>{{item.nickName}}</view>
+              <image class='h-latentbox-vip1' wx:if='{{item.levelId==2}}' src='/img/vip-iocn.png'></image>
+              <image class='h-latentbox-vip2' wx:if='{{item.levelId==3}}' src='/img/vip-giocn.png'></image>
+              <!-- <image class='h-latentbox-vip2' src='/img/vip-giocn.png'></image> -->
+              <view class='h-latentbox-phone'>{{item.mobile}}</view>
+            </view>
+            <view class='h-latentbox-list'>
+              <view class='h-latentbox-item'>最近购买：</view>
+              <view class='h-latentbox-text1'>{{item.goodsName}}</view>
+            </view>
+            <view class='h-latentbox-list'>
+              <view class='h-latentbox-item'>购买时间：</view>
+              <view>{{item.orderTime}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+    <block wx:if='{{latentList[0].length}}'>
+      <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+        滑动查看更多
+      </view>
+      <view class='h-bottom-hint' wx:else>
+        没有更多啦~
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nonedata-box'>
+        <image class='nonedata-box-img' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+        <view class='nonedata-box-text' wx:if='{{hasNextPage}}'> 数据加载中...</view>
+        <view class='nonedata-box-text' wx:else>~ 暂无数据 ~</view>
+      </view>
+    </block>
+  </view>
+  <view class="share-shadow" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' catchtap="boxCancel"></view>
+
+  <view class="h-sharelist {{isIphoneX?'p-b-68':''}}" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' animation='{{animationData}}'>
+    <view class='h-sharelist-list1'>
+      <view></view>
+      <view class='qj-dis-s-b'>
+        <view>分享给小伙伴</view>
+      </view>
+      <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='boxCancel'></image>
+    </view>
+    <view class='h-sharelist-list2 '>
+      <button open-type='share' class='button-open-user h-sharelist-box '>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/chat.png'></image>
+        <view class="share-text1">转发到微信</view>
+      </button>
+      <view class='h-sharelist-box ' bindtap='sendCircle'>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+        <view class="share-text">保存图片</view>
+      </view>
+    </view>
+  </view>
+  <dialog id='dialog'/>
+  <back-top/>
+</collect>

@@ -1,0 +1,26 @@
+<!--packagebuy/pages/search/search.wxml-->
+<collect>
+  <view class='h-search'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class='h-search-pbox1'>
+
+        <view class='h-search-box'>
+          <image class='h-search-img' src='https://img.iyuedian.com/mini/searchimg1.png'></image>
+          <input class='h-search-input' name="input" type='text' confirm-type='search' placeholder='搜索商品'  value='{{attext}}' placeholder-class='h-search-inputp' bindblur='gettext' bindconfirm='clicksearch2'></input>
+          <image class='delete1' src='/img/delete2.png' wx:if='{{attext}}' bindtap='deleteinput'></image>
+        </view>
+        <button class='h-search-text' formType='submit'>搜索</button>
+
+      </view>
+    </form>
+    <view class='h-search-hisbar' hidden="{{hisdata.length==0}}">
+      <view class='h-search-hisbar-text'>历史搜索:</view>
+      <image class='h-search-hisbar-img' src='https://img.iyuedian.com/mini/garbage.png' bindtap="clearhis"></image>
+    </view>
+    <view class='h-search-history' hidden="{{hisdata.length==0}}">
+      <block wx:for='{{hisdata}}' wx:key='index'>
+        <view class='h-search-history-one' bindtap='clickhis' data-histext='{{item}}' wx:if="{{item}}">{{item}}</view>
+      </block>
+    </view>
+  </view>
+</collect>

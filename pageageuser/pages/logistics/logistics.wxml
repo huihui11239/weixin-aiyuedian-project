@@ -1,0 +1,48 @@
+<!--pageageuser/pages/logistics/logistics.wxml-->
+<collect>
+  <!--订单信息  -->
+  <view class='t-logistics-content'>
+    <!-- <view class='t-logistics-logo'></view> -->
+    <view class='t-logistics-information'>
+      <view class='t-logistics-order-title'>
+        <view class='t-logistics-order-header'>订单号</view>
+        {{form.packages.tradeCode}}
+      </view>
+      <view class='t-logistics-order-title'>
+        <view class='t-logistics-order-header'>承运人</view>
+        {{form.packages.expressCompany}}
+      </view>
+      <view class='t-logistics-order-title' wx:if="{{form.packages.waybill!=-1}}">
+        <view class='t-logistics-order-header'>运单号</view>
+        {{form.packages.waybill}}
+      </view>
+    </view>
+  </view>
+  <!--物流信息  -->
+  <view class='t-logistics-express'>
+    <view class='t-logistics-express1'>
+      <view class='t-logistics-express-list' wx:for="{{form.tmsList}}" wx:for-item="item"  wx:key="item.id">
+        <view class="t-logistics-express-content1 {{index!=0?'color-808080':''}}">{{item.remark}}</view>
+        <view class='t-logistics-express-time'>{{item.expressTime}}</view>
+        <view class='t-logistics-express-circular2' wx:if="{{index==0}}">
+          <view class='t-logistics-express-circular3'></view>
+        </view>
+        <view class='t-logistics-express-circular' wx:else>
+          <view class='t-logistics-express-circular1'></view>
+        </view>
+        <view class='t-logistics-line' wx:if="{{length!=index+1}}"></view>
+        <view class='t-logistics-line-show' wx:if="{{index==0}}"></view>
+      </view>
+      <!-- <view class='t-logistics-express-list'>
+        <view class='t-logistics-express-content'>运单已从【北京市】平谷分拣中心发出，下一站【北京市】定福庄站</view>
+        <view class='t-logistics-express-time'>2018-04-22 09:52:00</view>
+        <view class='t-logistics-express-circular'>
+          <view class='t-logistics-express-circular1'></view>
+        </view>
+        <view class='t-logistics-line'></view>
+      </view> -->
+    </view>
+  </view>
+  <back-top />
+</collect>
+

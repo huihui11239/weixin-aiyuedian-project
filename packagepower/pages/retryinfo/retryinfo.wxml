@@ -1,0 +1,10 @@
+<!--packagepower/pages/retryinfo/retryinfo.wxml-->
+<view class='page'>
+  <view style='display:flex' class='page'>
+    <view class='title'>建议按照以下方法检查网络连接</view>
+  </view>
+  <view class='messages'>1.打开手机“设置”并把“无线局域网”保持开启状态。</view>
+  <view class='messages'>2.打开手机“设置”-“移动网络”-“移动数据”， 并把“微信”的权限设置为“WLAN与移动网络”。</view>
+  <view class='messages'>3.如果仍无法连接网络，请检查手机是否已接入互联网 或咨询运营商。</view>
+  <view class='messages'>4.试试重启一下手机。</view>
+</view>

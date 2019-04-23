@@ -1,0 +1,4 @@
+<!--packagebuy/pages/quality/quality.wxml-->
+<block wx:for='{{list}}'>
+  <image class='h-quality-img' src='{{item}}' lazy-load="true" bindload="getwh"  style="width:750rpx;height:{{height}};"></image>
+</block>

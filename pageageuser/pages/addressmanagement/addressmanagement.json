@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "管理收货地址",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#eeeeee",
+  "usingComponents": {
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid"
+  }
+}

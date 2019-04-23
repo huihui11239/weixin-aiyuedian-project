@@ -1,0 +1,172 @@
+/* pages/location/location.wxss */
+
+.h-locaborder-bottom {
+  border-bottom: 1rpx solid #f3f3f3;
+}
+
+.h-locaborder-all {
+  border: 1rpx solid #979797;
+}
+
+.h-locadata-box1 {
+  width: 284rpx;
+
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 6rpx;
+}
+
+.h-locadata-box2 {
+  width: 211rpx;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 6rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.h-locadata-list {
+  line-height: 98rpx;
+  font-size: 32rpx;
+}
+
+.scroll-view {
+  height: 100vh;
+}
+
+.padding-lr {
+  padding: 0 30rpx;
+}
+
+.margin-lr {
+  margin: 0 30rpx;
+}
+
+.backcolor-g {
+  height: 128rpx;
+  width: 100%;
+  background-color: #f5f7fa;
+  z-index: 10;
+}
+
+.alone-border {
+  border-bottom: 1rpx solid #333;
+}
+
+.backcolor-w {
+  background-color: #fff;
+}
+
+.location-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 40rpx;
+  width: 100%;
+  height: 88rpx;
+  background-color: #fff;
+}
+
+.location-img {
+  margin-right: 12rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.location-text {
+  color: #333;
+  font-size: 28rpx;
+}
+
+.hotcity-box {
+  padding-right: 100rpx;
+  width: 100%;
+}
+
+.list-model {
+  display: flex;
+  align-items: center;
+  height: 92rpx;
+}
+
+.hotctiy-all {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hotctiy-alone {
+  margin: 24rpx 0 0 24rpx;
+  width: 190rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background-color: #fff;
+  border: 1rpx solid #666;
+  border-radius: 10rpx;
+}
+
+.toview-box {
+  position: fixed;
+  right: 10rpx;
+  top: 120rpx;
+}
+
+.toview-alone {
+  padding: 5rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+.h-scroll-localist1{
+  height: 100vh;
+}
+.h-locaSc-box{
+  position: fixed;
+  top: 180rpx;
+  right: 10rpx;
+  width: 40rpx;    
+  height: 90%;
+}
+
+.h-locaSc-one1{
+  width: 40rpx;
+  height: 28rpx;
+  
+  font-size: 20rpx;
+  color: #333;
+  margin-bottom:18rpx; 
+}
+.h-locaSc-one2{
+  height: 40rpx;
+  width: 40rpx;
+  font-size: 20rpx;
+  color: #333;
+  padding-bottom:12rpx; 
+}
+.h-locapages1{
+   padding: 18rpx 30rpx 0 24rpx;
+  width: 100%;
+  height: 100%;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.h-anginget{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 50rpx; 
+}
+.h-anginget-text{
+  padding-left: 10rpx;  
+  font-size: 28rpx;
+  color: #333;
+}
+.h-locaimg3{
+  width: 32rpx;
+  height: 36rpx;  
+}

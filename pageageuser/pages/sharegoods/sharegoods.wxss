@@ -1,0 +1,251 @@
+/* pageageuser/pages/sharegoods/sharespell.wxss */
+/* packagepower/pages/sharecard/sharecard.wxss */
+
+.canvas-wh {
+    width: 676rpx;
+    height: 952rpx;
+    left: 38rpx;
+    top: 18rpx;
+    position: absolute;
+    opacity: 0%;
+}
+
+.bt-save {
+    width: 358rpx;
+    height: 80rpx;
+    background: #FFE234;
+    margin-top: 24rpx;
+    color: #FFFFFF;
+    font-size: 28rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40rpx;
+    background:linear-gradient(137.4deg,rgba(255,101,57,1),rgba(255,51,51,1));
+    border-radius:40px;
+}
+
+.bg-image {
+    position: fixed;
+    bottom: 0rpx;
+    left: 0rpx;
+    width: 100%;
+    height: 800rpx;
+}
+
+.tv-info {
+    margin-top: 60rpx;
+    width: 100%;
+    height: 34rpx;
+    font-size: 24rpx;
+    color: #808080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page_sty {
+    position: relative;
+    background-color: white;
+}
+.canvas-wh-content {
+    position: relative;
+    width: 100%;
+    height: 298rpx;
+    padding: 0 28rpx;
+    background: white;
+    border:1rpx solid #EDEDED; border-width:0 1rpx;
+}
+.price-1 {
+    color: #ff5a5a;
+    font-size: 60rpx;
+    line-height: 60rpx;
+    margin-top: 36rpx;
+    margin-bottom: 20rpx;
+    width: 100%;
+}
+.t-pirce-moe2 {
+    float: left;
+    margin-top: 15rpx;
+    line-height: 42rpx;
+    font-size: 36rpx;
+}
+.t-pirce-moe1 {
+    color: #ff5a5a;
+    font-size: 60rpx;
+    line-height: 60rpx;
+    font-weight: bold;
+    float: left;
+    overflow: hidden;
+}
+.price-2 {
+    margin-top: 18rpx;
+    margin-left: 12rpx;
+    float: left;
+    color: #c5c5c5;
+    text-decoration: line-through;
+    font-size: 36rpx;
+    line-height: 1;
+}
+.t-con-priceReduction {
+    overflow: hidden;
+    min-width: 100rpx;
+    background: #ffefef;
+    height: 40rpx;
+    margin-left: 30rpx;
+    border-radius: 6rpx;
+    position: relative;
+    padding: 4rpx 12rpx 4rpx 50rpx;
+    font-size: 24rpx;
+    color: #ff5a5a;
+    line-height: 34rpx;
+    margin-top: 11rpx;
+    float: left;
+    overflow: hidden;
+}
+.t-com-saveMoney {
+    width: 36rpx;
+    height: 40rpx;
+    background: #f99;
+    border-radius: 6rpx 0 0 6rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 32rpx;
+    color: rgba(255, 255, 255, 1);
+    line-height: 20px;
+    overflow: hidden;
+    text-align: center;
+}
+.t-name-content-tv {
+    width: 422rpx;
+}
+.name-tv {
+    color: #333;
+    font-size: 32rpx;
+    width: 422rpx;
+    line-height: 44rpx;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.slogan-tv {
+    width: 422prx;
+    color: #808080;
+    font-size: 28rpx;
+    margin-top: 20rpx;
+}
+.content-qrcode {
+    position: absolute;
+    width: 170rpx;
+    /* margin-left: 28rpx; *//* margin-top: 5rpx; */
+    top: 86rpx;
+    right: 28rpx;
+}
+.qrcode-image {
+    width: 170rpx;
+    height: 170rpx;
+}
+.canvas-wh1 {
+    width: 675rpx;
+    left: 38rpx;
+    top: 18rpx;
+    position: relative;
+    z-index: 12;
+    background-size: 100% 100%;
+    border-radius: 20rpx;
+}
+.canvas-wh-con-logo {
+    width: 100%;
+    height: 513rpx;
+    position: relative;
+}
+.t-yudianlogo-logo {
+    width: 65rpx;
+    height: 81rpx;
+    top: 0;
+    left: 40rpx;
+    position: absolute;
+}
+.bt-slogan-logo {
+    width: 62rpx;
+    height: 62rpx;
+    border-radius: 50%;
+    position: absolute;
+    left: 28rpx;
+    top: 24rpx;
+}
+
+.t-ren-price {
+    font-size: 20rpx;
+    color: #b7a368;
+    line-height: 28rpx;
+    float: right;
+    margin-top: 4rpx;
+}
+.bt-slogan {
+    width: 100%;
+    height: 108rpx;
+    background: #fafafa;
+    font-size: 24rpx;
+    padding: 36rpx 36rpx 0 114rpx;
+    color: #d9d9d9;
+    position: relative;
+}
+.time-bg{
+    width: 100%;
+    height: 68rpx;
+    bottom: -1rpx;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.spell-text{
+    margin-left: 2rpx;
+    font-size: 24rpx;
+    color: #ffffff;
+}
+.spell-text-n{
+    font-size: 36rpx;
+    color: #FFE443;
+    margin-left: 110rpx;
+    margin-top: 11rpx;
+}
+.t-bg-img{
+    width: 100%;
+    height: 100%;
+}
+.k-time-l-text{
+    height:45rpx;
+    width: 138rpx;
+    margin-top: 8rpx;
+    margin-left: 31rpx;
+}
+.k-time-di{
+    font-weight: bold;
+    height:34rpx;
+    font-size:24rpx;
+    margin-left: 14rpx;
+    margin-right: 14rpx;
+    color:rgba(248,231,28,1);
+}
+.k-time-di1{
+    font-weight: bold;
+    height:34rpx;
+    font-size:24rpx;
+    color:white;
+}
+.k-time-di2{
+    font-weight: bold;
+    font-size:28rpx;
+    color:white;
+}
+.qrcode-tv{
+    font-size: 21rpx;
+    color: #C5C5C5;
+    margin-top: -10rpx;
+}
+

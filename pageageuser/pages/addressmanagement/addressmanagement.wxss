@@ -1,0 +1,239 @@
+/* pages/addressmanagement/addressmanagement.wxss */
+ .abc{
+  height:160rpx;
+  white-space: nowrap;
+ }
+ .hhh{
+   overflow-x: hidden; 
+   width: 100%;
+   flex-wrap: nowrap;
+ }
+ .h-moveblock{
+  width: 100%;
+  display: flex;
+ }
+.h-setdef{
+  width:154rpx;
+  height:140rpx;
+  background:rgba(219,219,219,1);
+  font-size: 28rpx;
+  color: #fff;
+  background-color: #ccc;
+}
+.h-deladd{
+  width:104rpx;
+  height:140rpx;
+  background:linear-gradient(137.4deg,rgba(255,101,57,1),rgba(255,51,51,1));
+  font-size: 28rpx;
+  color: #fff;
+}
+.h-addlist {
+  display: inline-block;
+  width:  100vw;
+  padding: 31rpx 24rpx 15rpx 24rpx;
+  position: relative
+}
+/*名字样式*/
+.h-addlist-list1_name{
+  font-weight: bold;
+  color: #333;
+  font-size:28rpx;
+  line-height:40rpx;
+  float: left;
+}
+.t-content-box{
+  width:100%;
+  min-height:40rpx;
+}
+/*  */
+.h-addlist-box{
+  width:100%;
+}
+/*手机号样式*/
+.h-addlist-list1_phone{
+  font-weight: bold;
+  float: left;
+  margin-left: 38rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+/*默认标记样式*/
+.h-addlist-list1_default{
+  float: left;
+  margin-left: 14rpx;
+  width:72rpx;
+  height:32rpx;
+  background:#DDDDDD;
+  border-radius:16rpx;
+  text-align: center;
+  color: #fff;
+  font-size:20rpx;
+  line-height:28rpx;
+  margin-top: 4rpx;
+} 
+/* 详细地址样式*/
+.h-addlist-list2{
+  width:100%;
+  min-height:34rpx;
+  font-size:24rpx;
+  color:#333;
+  line-height:34rpx;
+}
+.t-horizontal{
+  position: relative;
+  width: 100%;
+  min-height:140rpx;
+}
+.h-addlist-line{
+  width:702rpx;
+  height: 1rpx;
+  padding-left: 24rpx;
+  background: #F3F3F3;
+  position: absolute;
+  left: 24rpx;
+  bottom: 1rpx;
+}
+/**/
+.h-addlist-true{
+  position: absolute;
+  border-radius: 50%;
+  top:18rpx;
+  left:6rpx;
+  width:34rpx;
+  height:34rpx;
+  border:2rpx solid rgba(219,219,219,1);
+}
+.h-addlist-true1{
+  position: absolute;
+  border-radius: 50%;
+  top:18rpx;
+  left:6rpx;
+  width:34rpx;
+  height:34rpx;
+}
+.t-default-operation{
+  float: right;
+  font-size:20rpx;
+  color:#808080;
+  line-height:28rpx;
+  margin-left: 30rpx;
+  padding-left: 38rpx;
+  position: relative;
+  overflow: hidden;
+}
+.t-default-operation-icon{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28rpx;
+  height: 32rpx;
+}
+/*更改图片样式*/
+.h-addlist-write{
+  margin: 0 30rpx; 
+  width: 40rpx;
+  height: 40rpx;
+}
+/* 新增地址样式*/
+.h-madd-newbtn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  background-color: #da4f49;
+  height:98rpx;
+  padding-top:24rpx; 
+  background:linear-gradient(137.4deg,rgba(255,101,57,1),rgba(255,51,51,1));
+  font-size:36rpx;
+  line-height:50rpx;
+  border-radius:0;
+}
+/*新增地址弹框样式*/
+.h-selectbox-backgr{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(144,144,144,0.5)
+}
+.h-selectbox_close{
+  position: absolute;
+  left: 20rpx;
+  top: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.h-selectbox{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+}
+
+.h-selectbox_list{
+  height: 100rpx;  
+  line-height: 100rpx;
+  border-top: 1rpx solid #ddd;
+  text-align: center;
+}
+
+.itemsconteot{
+  background: white;
+  margin-bottom: 100rpx;
+  padding-bottom: 160rpx;
+}
+
+.t-default-address{
+  position: relative;
+  font-size:20rpx;
+  color:#808080;
+  line-height:28rpx;
+  padding-left: 50rpx;
+  padding-top: 20rpx;
+  padding-bottom: 5rpx
+}
+
+.t-addressque{
+  width: 530rpx;
+  height: 360rpx;
+  margin: 70rpx auto 0;
+  position: relative;
+  background: white
+}
+.t-address-queshen{
+  position: absolute;
+  font-size:28rpx;
+  color:rgba(51,51,51,1);
+  line-height:40rpx;
+  text-align: center;
+  top: 320rpx;
+  left: 0;
+  width: 100%; 
+}
+.h-moveblock{
+  background: white
+}
+.collect-fromid-form{
+  background: white
+}
+.collect-fromid-btn {
+  background:white;
+}
+.h-linkCont{
+  padding-bottom: 160rpx; 
+}
+.t-back-white{
+  background: white
+}
+.t-order-noMore{
+  font-size:20rpx;
+  color:#808080;
+  line-height:28rpx;
+  margin: 24rpx auto 30rpx;
+  text-align: center;
+  background: white
+}

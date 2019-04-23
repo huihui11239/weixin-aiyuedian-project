@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "潜在成员",
+  "usingComponents": {
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid",
+    "back-top": "/pagekagelist/pages/back-top/index",
+    "dialog": "/utils/dialog/dialog"
+  }
+}

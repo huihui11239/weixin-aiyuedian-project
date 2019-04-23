@@ -1,0 +1,54 @@
+<!--pages/location/location.wxml-->
+<collect>
+  <view class='h-locapages1'>
+  <view class='qj-ls-4028 qj-color-333' bindtap='locaCity'>
+    当前已选择： {{locaData.areaName}}
+  </view>
+  <scroll-view scroll-y class='h-scroll-localist1' scroll-into-view='{{atId}}'>
+    <view class='qj-margint-24 qj-ls-3424 qj-color-808080' id='top1'>定位/历史</view>
+    <view class='qj-dis-s-c qj-margint-16' wx:if="{{}}">
+      <view class='h-locaborder-all h-locadata-box1 qj-marginr-22  qj-color-333' bindtap='locaBtn'>
+        授权使用位置信息
+      </view>
+    </view>
+    <view class='qj-dis-b-c qj-margint-16' wx:else>
+      <view class='h-locadata-box2 h-locaborder-all qj-ls-4028 qj-color-333' bindtap='locaOld' data-binddata='{{locaBind}}'>
+        <block wx:if='{{locaBind.areaName}}'>{{locaBind.areaName}}</block>
+        <block wx:else>无历史</block>
+      </view>
+      <view class='h-anginget' bindtap='locaBtn'>
+        <image class='h-locaimg3' src='https://img.iyuedian.com/mini/locaimg3.png'></image>
+        <view class='h-anginget-text'>重新定位</view>
+      </view>
+    </view>
+    <view class='qj-margint-34  qj-ls-3424 qj-color-808080' id='top2'>热门城市</view>
+    <view class='qj-margint-10 qj-dis-s-c  qj-dis-wrap'>
+      <view class=' h-locadata-box2 h-locaborder-all qj-marginr-22' data-areaCode='110100' data-areaName='北京市' data-siteId='1' bindtap='locaClick'>北京</view>
+      <view class='h-locadata-box2 h-locaborder-all qj-marginr-22' data-areaCode='310100' data-areaName='上海市' data-siteId='2' bindtap='locaClick'>上海</view>
+      <view class='h-locadata-box2 h-locaborder-all qj-marginr-22' data-areaCode='320200' data-areaName='无锡市' data-siteId='2' bindtap='locaClick'>无锡</view>
+      <view class='h-locadata-box2 h-locaborder-all qj-margint-16 qj-marginr-22' data-areaCode='320500' data-areaName='苏州市' data-siteId='2' bindtap='locaClick'>苏州</view>
+      <view class='h-locadata-box2 h-locaborder-all qj-margint-16 qj-marginr-22' data-areaCode='440300' data-areaName='深圳市' data-siteId='4' bindtap='locaClick'>深圳</view>
+    </view>
+    <!-- <view class='qj-margint-16'> -->
+    <block wx:for='{{locaList}}'>
+      <view class='qj-ls-4432' id='{{item[0].first}}'>{{item[0].first}}</view>
+      <view wx:for='{{item}}'>
+        <view class='h-locadata-list h-locaborder-bottom qj-color-333' data-areaCode='{{item.areaCode}}' data-areaName='{{item.areaName}}' data-siteId='{{item.siteId}}' bindtap='locaClick'>{{item.areaName}}</view>
+      </view>
+    </block>
+
+    <!-- </view> -->
+  </scroll-view>
+
+  <view class='h-locaSc-box'>
+
+    <view class='qj-disc-s-c'>
+      <view class='h-locaSc-one1' data-id='top1' bindtap='intoClick'>历史</view>
+      <view class='h-locaSc-one1' data-id='top2' bindtap='intoClick'>热门</view>
+      <block wx:for='{{locaList}}'>
+        <view class='h-locaSc-one2 qj-dis-c-c' data-id='{{item[0].first}}' catchtap='intoClick' touchstart='intoClick' catchtouchmove='intoClick'>{{item[0].first}}</view>
+      </block>
+    </view>
+  </view>
+</view>
+</collect>

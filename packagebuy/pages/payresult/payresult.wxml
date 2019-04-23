@@ -1,0 +1,173 @@
+<!--pages/payresult/payresult.wxml-->
+<collect>
+  <dialog id='dialog' />
+  <view class='t-payresult-content'>
+    <view class='t-payresult-logo'>
+      <image class='w-100 h-100' src='https://img.iyuedian.com/mini/paysue.png'></image>
+    </view>
+    <view class='t-payresult-sue'>支付成功！</view>
+    <view class='t-payresult-price'>实付金额:
+      <text class='t-payresult-price1'>¥</text>
+      <text class='t-color-FF5A5A'>{{payMoney||payMoney===0.00? payMoney:'-.--'}}</text>
+    </view>
+    <!-- <view class='t-go-home' bindtap='gohome'>返回首页</view> -->
+    <view class='t-collectgoods-Reappearance' bindtap='danxian' wx:if='{{vipBl&&!isGuideTeamAdv&&!isGuideGoodsAdv}}'>
+      <image src='https://img.iyuedian.com/mini/govip/vipbar1.jpg' class='payimg100'></image>
+      <view class='h-pay-bar1-text'>
+        <view class='h-pay-bar1-text1'>
+          恭喜！您已获得新的预期收益
+        </view>
+        <view class='h-pay-bar1-text2'>
+          <view class='t-goopen'>查看预期收益</view>
+          <image class=' t-user-round-order-triangle2' src='https://img.iyuedian.com/mini/cfgo.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='t-collectgoods-Reappearance' bindtap='vippay' wx:elif="{{!vipBl&&!isGuideTeamAdv&&!isGuideGoodsAdv}}">
+      <image src='https://img.iyuedian.com/mini/govip/vipbar1.jpg' class='payimg100'></image>
+      <view class='h-pay-bar1-text'>
+        <view class='h-pay-bar1-text1'>
+          您已花{{form.payMoney}}元，开通
+          <image class='payimg-iocn2' src='../../../img/vip-iocn2.png'></image>可省
+          <text class='t-collectgoods-color'>{{form.discountAmount}}</text>元
+        </view>
+        <view class='h-pay-bar1-text2'>
+          <view class='t-goopen'>去开通</view>
+          <image class=' t-user-round-order-triangle2' src='https://img.iyuedian.com/mini/cfgo.png'></image>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!--页面加入团队引导-->
+  <view class="k-guide-adv-content-join" wx:if="{{isGuideTeamAdv}}">
+    <image class="k-guide-bg" src="/img/team_guide.png"/>
+    <image class="k-guide-adv-head-img" src="{{guideShare.cpsuser.headImgUrl}}"/>
+    <text class="k-guide-adv-name">「{{guideShare.cpsuser.nickName}}」:</text>
+    <text class="k-guide-adv-text-join">“推荐还算靠谱吧？还有更多福利发放哟, 快来加入我的团队吧～”</text>
+    <view class="k-guide-btn-bg-first"/>
+    <view class="k-guide-btn-first qj-dis-c-c" bindtap="joinTeam">立即加入</view>
+  </view>
+
+  <!--页面商品分享引导-->
+  <view class="k-guide-adv-content" wx:if="{{isGuideGoodsAdv}}">
+    <image class="k-guide-bg" src="/img/vip_guide.png"/>
+    <text class="k-guide-adv-title">分享给好友</text>
+    <text class="k-guide-adv-text">安心品质好商品</text>
+    <text class="k-guide-adv-text-number">邀请好友成单奖励<text style="color: #FF5A5A;font-size: 32rpx"><text style="font-size: 20rpx">¥</text>{{guideShare.cpsProfitPrice}}</text></text>
+    <view class="k-guide-btn-share-first qj-dis-c-c" bindtap="sareBox">立即分享</view>
+  </view>
+
+  <!--加入团队引导-->
+  <view class="k-guide-content" catchtouchmove="nullEvent" wx:if="{{isGuideTeam}}">
+    <view class="k-guide-card">
+      <image class="k-guide-bg" src="/img/team_guide_card.png"/>
+      <image class="k-guide-head" src="{{guideShare.cpsuser.headImgUrl}}"/>
+      <text class="k-guide-name">「{{guideShare.cpsuser.nickName}}」</text>
+      <text class="k-guide-text">推荐还算靠谱吧？还有更多福利发放哟，快来加入我的团队吧～</text>
+      <view class="k-guide-btn-bg"/>
+      <view class="k-guide-btn qj-dis-c-c" bindtap="joinTeam">立即加入</view>
+      <checkbox-group bindchange="checkboxChange" >
+        <label class="k-checkbox qj-dis-c-s">
+          <checkbox class="checkbox" value="" checked="{{checked}}"/>7天内不再提醒
+        </label>
+      </checkbox-group>
+    </view>
+    <image class="k-guide-close" src="/img/btn_close.png" bindtap="closeGuideTeam"/>
+  </view>
+  <!--商品分享引导-->
+  <view class="k-guide-content" catchtouchmove="nullEvent" wx:if="{{isGuideGoods}}">
+    <view class="k-guide-card-share">
+      <image class="k-guide-bg" src="/img/vip_guide_card.png"/>
+      <text class="k-guide-text-share">偷偷告诉你分享给好友， 还能再获得<text class="k-guide-share-munber">
+        <text style="font-size: 28rpx">¥</text>{{guideShare.cpsProfitPrice}}</text>哦～</text>
+      <view class="k-guide-btn-bg-share"/>
+      <view class="k-guide-btn-share qj-dis-c-c" bindtap="sareBox">立即分享</view>
+      <checkbox-group bindchange="checkboxChange" >
+        <label class="k-checkbox qj-dis-c-s">
+          <checkbox class="checkbox" value="" checked="{{checked}}"/>不再提醒
+        </label>
+      </checkbox-group>
+    </view>
+    <image class="k-guide-close-share" src="/img/btn_close.png" bindtap="closeGuideGoods"/>
+  </view>
+  <!--精选好货-->
+  <view class=' qj-margint-16 qj-paddingt-10 qj-disc-s-c  qj-backc-fff'>
+    <image class='h-special-img1' src='https://img.iyuedian.com/mini/special3.png' />
+    <scroll-view scroll-y scroll-into-view='{{idindex}}'>
+      <view wx:for='{{fallsList}}' class='h-scrollnew-box' id='comid{{index}}' wx:key='id'>
+        <block wx:for='{{item}}' wx:key='id'>
+          <view class=' h-scrollfall-combox qj-backc-fff ' data-comid='{{item.id}}' bindtap='detSkip'>
+            <view class='h-scrollfall-combox--img'>
+              <load-image src="{{item.listImg}}" type="{{index%3+1}}" debug="{{100}}" key="{{index}}" bind:success="imageLoadSuccess" bind:error="imageLoadError">
+                <image class="image" src="{{item.listImg}}" />
+              </load-image>
+              <view class='h-sellout-text' wx:if='{{item.storageNum<1}}'>抢光了...</view>
+              <view class='h-people-num' hidden="{{item.showSellBaseCount<100||item.showSellBaseCount==null}}">{{item.showSellBaseCount}}人已抢购</view>
+              <image class="k-time-flag" src="/img/flag_time.png" hidden="{{item.activityGoods==null||(item.activityGoods.statusFlag!=1&&item.activityGoods.type==1)||item.activityGoods.type!=1}}"></image>
+            </view>
+            <view class="h-scrollfall-combox--cotent">
+              <view class='qj-slh qj-ls-4028 qj-color-333 h-scrollall-combox--name font-w qj-family-m'>{{item.shortName}}</view>
+              <view class='qj-slh qj-margint-6 qj-ls-3424 qj-color-808080'>{{item.subName}}</view>
+              <view class='h-suk-num qj-slh'>{{item.specification}}</view>
+              <view class="{{vipBl?'qj-dis-b-c':'qj-dis-s-e'}} t-margint-14">
+             
+                <view class='qj-ls-4028 qj-color-ff6a6a qj-dis-s-b'>
+                  <view class=' qj-ls-2820 font-w qj-color-ff6a6a'>¥</view>
+                  <text class='qj-ls-4036 font-w qj-color-ff6a6a qj-marginl-3 k-number'>{{(item.activityGoods!=null&&item.activityGoods.statusFlag==1)?item.discountPrice:item.sellPrice}}</text>
+                  <view class='qj-marginl-16 qj-ls-2820 qj-color-cbcbcc qj-deltext ' hidden='{{item.activityGoods.statusFlag!=1&&item.marketPrice==item.sellPrice||item.sellPrice==0||item.sellPrice==null||item.marketPrice==""||item.marketPrice=="0.00"||!item.marketPrice}}'>￥{{item.marketPrice}}</view>
+                </view>
+                <view hidden='{{!vipBl||(item.activityGoods!=null&&item.activityGoods.type==3)||(item.selfEarningsPercentage==0)}}' class='h-suk-box_one qj-family-m'>返{{item.selfEarningsPercentage}}%</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <block wx:if='{{fallsList.length}}'>
+        <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+          滑动查看更多
+        </view>
+        <view class='h-bottom-hint' wx:else>
+          没有更多啦~
+        </view>
+      </block>
+      <block wx:else>
+        <view class='nonedata-box'>
+          <view class='nonedata-box-img'>
+            <image class='img100' src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+
+          </view>
+          <view class='nonedata-box-text' wx:if='{{hasNextPage}}'>商品信息加载中</view>
+          <view class='nonedata-box-text' wx:else>暂无商品</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="share-shadow" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' catchtap="boxCancel"></view>
+  <view class="h-sharelist {{isIphoneX?'p-b-68':''}}" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' animation='{{animationData}}'>
+    <view class='h-sharelist-list1'>
+      <view></view>
+      <view class='qj-dis-s-b' wx:if="{{!vipBl}}">
+        <view>分享给小伙伴</view>
+      </view>
+      <view class='qj-dis-s-b' wx:if="{{vipBl}}">
+        <view>邀请好友成单奖励</view>
+        <view style="color: #FF5A5A">¥{{delAllData.product_info.shareEarningsPrice}}</view>
+      </view>
+      <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='boxCancel'></image>
+    </view>
+    <view class='h-sharelist-list2 '>
+      <button open-type='share' class='button-open-user h-sharelist-box '>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/chat.png'></image>
+        <view class="share-text1">转发到微信</view>
+      </button>
+      <view class='h-sharelist-box ' bindtap='sendCircle'>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+        <view class="share-text">保存图片</view>
+      </view>
+    </view>
+  </view>
+  <back-top/>
+  <canvas canvas-id="shareCanvasMini" class="k-share-canvas" hidden="true"></canvas>
+</collect>

@@ -1,0 +1,124 @@
+/* pageageuser/pages/logistics/logistics.wxss */
+.t-logistics-content{
+  width: 100%;
+  background: white;
+  margin-bottom: 6rpx;
+  padding: 24rpx; 
+  overflow: hidden;
+}
+.t-logistics-logo{
+  width:120rpx;
+  height:120rpx;
+  background: red;
+  float: left;
+  margin-right: 52rpx;
+}
+.t-logistics-information{
+  width:100%;
+  float: left;
+}
+.t-logistics-order-title{
+  font-size:24rpx;
+  color:#B9B9B9;
+  line-height:34rpx;
+  margin: 4rpx 0;
+}
+.t-logistics-order-header{
+  font-size:24rpx;
+  color:#333;
+  line-height:34rpx;
+  margin-right: 30rpx;
+  float: left;
+  font-weight: bold
+}
+.t-logistics-express{
+  width: 100%;
+  min-height: 130rpx;
+  padding: 34rpx 26rpx;
+  background: white  
+}
+.t-logistics-express-list{
+  width: 100%;
+  padding-left: 50rpx;
+  position: relative;
+  padding-bottom: 30rpx;
+
+}
+.t-logistics-express-content{
+  font-size:24rpx;
+  color:#808080;
+  line-height:34rpx;
+  margin-bottom: 4rpx;
+  font-weight: bold;
+}
+.t-logistics-express-content1{
+  font-size:24rpx;
+  color:#FF5A5A;
+  line-height:34rpx;
+  margin-bottom: 4rpx;
+  font-weight: bold;
+}
+.t-logistics-express-time{
+  font-size:20rpx;
+  color:#C5C5C5;
+  line-height:28rpx;
+}
+.t-logistics-express-circular{
+  width:28rpx;
+  height:28rpx;
+  background:rgba(197,197,197,.3);
+  border-radius: 50%;
+  position: absolute;
+  top: 4rpx;
+  left: 0;
+  padding: 6rpx;
+  z-index: 10
+}
+.t-logistics-express-circular2{
+  width:28rpx;
+  height:28rpx;
+  background:rgba(255,225,219,.3);
+  border-radius: 50%;
+  position: absolute;
+  top: 4rpx;
+  left: 0;
+  padding: 6rpx;
+  z-index: 10
+}
+.t-logistics-express-circular3{
+  background:#FFC7BC;
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+}
+
+.t-logistics-express-circular1{
+  width:100%;
+  height:100%;
+  background:#C5C5C5;
+  border-radius: 50%;
+}
+.t-logistics-express1{
+  position: relative;
+}
+.t-logistics-line{
+  width:2rpx;
+  height:100%;
+  position: absolute;
+  top: 0;
+  left: 12rpx;
+  border:1px dashed rgba(243,243,243,1);
+  z-index: 1
+}
+.t-logistics-line-show{
+  width:28rpx;
+  height:5rpx;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:2;
+  background: white
+}
+.color-808080{
+  color: #808080
+}

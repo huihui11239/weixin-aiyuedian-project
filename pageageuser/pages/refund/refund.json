@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "申请退款",
+  "backgroundColor": "#f9f9f9",
+  "usingComponents": {
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid"
+  }
+}

@@ -1,0 +1,8 @@
+<!--pageageuser/pages/partner/partner.wxml-->
+<collect>
+  <view class='t-partner-content'>
+    <view class='invitationcode'>
+      <view class='t-invitationcode-left'></view>
+    </view>
+  </view>
+</collect>

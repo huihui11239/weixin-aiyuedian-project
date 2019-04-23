@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的团队",
+  "usingComponents": {
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid",
+    "back-top": "/pagekagelist/pages/back-top/index"
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "保存图片",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "collect": "/pagekagelist/pages/collect-fromid/collect-fromid"
+    }
+}

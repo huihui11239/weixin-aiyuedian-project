@@ -1,0 +1,158 @@
+<collect>
+  <dialog id='dialog' />
+  <view class='t-user-content'>
+    <view class="t-user-round">
+      <view class='t-user-round-logo'>
+        <!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+        <open-data class='w-100 h-100' type="userAvatarUrl"></open-data>
+      </view>
+      <view class='t-user-round-content'>
+        <!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+        <view class="t-user-round-name1">
+          <open-data class="t-user-round-name" type="userNickName" wx:if="{{!userInfo.nickName}}"></open-data>
+          <view class='t-vip-iocn' class="t-user-round-name2" wx:if="{{userInfo.nickName}}">
+            {{userInfo.nickName}}
+          </view>
+          <view class='t-vip-iocn' wx:if='{{levelType==2}}'>
+            <image class='w-100 h-100' src='/img/vip-iocn.png'></image>
+          </view>
+          <view class='t-vip-iocn1' wx:elif='{{levelType==3}}'>
+            <image class='w-100 h-100' src='/img/vip-giocn.png'></image>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <!--vip  -->
+    <button class='t-mine-content button-open-user' hidden='{{vipBl}}' style="background-image: url('https://img.iyuedian.com/mini/govip/vipback3.png')" data-type="0" bindtap="{{temVIPData.vipStatus==3?'openTemVip':'vippay'}}">
+      <block wx:if="{{temVIPData.vipStatus==3}}">
+        <view  class='t-mine-content-title'>开通
+          <image class='mine-vip' src='/img/vip-iocn3.png'></image>
+          期间曾获得收益
+          <view class='t-prominent'>{{temVIPData.totalProfitMoney}}</view> 元
+        </view>
+      </block>
+      <block wx:else>
+        <view wx:if="{{form.payMoney==0||!form.payMoney}}" class='t-mine-content-title'>开通
+          <image class='mine-vip' src='/img/vip-iocn3.png'></image>
+          平均每年可省
+          <view class='t-prominent'>2682</view> 元
+          <!-- <button class='t-goopen button-open-user'>去开通
+                    </button> -->
+        </view>
+        <view wx:else class='t-mine-content-title'>您已花{{form.payMoney}}元，VIP可省
+          <text class='t-prominent'>{{form.discountAmount}}</text> 元
+          <!-- <button class='t-goopen button-open-user'>去开通
+                    </button> -->
+        </view>
+      </block>
+      <image class='t-mine-content-arrow' src='/img/arrow2.png'></image>
+      <view class='t-mine-399'>开通即享¥399元大礼包</view>
+    </button>
+    
+    <!--我的消息  -->
+    <!-- <view class='t-user-round-news'>我的消息
+          <view class='t-user-round-news-line'></view>
+          <image class='t-user-round-order-triangle' style='top:28rpx;' src='https://img.iyuedian.com/mini/go.png'></image>
+        </view> -->
+    <!--我的订单  -->
+    <view class='t-user-round-order'>
+      <view class='t-user-round-order-name' style='margin-left: 4.5rpx;'>
+        <text class='font-w'>我的订单</text>
+
+        <button class='t-user-round-order-see button-open-user' data-type="100" bindtap='gotoOrder'>
+          查看所有订单
+        </button>
+        <image class='t-user-round-order-triangle' src='https://img.iyuedian.com/mini/go.png'></image>
+      </view>
+
+      <view class='t-user-round-order-record'>
+        <button class='t-user-round-order-recordList-pop button-open-user' data-type="0" bindtap="gotoOrder">
+          <view class='pop-number qj-dis-c-c {{popData.unpay>99? "bt-margin" : ""}}' hidden='{{popData.unpay==0||popData==null}}'>{{popData.unpay>99?'...':popData.unpay}}
+          </view>
+          <view class='t-user-round-order-logo-pop'>
+            <image class='w-100 h-100' src='https://img.iyuedian.com/mini/me/tBeltPayment.png'></image>
+          </view>
+          <view class='t-user-round-order-type'>待付款</view>
+        </button>
+        <button class='t-user-round-order-recordList-pop button-open-user' data-type="2" bindtap="gotoOrder">
+          <view class='pop-number qj-dis-c-c {{popData.unsend>99? "bt-margin" : ""}}' hidden='{{popData.unsend==0||popData==null}}'>{{popData.unsend>99?'...':popData.unsend}}
+          </view>
+          <view class='t-user-round-order-logo'>
+            <image class='w-100 h-100' src='https://img.iyuedian.com/mini/me/tConsignment.png'></image>
+          </view>
+          <view class='t-user-round-order-type'>待发货</view>
+        </button>
+        <button class='t-user-round-order-recordList-pop button-open-user' data-type="3" bindtap="gotoOrder">
+          <view class='pop-number qj-dis-c-c {{popData.unreceive>99? "bt-margin" : ""}}' hidden='{{popData.unreceive==0||popData==null}}'>
+            {{popData.unreceive>99?'...':popData.unreceive}}
+          </view>
+          <view class='t-user-round-order-logo'>
+            <image class='w-100 h-100' src='https://img.iyuedian.com/mini/me/tTruck.png'></image>
+          </view>
+          <view class='t-user-round-order-type'>待收货</view>
+        </button>
+        <button class='t-user-round-order-recordList button-open-user' data-type="55" bindtap="gotoOrder">
+          <view class='t-user-round-order-logo'>
+            <image class='w-100 h-100' src='https://img.iyuedian.com/mini/me/tComplete.png'></image>
+          </view>
+          <view class='t-user-round-order-type'>已完成</view>
+        </button>
+        <button class='t-user-round-order-recordList button-open-user' data-type="51" bindtap="gotoafter">
+          <view class='t-user-round-order-logo'>
+            <image class='w-100 h-100' src='https://img.iyuedian.com/mini/me/tAfterSale.png'></image>
+          </view>
+          <view class='t-user-round-order-type'>退款/售后</view>
+        </button>
+      </view>
+    </view>
+    <!--我的收货地址  -->
+    <button class='t-user-round-news m-b-0 button-open-user' bindtap="goMySpells">我的拼团
+      <image class='t-user-round-order-triangle' style='top:30rpx;' src='https://img.iyuedian.com/mini/go.png'></image>
+    </button>
+    <!--我的收货地址  -->
+    <button class='t-user-round-news m-b-0 button-open-user' data-type="4" bindtap="gotoAddress">管理收货地址
+      <image class='t-user-round-order-triangle' style='top:30rpx;' src='https://img.iyuedian.com/mini/go.png'></image>
+    </button>
+    <view class='h-invite' wx:if="{{inviteData}}">
+      <view class='h-invite-text1'>邀请人</view>
+      <view class='h-invite-text2'>
+        <view class='h-invite-name'>{{inviteData.nickName}}</view>
+        <image class='h-invite-img' src='{{inviteData.headImgUrl}}'></image>
+      </view>
+      <!-- <open-data class="h-invite-img" type="userNickName" >{{userInfo.nickName}}</open-data> -->
+      <!-- <image class='h-invite-img' src=''></image> -->
+    </view>
+    <view class="h-temlist" bindtap='goBalance' wx:if="{{temVIPData.vipStatus==3&&temVIPData.availableAmount>0&&!vipBl}}">
+      <view class='h-temlist-text1'>账户余额</view>
+      <view class='h-temlist-after'>
+        <view class='h-temlist-text2'>可提现 <text class='h-temlist-text3'>{{temVIPData.availableAmount}}</text> 元</view>
+        <image class='h-invite-arrow1'  src='https://img.iyuedian.com/mini/go.png'></image>
+      </view>
+    </view>
+    <button class='t-user-round-news m-b-0 button-open-user' bindtap="goGID" hidden="{{userId!=10000}}">GID查询工具
+      <image class='t-user-round-order-triangle' style='top:30rpx;' src='https://img.iyuedian.com/mini/go.png'></image>
+    </button>
+    <button class='t-user-round-news m-b-0 button-open-user' open-type="contact">联系客服
+      <image class='t-user-round-order-triangle' style='top:30rpx;' src='https://img.iyuedian.com/mini/go.png'></image>
+    </button>
+  </view>
+  <view class='h-showback' bindtap='closeTemVip'  catchtouchmove="nullEvent" wx:if='{{temVipShow}}'>
+    <view class='h-showbox' catchtap='empty' >
+      <view class='h-showbox-header' style='background-image: url("https://img.iyuedian.com/mini/govip/temVipback1.png")'>
+        <view class='h-header-text1'>截止 {{temVIPData.levelEndDate}} VIP过期</view>
+        <view class='h-header-text2'>开通会员期间获得收益</view>
+        <view class='h-header-text3'><view class='h-header-text4'>¥</view>{{temVIPData.totalProfitMoney}}</view>
+      </view>
+      <view class='h-showbox-body'>
+        <view class='h-show-list'><text class='h-show-listt'>自购返现</text><text class='h-show-listm'>¥{{temVIPData.zigou?temVIPData.zigou:"0"}}</text></view>
+        <view class='h-show-list h-show-listb' ><text class='h-show-listt'>分享收益</text><text class='h-show-listm'>¥{{temVIPData.cps?temVIPData.cps:"0"}}</text></view>
+        <view class='h-show-list h-show-listb' ><text class='h-show-listt'>团队津贴</text><text class='h-show-listm'>¥{{temVIPData.team?temVIPData.team:"0"}}</text></view>
+        <view class='h-show-list h-show-listb' ><text class='h-show-listt'>邀请奖励</text><text class='h-show-listm'>¥{{temVIPData.vip?temVIPData.vip:"0"}}</text></view>
+        <view class='h-show-btn' catchtap='temvippay'>立即续期VIP</view>
+      </view>
+    </view>
+    <image class='btn-chose' src='/img/btn_close.png'> </image>
+  </view>
+  <!-- <back-top/> -->
+</collect>

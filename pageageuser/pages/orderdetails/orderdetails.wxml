@@ -1,0 +1,224 @@
+<!--pageageuser/pages/orderdetails/orderdetails.wxml-->
+<collect>
+  <view class='t-order-type qj-dis-s-b' wx:if="{{form.trade.tradeStatus==54}}" style="background-image: url('https://img.iyuedian.com/mini/ordertype3.png')">
+    <view class='t-color-8080'>交易已关闭</view>
+    <view class='t-color-8080-f'>（超时未支付）</view>
+  </view>
+  <view class='t-order-type' wx:elif="{{form.trade.tradeStatus==51}}" style="background-image: url('https://img.iyuedian.com/mini/govip/ordertype5.png')">
+    <view class='t-color-8080'>交易已取消</view>
+  </view>
+  <view class='t-order-type' wx:elif="{{form.trade.payStatus<2}}" style="background-image: url('https://img.iyuedian.com/mini/govip/ordertype4.png')">
+    <text>等待买家付款</text>
+  </view>
+  <view class='t-order-type' wx:elif="{{form.trade.tradeStatus==55}}" style="background-image: url('https://img.iyuedian.com/mini/govip/ordertype6.png')">
+    <text>交易完成</text>
+  </view>
+  <view class='t-order-type' wx:elif="{{form.trade.tradeStatus==2}}" style="background-image: url('https://img.iyuedian.com/mini/govip/ordertype4.png')">
+    <text>等待出库</text>
+  </view>
+  <view class='t-order-type' wx:elif="{{form.trade.tradeStatus==3}}" style="background-image: url('https://img.iyuedian.com/mini/govip/ordertype4.png')">
+    <text>等待收货</text>
+  </view>
+  <view class='t-order-type' wx:elif="{{form.trade.tradeStatus==4}}" style="background-image: url('https://img.iyuedian.com/mini/govip/ordertype4.png')">
+    <text>退款中</text>
+  </view>
+  <!-- <view class='t-order-type' style="background-image: url('/img/ordertype1.png')">
+  <view class='t-color-8080' wx:if="{{form.trade.tradeStatus==54||form.trade.tradeStatus==51}}">交易已取消</view>
+  <text wx:elif="{{form.trade.payStatus<2}}">等待买家付款</text>
+  <view wx:elif="{{form.trade.tradeStatus==55}}">已完成</view>
+  <view wx:elif="{{form.trade.tradeStatus<7}}">待收货</view>
+</view> -->
+  <view class='t-order-address'>
+    <view class='t-order-title'>
+      <view class='t-order-name'>{{form.trade.receiveName}}</view>
+      <view class='t-order-phone'>{{form.trade.receiveMobile}}</view>
+    </view>
+    <view class='t-order-title-address'>收货地址：{{form.trade.provinceName}} {{form.trade.cityName}}{{form.trade.countyName}}{{form.trade.receiveAdress}}</view>
+    <view class='t-order-title-logo'>
+      <image class='w-100 h-100' src='https://img.iyuedian.com/mini/locaimg3.png'></image>
+    </view>
+  </view>
+  <image class="h-partition-bar1" src="/img/partition-bar1.png"></image>
+  <view class='t-order-content'>
+    <block wx:for="{{form.orderList}}" wx:key="item.id">
+      <!-- <view class="h-tobar">
+      <block wx:if="{{item.orderStatus==0}}">待支付</block>
+      <block wx:if="{{item.orderStatus==1||item.orderStatus==2}}">待发货</block>
+      <block wx:if="{{item.orderStatus==3}}">已发货</block>
+      <block wx:if="{{item.orderStatus==4||item.orderStatus==5||item.orderStatus==6||item.orderStatus==52||item.orderStatus==53}}">审核中</block>
+      <block wx:if="{{item.orderStatus==8}}">已签收</block>
+      <block wx:if="{{item.orderStatus==50}}">已拒签</block>
+      <block wx:if="{{item.orderStatus==51}}">已取消</block>
+      <block wx:if="{{item.orderStatus==54}}">已关闭</block>
+      <block wx:if="{{item.orderStatus==55}}">已完成</block>
+    </view> -->
+      <view class='m-t-10'>
+        <view class='t-order-content-commodity'>
+          <view class='t-order-list-spell' wx:if='{{form.trade.tradeType==3}}'>拼团</view>
+          <view class='t-order-content-commodity-type' wx:if="{{form.trade.payStatus!=1&&form.trade.tradeStatus!=51&&form.trade.tradeStatus!=55}}">等待出库的商品</view>
+          <view class='t-order-commodity-logo'>
+            <image class='w-100 h-100' src='{{item.itemImg}}'></image>
+          </view>
+          <view class='t-order-commodity-content'>
+            <view class='t-order-commodity-title'>{{item.productName}}</view>
+            <!-- <view class='t-order-commodity-sku'>3斤装，无核荔枝</view> -->
+            <view class='t-order-commodity-number'>{{item.itemNum}}件
+              <view class='h-payMoney'>¥{{item.itemNum*item.payMoney}}</view>
+            </view>
+          </view>
+        </view>
+        <!--操作  -->
+        <view class='t-order-commodity-operation'>
+          <!-- <view wx:if="{{form.trade.payStatus==1&&form.trade.tradeStatus!=51&&form.trade.tradeStatus!=54}}">
+        <view class='t-order-commodity-buttom1'>
+          <view class='t-order-commodity-c' bindtap='payOrder'>去支付</view>
+        </view>
+      </view> -->
+          <view>
+            <view class='t-order-commodity-buttom' data-id="{{form.trade.id}}" bindtap='clanceOrder' wx:if="{{form.trade.payStatus==1&&form.trade.tradeStatus!=51&&form.trade.tradeStatus!=54}}">
+              <view class='t-order-commodity-b'>取消订单</view>
+            </view>
+            <view class='t-order-commodity-buttom' bindtap='againBuy' data-id="{{item.productId}}" wx:if="{{form.trade.tradeStatus!=0 && item.isGift!=10}}">
+              <view class='t-order-commodity'>再次购买</view>
+            </view>
+            <view class='t-order-commodity-buttom' data-tradeId='{{item.tradeCode}}' data-img='{{item.itemImg}}' data-name='{{item.productName}}' data-money='{{item.totalPayMoney}}' wx:if="{{form.trade.tradeStatus==2 && item.isGift!=10&&form.trade.tradeType!='3'}}"
+              bindtap='refund'>
+              <view class='t-order-commodity-b'>申请退款</view>
+            </view>
+            <!-- <view class='t-order-commodity-buttom' data-item="{{item.id}}" wx:if="{{item.orderStatus==8}}"  bindtap='receipt'>
+          <view class='t-order-commodity-b' >确认收货</view>
+        </view> -->
+          </view>
+        </view>
+      </view>
+    </block>
+    <!--下面是包裹 packageList -->
+
+    <view wx:for="{{form.packageList}}" wx:for-item="item1" wx:key="*this">
+      <view class="h-tobar" data-id="{{item1.packages.id}}" data-code="{{form.trade.tradeCode}}" bindtap='logistics'>
+        <view class="h-tobar1" >包裹{{index+1}}: 运单号 {{item1.packages.waybill!=-1? item1.packages.waybill:""}}</view>
+        <view class="h-tobar2">
+          <image class="{{(item1.packages.atnumber==3)?'h-tobar-img1':'h-tobar-img'}}" src="{{(item1.packages.atnumber==3)?'/img/car-yellow.png':'/img/car-red.jpg'}}"></image>
+          <text class="{{(item1.packages.atnumber==3)?'h-yellow':''}}">{{item1.packages.attime}} {{item1.packages.ataddtext}} </text>
+        </view>
+        <image class="h-tobar3" src='https://img.iyuedian.com/mini/go.png'></image>
+      </view>
+      <!-- <view class="h-tobar" data-id="{{item1.packages.id}}" data-code="{{form.trade.tradeCode}}" bindtap='logistics' wx:else>
+          <view class="h-tobar1" >包裹{{index+1}}: 运单号  {{item1.packages.waybill}}</view>
+          <image class="h-tobar3" src='https://img.iyuedian.com/mini/go.png'></image> 
+      </view> -->
+      <view class='m-t-10' wx:for="{{item1.packageOrders}}" wx:for-item="item" wx:for-index="index1" wx:key="item.id">
+
+        <view class='t-order-content-commodity'>
+          <view class='t-order-list-spell' wx:if="{{form.trade.tradeType==3}}">拼团</view>
+          <view class='t-order-commodity-logo'>
+            <image class='w-100 h-100' src='{{item.itemImg}}'></image>
+          </view>
+          <view class='t-order-commodity-content'>
+            <view class='t-order-commodity-title'>{{item.productName}}</view>
+            <view class='t-order-commodity-number'>{{item.itemNum}}件
+              <view class='h-payMoney'>¥{{item.itemNum*item.payMoney}}</view>
+            </view>
+          </view>
+        </view>
+        <!--操作  -->
+        <view class='t-order-commodity-operation'>
+          <view>
+            <view class='t-order-commodity-buttom' data-id="{{form.trade.id}}" bindtap='clanceOrder' wx:if="{{form.trade.payStatus==1&&form.trade.tradeStatus!=51&&item.isGift!=10}}">
+              <view class='t-order-commodity-b'>取消订单</view>
+            </view>
+            <view class='t-order-commodity-buttom' bindtap='againBuy' data-id="{{item.productId}}" wx:if="{{item.isGift!=10}}">
+              <view class='t-order-commodity-b'>再次购买</view>
+            </view>
+            <view class='t-order-commodity-buttom1' data-item="{{item1.packages.id}}" wx:if="{{item1.packages.tmsStatus==0||item1.packages.tmsStatus==1||item1.packages.tmsStatus==2||item1.packages.tmsStatus==3}}" bindtap='receipt'>
+              <view class='t-order-commodity-c'>确认收货</view>
+            </view>
+            <!-- <view class='t-order-commodity-buttom' data-id="{{item1.packages.id}}" data-code="{{form.trade.tradeCode}}" bindtap='logistics'>
+            <view class='t-order-commodity-b'>查看物流</view>
+          </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--商品价格  -->
+    <view class='t-order-commodity-price'>
+      商品总金额
+      <!-- <text class='t-right'>¥{{form.trade.totalMoney}}</text> -->
+      <text class='t-right'>¥{{form.trade.totalPayMoney}}</text>
+    </view>
+    <view class='t-order-commodity-freight'>
+      运费
+      <text class='t-right'>¥{{form.trade.totalFreightMoney}}</text>
+    </view>
+    <!--使用优惠券金额-->
+    <view class='t-order-commodity-freight'>
+      优惠金额
+      <text class='t-right'>- ¥{{form.trade.payCouponAmount? form.trade.payCouponAmount:'0.00'}}</text>
+    </view>
+    <view class='t-order-commodity-Totalprice qj-family-m'>
+      <text>合计金额：</text>
+      <text class='t-price-color' wx:if='{{form.trade.payCashFee}}'><text class='t-price-font'>¥</text>{{form.trade.payCashFee}}</text>
+      <text class='t-price-color' wx:elif='{{form.trade.totalPayMoney}}'><text class='t-price-font'>¥</text>{{form.trade.totalPayMoney}}</text>
+    </view>
+  </view>
+  <!--订单详情  -->
+  <view class='t-order-details'>
+    <view class='t-order-details-list t-h-30 t-order-details-list11 t-h-36'>
+      <view class='t-order-details-header'>订单号</view>
+      <view class='t-left'>{{form.trade.tradeCode}}</view>
+      <view class='t-order-details-copy' bindtap='copy' data-id="{{form.trade.tradeCode}}">复制</view>
+    </view>
+    <view class='t-order-details-list'>
+      <view class='t-order-details-header'>支付方式</view>
+      微信支付
+    </view>
+    <view class='t-order-details-list'>
+      <view class='t-order-details-header'>下单时间</view>
+      {{form.trade.createDate}}
+    </view>
+    <view class='t-order-details-list' wx:if="{{form.trade.payTime!=null}}">
+      <view class='t-order-details-header'>支付时间</view>
+      {{form.trade.payTime==null?'':form.trade.payTime}}
+    </view>
+    <view class='t-order-details-list' wx:if="{{form.trade.cancelTime!=null}}">
+      <view class='t-order-details-header'>取消时间</view>
+      {{form.trade.cancelTime}}
+    </view>
+    <view class='t-order-details-list' wx:if="{{bookDate}}">
+      <view class='t-order-details-header1'>期望到货时间</view>
+      {{bookDate}}
+    </view>
+  </view>
+  <!--去支付  -->
+  <view class="t-order-payment-go {{isIphoneX?'p-b-68 h-166':'h-98'}}" wx:if="{{show==true&&form.trade.payStatus==1&&form.trade.tradeStatus!=51}}">
+    <view class='t-order-payment-buttom' data-id="{{form.trade.id}}" bindtap='gopay'>去支付</view>
+    <view class='t-order-payment-price qj-dis-s-b'>
+      <view class='t-order-payment-price3'>需支付</view>：
+      <text class='t-price-color'><text class='t-price-font'>¥</text>{{form.trade.totalPayMoney}}</text>
+      <view class='qj-ls-2820 k-buy-pop-info' wx:if="{{vipBl&&selfEarningsPrice!=null&&selfEarningsPrice!=0}}">（返现
+        <text class='k-buy-pop-info-price-s'>￥</text>
+        <text class='k-buy-pop-info-price'>{{selfEarningsPrice}}</text>）</view>
+    </view>
+    <view class='t-order-payment-price1'>
+      <view class='t-order-payment-price4'>剩余时间</view>：{{minute}}分{{second}}秒</view>
+  </view>
+  <view class='h-hintfexl' wx:if='{{hintNum==1}}' bindtap="kong">
+    <view class='h-hint1' style='background-image: url("https://img.iyuedian.com/mini/govip/vip-hint1.png")'>
+      <view class='h-pos1-text1'>恭喜您成功开通vip</view>
+      <view class='h-pos2-text1'>关于
+        <text class="vip-none">VIP</text>的玩法介绍已经为您准备好都在
+        <text class="vip-none">VIP</text>广场，快逛逛吧～</view>
+      <view class='h-pos3-text1' bindtap="clearskip">去广场逛逛</view>
+    </view>
+  </view>
+  <!--<view class='h-hint2' wx:if='{{hintNum===3}}'>-->
+  <!--<view class="h-pos1-text1 h-pos86"></view>-->
+  <!--<view class="h-pos2-text1 h-pos160">是否接受「{{userData.name}}」的邀请加入TA的团队</view>-->
+  <!--<view class="h-pos3-box1">-->
+  <!--<view class="h-pos3-btn" bindtap="clearskip">暂不</view>-->
+  <!--<view class="h-pos3-btn left-btn" bindtap="jointeamok">立即加入</view>-->
+  <!--</view>-->
+  <!--</view>-->
+  <back-top wx:if="{{form.trade.payStatus==2}}" />
+</collect>

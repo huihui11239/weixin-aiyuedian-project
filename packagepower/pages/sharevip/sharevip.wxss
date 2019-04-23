@@ -1,0 +1,183 @@
+/* packagepower/pages/sharecard/sharevip.wxss */
+.canvas-wh {
+    width: 608rpx;
+    height: 920rpx;
+    top: 0rpx;
+    position: absolute;
+    background: white;
+}
+
+.bt-save {
+    width:262rpx;
+    height:80rpx;
+    background: #FFFFFF;
+    margin-top: 24rpx;
+    margin-bottom: 40rpx;
+    border-radius: 40rpx;
+    border: 4rpx solid #B99027;
+    color: #8A6810;
+    font-size: 28rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bt-save1 {
+    width:262rpx;
+    height:80rpx;
+    background: #FFE8C1;
+    margin-top: 24rpx;
+    margin-bottom: 40rpx;
+    margin-left: 38rpx;
+    border-radius: 40rpx;
+    color: #8A6810;
+    font-size: 28rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-image {
+    position: fixed;
+    bottom: 0rpx;
+    left: 0rpx;
+    width: 100%;
+    height: 800rpx;
+}
+
+.tv-info {
+    margin-top: 44rpx;
+    width: 100%;
+    height: 34rpx;
+    font-size: 24rpx;
+    color:#C5C5C5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page_sty {
+    position: relative;
+    background-color: white;
+}
+
+.swiper-wh{
+    width: 100%;
+    height: 1000rpx;
+}
+.h-scrollnew {
+    white-space: nowrap;
+}
+.card-wh {
+    position: relative;
+    width: 608rpx;
+    height: 920rpx;
+    margin-left: 72rpx;
+    background-repeat:no-repeat;
+    background-size: 608rpx 920rpx;
+    overflow: hidden;
+}
+
+.t-user-round-logo {
+    width: 62rpx;
+    height: 62rpx;
+    position: absolute;
+    left: 24rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    bottom: 50rpx;
+}
+.bt-text{
+    position: absolute;
+    font-size: 24rpx;
+    color:#DDA839;
+    font-weight: bold;
+    bottom: 82rpx;
+    left: 100rpx
+}
+.bt-text1{
+    position: absolute;
+    font-size: 24rpx;
+    color:#DDA839;
+    font-weight: bold;
+    bottom: 48rpx;
+    left: 110rpx
+}
+
+.bt1-text{
+    position: absolute;
+    font-size: 24rpx;
+    color:#808080;
+    bottom: 72rpx;
+    font-weight: bold;
+    left: 46rpx
+}
+.bt1-text1{
+    position: absolute;
+    font-size: 24rpx;
+    color:#808080;
+    font-weight: bold;
+    bottom: 38rpx;
+    left: 56rpx
+}
+
+.bt2-text{
+    position: absolute;
+    font-size: 24rpx;
+    color:#808080;
+    bottom: 52rpx;
+    left: 46rpx
+}
+
+.qrcode-image{
+    width: 118rpx;
+    height: 118rpx;
+    position: absolute;
+    border-radius: 50%;
+    right: 32rpx;
+    bottom: 26rpx;
+}
+.qrcode-image1{
+    width: 118rpx;
+    height: 118rpx;
+    position: absolute;
+    border-radius: 50%;
+    right: 32rpx;
+    bottom: 8rpx;
+}
+.card-bg{
+    width: 608rpx;
+    height: 920rpx;
+}
+.vip-img{
+    width: 34rpx;
+    height: 24rpx;
+    margin-left: 6rpx;
+}
+.first-img{
+    width: 558rpx;
+    height: 312rpx;
+    left: 24rpx;
+    top: 397rpx;
+    position: absolute;
+}
+.swiper-box .wx-swiper-dots.wx-swiper-dots-horizontal {
+    margin-bottom: 2rpx;
+}
+
+.swiper-box .wx-swiper-dot {
+    width: 14rpx;
+    display: inline-flex;
+    height: 14rpx;
+    justify-content: space-between;
+}
+
+.swiper-box .wx-swiper-dot::before {
+    content: '';
+    flex-grow: 1;
+    border-radius: 14rpx
+}
+
+.swiper-box .wx-swiper-dot-active::before {
+    background: rgba(255,201,61,1);
+}

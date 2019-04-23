@@ -1,0 +1,100 @@
+<!--packagepower/pages/vippurchase/vippurchase.wxml-->
+<collect>
+  <!--<view class='t-vip-care '>-->
+  <!--<view class='t-vip-care-content' style="background-image: url('https://img.iyuedian.com/mini/vipcare.png')">-->
+  <!--<view class='t-vip-care-content-time'>有效期至：{{time}}</view>-->
+  <!--<view class='t-vip-care-content-price'>¥399</view>-->
+  <!--</view>-->
+  <!--</view>-->
+  <back-top  wx:if='{{backHome}}'/>
+  <view class='h-vipgift-choosegiftbag'>
+    <image class='w-100 h-100 h-vipgift-choosegiftbag1' src='https://img.iyuedian.com/mini/govip/vipbuy1.png'></image>
+  </view>
+  <!-- <view class='h-vipgift-box'>
+    <view class='h-vipgift-box-fill1'></view>
+    <view class='h-vipgift-box-fill2'></view>
+    <view class='h-vipgift-box-text'>选择赠送礼包</view>
+    <view class='h-vipgift-box-fill2'></view>
+    <view class='h-vipgift-box-fill1'></view>
+  </view> -->
+  <view>
+      <scroll-view scroll-x scroll-into-view="{{indexId}}" class='scroll-box' bindscroll='scrollVip'>
+    <block wx:for="{{vipGitNew}}" wx:key="trid" wx:for-item="item">
+      <view class="t-content-gif-content {{cIndex===index?'border-red':'border-fff'}}" id='ID{{index}}' data-dindex='{{index}}' data-gifid='{{item.trid}}' bindtap='giftbagx'>
+        <view class='t-content-gif-name'>{{item.name}}</view>
+        <view class='t-content-gif-bname'>市场价值：¥{{item.money}}</view>
+        <!-- <view class='t-content-gif-name' wx:for="{{item.item}}" wx:for-index="index1" wx:for-item="item1" wx:key="*this">{{item1.name}}</view> -->
+        <view class='img-box'>
+          <image class='git-img' src='{{item.url}}'></image>
+        </view>
+        <view class='h-vipbox-title1'>总共{{item.numbers}}件</view>
+        <view class='posi-box'>
+          <view class='h-vipbox-title innerbox'>
+            <block wx:for="{{item.comitem}}">
+              <view class='t-content-gif-list'>
+                <view class='t-content-gif-box1'>
+                  <view class='t-content-gif-circle {{item.mum===null?"fonts":""}}'></view>
+                  <view class='t-content-gif-itemname'>{{item.nameone}} </view>
+                </view>
+                <view class='t-content-gif-box2' hidden='{{item.mum===null}}'>×{{item.mum}}</view>
+              </view>
+            </block>
+          </view>
+          <view class='hide-article-box {{(cIndex===index)? "":"" }}'></view>
+        </view>
+        <view class='h-vipbox-btn'>
+          <view class='h-vipbox-btnb {{(cIndex===index)? "h-vipbox-btnb1":"h-vipbox-btnb2"}}'>
+            {{cIndex===index? "已选":"选择"}}
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  </view>
+
+  <view class='h-400'>
+    <view class='circle-box'>
+      <block wx:for='{{vipGitNew}}' wx:key='index'>
+        <view class=' {{(index===atIndex)? "circle-one1":"circle-one2"}}' data-index='{{index}}' data-name='{{item.name}}' bindtap='circleVip'> </view>
+      </block>
+    </view>
+  </view>
+  <view class='back-fff'>
+    <view class='h-vip-bar' style='background-image:url("https://img.iyuedian.com/mini/govip/vip-barnew.png")'>
+      <view class="h-vip-bartext1">VIP有效期至：{{time}}</view>
+      <view class="h-vip-bartext2">¥399</view>
+    </view>
+  </view>
+
+  <view class="t-wxaddd {{isIphoneX?'b-h-166':'b-h-98'}}">
+    <view class='t-choiceAddress-box1'>
+      <view class='t-choiceAddress-text1'>支付方式</view>
+      <view class='t-choiceAddress-text3'>微信支付</view>
+      <view class='h-wxzf-img1'>
+        <image class='w-100 h-100' src='https://img.iyuedian.com/mini/wxpayimg1.png' />
+      </view>
+    </view>
+    <view class='t-choiceAddress-box1' wx:if="{{userId}}">
+      <view class='h-userid-text'>
+        邀请人
+        <text class="h-userid-text1" hidden="{{teamuserId}}">  (开通VIP后加入他的团队)</text>
+      </view>
+      <view class='h-userid-text'>
+        <image class='h-userid-img' src="{{userData.headImgUrl}}"></image>
+        <view class='h-userid-name'>{{userData.nickName}}</view>
+      </view>
+    </view>
+    <view class='t-choiceAddress-box' bindtap='choiceAddress'>
+      <view class='t-choiceAddress-text1'>赠品配送至</view>
+      <text class='t-choiceAddress-text2'>{{address.city}} {{address.province}} {{address.area}} {{address.receiverName}} {{address.reveiverPhone}}</text>
+      <image class='t-user-round-order-triangle2' src='https://img.iyuedian.com/mini/go.png'></image>
+    </view>
+    <!-- <view class='t-choiceAddress-box' bindtap='choiceAddress' wx:else>赠品配送至</view> -->
+  </view>
+
+  <view class="t-order-payment-go {{isIphoneX?'h-166':'h-98'}}" bindtap='submitOrder'>
+    立即开通
+    <!-- <view class='t-order-payment-buttom' bindtap='submitOrder'>去支付</view> -->
+    <!-- <view class='t-order-payment-price'>实付金额：<text class='t-price-color'><text class='t-price-font'>¥</text>111</text></view> -->
+  </view>
+</collect>

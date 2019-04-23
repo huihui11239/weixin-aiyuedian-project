@@ -1,0 +1,27 @@
+/* pageageuser/pages/agreement/agreement.wxss */
+.t-content-agreement-title{
+  font-size:28rpx;
+  color:#FF5A5A;
+  line-height:50rpx;
+  text-align: center;
+  width: 100%;
+  padding: 16rpx 0 22rpx;
+  font-weight: bold
+}
+.t-content-agreement-header{
+  width: 100%;
+  font-size:24rpx;
+  color:#333;
+  line-height:34rpx;
+  padding: 0 24rpx 
+}
+.t-content-agreement-title1{
+  font-size:28rpx;
+  color:#FF5A5A;
+  line-height:40rpx;
+  padding: 40rpx 24rpx 24rpx;
+  font-weight: bold
+}
+.m-b-20{
+  margin-bottom: 24rpx
+}

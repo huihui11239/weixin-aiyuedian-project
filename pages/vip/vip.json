@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "VIP",
+  "usingComponents": {
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid",
+    "dialog": "/utils/dialog/dialog"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}    

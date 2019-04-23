@@ -1,0 +1,19 @@
+/* packagebuy/pages/spellgoods/spellgoods.wxss */
+.h-state{
+  margin: 24rpx;
+}
+.h-state-box1{
+  display: flex;
+  color: #333333;
+  font-family:PingFangSC-Medium;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.h-state-text1{
+  min-width: 28rpx; 
+}
+.h-state-box2{
+  padding-left: 28rpx;
+  font-size: 28rpx;
+  color: #808080;
+}

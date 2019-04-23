@@ -1,0 +1,269 @@
+<dialog id='dialog' bindopenCallb='openShare' />
+<collect wx:if="{{vipBl}}">
+  <view class='t-user-content'>
+    <view class="t-user-round" style="background-image:url('https://img.iyuedian.com/mini/govip/vipback2.jpg')">
+      <view class='t-user-round-content'>
+        <view class='qj-dis-s-c'>
+          <view class='t-user-round-logo'>
+            <!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+            <open-data type="userAvatarUrl"></open-data>
+          </view>
+          <view>
+            <view class='qj-dis-s-c'>
+              <open-data class="t-user-round-name" type="userNickName"></open-data>
+              <view class="t-user-round-vip" wx:if='{{levelType==2}}'>
+                <image class='vip100' src='../../img/vip-iocn.png'></image>
+              </view>
+              <view class="t-user-round-vip2" wx:elif='{{levelType==3}}'>
+                <image class='vip100' src='../../img/vip-giocn.png'></image>
+              </view>
+
+            </view>
+            <view class='h-vipheader-hint' wx:if='{{levelType==2}}'>下一等级黄金VIP</view>
+          </view>
+        </view>
+        <view class="k-up-rule" bindtap='upRule'>更多特权
+          <image src='/img/arrow2.png' class='k-up-rule-arrow'></image>
+        </view>
+        <!-- <text class="h-pull-new" bindtap='pullNew'>月活拉新
+                </text> -->
+        <!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+        <!-- <view class='t-user-round-grade'>晋升等级</view> -->
+      </view>
+      <view data-status='1' bindtap='earningsSkip'>
+        <view class='t-user-round-profit'>累计收入(含待结算)</view>
+        <view class='t-user-round-price'>
+          <text class='t-user-round-p'>¥</text>
+          <block wx:if='{{vipData.totalProfitAmount||vipData.totalProfitAmount==0}}'>{{vipData.totalProfitAmount}}</block>
+          <block wx:else>--.--</block>
+        </view>
+      </view>
+      <view class='h-vip-hint' wx:if='{{levelType==2&&vipData.totalProfitAmount!=0}}' bindtap='upRule'>
+        <view class='h-vip-hint-text'>升级黄金VIP至少多得到</view>
+        <view class='h-vip-hint-money' wx:if='{{vipData.totalProfitAmount}}'>{{vipData.totalProfitAmountMore}}</view>
+        <block wx:else>--.--</block>
+        <view class='h-vip-hint-rule'>如何升级?</view>
+      </view>
+      <view class='t-user-round-total'>
+        <view class='t-user-round-total-list' data-status='2' bindtap='earningsSkip'>
+          <view class='t-user-round-total-price'>
+            <block wx:if='{{vipData.yesterdayProfitAmount||vipData.yesterdayProfitAmount==0}}'>{{vipData.yesterdayProfitAmount}}</block>
+            <block wx:else>--.--</block>
+          </view>
+          <view class='t-user-round-total-type'>昨日到账(元)</view>
+          <view class='t-user-round-total-line'></view>
+        </view>
+        <view class='t-user-round-total-list' data-status='3' bindtap='earningsSkip'>
+          <view class='t-user-round-total-price'>
+            <block wx:if='{{vipData.expectedProfitAmount||vipData.expectedProfitAmount==0}}'>{{vipData.expectedProfitAmount}}</block>
+            <block wx:else>--.--</block>
+          </view>
+          <view class='t-user-round-total-type'>待结算收入(元)</view>
+        </view>
+        <view class='t-user-round-total-list' data-status='4' bindtap='earningsSkip'>
+          <view class='t-user-round-total-price'>
+            <block wx:if='{{vipData.todayExpectedProfitAmount||vipData.todayExpectedProfitAmount==0}}'>{{vipData.todayExpectedProfitAmount}}
+            </block>
+            <block wx:else>--.--</block>
+          </view>
+          <view class='t-user-round-total-type'>今日收益(元)</view>
+          <view class='t-user-round-total-line1'></view>
+        </view>
+      </view>
+    </view>
+    <!--账户余额-->
+    <view class="k-a-amount qj-dis-b-c" data-allmoney='{{(vipData.availableAmount)? vipData.availableAmount: "0.00"}}' bindtap='balanceSkip'>
+      <view class="k-a-name">账户余额</view>
+      <view class="k-a-name"></view>
+      <view class="qj-dis-s-c">
+        <view class="k-a-title">可提现</view>
+        <view class="k-number">
+          <block wx:if='{{vipData.availableAmount||vipData.availableAmount==0}}'>{{vipData.availableAmount}}元</block>
+          <block wx:else>--.--元</block>
+        </view>
+        <image class='k-arr' src='https://img.iyuedian.com/mini/go.png'></image>
+      </view>
+    </view>
+
+    <!--拉新 vip-cps-->
+    <view class="qj-dis-c-c k-share-c">
+      <!--黄金vip图vip_share1-->
+      <button class='button-open-user t-user-round-order-triangle' style='background-image:url({{levelType==3? "https://img.iyuedian.com/mini/share/vip_share1.png":"https://img.iyuedian.com/mini/share/vip_share.png"}})' bindtap="invitationVIP1">
+      </button>
+      <button class='button-open-user t-user-round-order-triangle-join' style='background-image:url("https://img.iyuedian.com/mini/share/join_share.png")' bindtap="invitationPartner1">
+      </button>
+    </view>
+
+    <!--我的团队  -->
+    <view class='t-user-round-team'>
+      <!-- <view class='t-user-round-order-name' >我的团队
+              <view class='t-user-round-order-Invitation' bindtap='invitationPartner'>邀请新伙伴</view>
+            </view> -->
+      <button class='t-user-round-order-name button-open-user' bindtap='goPartner'>我的团队
+        <image class='t-user-round-order-triangle3' src='https://img.iyuedian.com/mini/go.png'></image>
+      </button>
+      <view class='t-user-round-total2'>
+        <view class='t-user-round-total1'>
+          <view class='t-user-round-total-list' bindtap='goPartner'>
+            <view class='t-user-round-total-price1'>
+              <block wx:if='{{vipData.teamNum||vipData.teamNum==0}}'>{{vipData.teamNum}}</block>
+              <block wx:else>-</block>
+            </view>
+            <view class='t-user-round-total-type1'>团队成员(人)</view>
+            <view class='t-user-round-total-l'></view>
+          </view>
+          <view class='t-user-round-total-list' bindtap='goLatent'>
+            <view class='t-user-round-total-price1'>
+              <block wx:if='{{vipData.teamPotentialCount||vipData.teamPotentialCount==0}}'>{{vipData.teamPotentialCount}}</block>
+              <block wx:else>-</block>
+            </view>
+            <view class='t-user-round-total-type1'>潜在成员(人)</view>
+          </view>
+          <view class='t-user-round-total-list' bindtap='goTeam'>
+            <view class='t-user-round-total-price1'>
+              <block wx:if='{{vipData.teamTotalProfitAmount||vipData.teamTotalProfitAmount==0}}'>{{vipData.teamOrderCount}}</block>
+              <block wx:else>--.--</block>
+            </view>
+            <view class='t-user-round-total-type1'>团队订单(笔)</view>
+            <view class='t-user-round-total-li'></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view></view>
+  </view>
+  <view class="share-shadow" hidden='{{hiddenBl}}' catchtouchmove='nullEvent' catchtap="shareCancel"></view>
+  <view class="h-sharelist" hidden='{{hiddenBl}}' catchtouchmove='nullEvent' animation='{{animationData}}'>
+    <view class='h-sharelist-list1'>
+      <view></view>
+      <view class='qj-dis-s-b'>
+        <view class='pop-name'>分享给小伙伴</view>
+      </view>
+      <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='shareCancel'></image>
+    </view>
+    <view class='h-sharelist-list2 '>
+      <button open-type='share' class='button-open-user h-sharelist-box '>
+        <image class='img100' src='https://img.iyuedian.com/mini/chat.png'></image>
+        <view class="share-text2">转发到微信</view>
+      </button>
+      <view class='h-sharelist-box ' bindtap='sendCircle'>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+        <view class="share-text1">保存图片</view>
+      </view>
+    </view>
+  </view>
+
+  <view></view>
+  <view class='t-novice-recommend-content'>
+    <view class='t-novice-recommend'>
+      <image class='mine-vip' src='/img/vip-iocn2.png'></image>
+      新手必读
+    </view>
+    <!--<view class='t-novice-ce'>省钱又赚钱的窍门</view>-->
+    <view class='t-novice-title' wx:for='{{vipQAlist}}'>
+      <view class='t-title-black-name'>
+        <view class='t-title-black-name1'>Q：</view>
+        <view class='t-title-black-name2'>{{item.name}}</view>
+      </view>
+      <view class='t-title-black-con'>
+        <view class='t-title-black-con1'>A：</view>
+        <view class='t-title-black-con2'>{{item.value}}</view>
+      </view>
+    </view>
+
+  </view>
+  <view class="share-shadow" hidden='{{hiddenBl}}' catchtouchmove='nullEvent' catchtap="shareCancel"></view>
+  <view class="h-sharelist" hidden='{{hiddenBl}}' catchtouchmove='nullEvent' animation='{{animationData}}'>
+    <view class='h-sharelist-list1'>
+      <view></view>
+      <view class='qj-dis-s-b'>
+        <view class='pop-name'>分享给小伙伴</view>
+      </view>
+      <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='shareCancel'></image>
+    </view>
+    <view class='h-sharelist-list2 '>
+      <button open-type='share' class='button-open-user h-sharelist-box '>
+        <image class='img100' src='https://img.iyuedian.com/mini/chat.png'></image>
+        <view class="share-text2">转发到微信</view>
+      </button>
+      <view class='h-sharelist-box ' bindtap='sendCircle'>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+        <view class="share-text1">保存图片</view>
+      </view>
+    </view>
+  </view>
+</collect>
+<collect wx:else>
+  <!-- <view class='t-content'>
+          <image class='t-content-img w-100 h-100' src='https://img.iyuedian.com/mini/govipsue.png'></image>
+      </view> -->
+  <view class='h-govip-inter1'>
+    <image class='img101' src='https://img.iyuedian.com/mini/govip/vipiocn_h.png'></image>
+    <button bindtap="govippay" class="h-btn-posi">立即开通VIP</button>
+  </view>
+  <view class='h-govip-inter10'>
+    <image class='img101' src='https://img.iyuedian.com/mini/govip/vipiocn6.jpg'></image>
+  </view>
+
+  <view class='h-govip-inter2'>
+    <swiper indicator-dots="true" indicator-active-color="#FFB22D" class='swiper-vipbox1'>
+      <block>
+        <swiper-item wx:for="{{swiperData}}" wx:key="*this">
+          <!-- <block wx:for='{{item}}'> -->
+          <view class='swiper-vipbox2'>
+            <view class='one-vipgit' style='background-image: url("../../img/vip-back.png")' wx:for="{{item}}" wx:key="*this">
+              <view class='one-vipgit-name'>{{item.name}}</view>
+              <view class='one-vipgit-money'>市场价值{{item.money}}</view>
+              <image src='{{item.url}}' class='one-vipgit-img'></image>
+            </view>
+          </view>
+          <!-- </block> -->
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='h-govip-inter3'>
+      十一种超值大礼包任你选
+    </view>
+  </view>
+  <view class='h-govip-inter4'>
+
+    <image class='h-govip-inter5' src='https://img.iyuedian.com/mini/viptext.png'></image>
+  </view>
+  <view class='h-govip-inter6'>
+    <block wx:for='{{gifBoxData}}' wx:key="*this">
+      <view class='h-govip-comid-box' data-id='ID{{index}}'>
+        <view class='h-givipcom-img'>
+          <image src='{{item.url}}' class='vip-img'></image>
+        </view>
+        <view class='h-givipcom-content'>
+          <view class='h-givipcom-content-shortname'>{{item.name1}}</view>
+          <view class='h-givipcom-content-longname'>{{item.name2}}</view>
+          <view class='h-givipcom-content-sellnum'>{{item.sellnum}}人已抢购</view>
+          <view class='h-givipcom-content-pirce'>
+            <text class='h-givipcom-content-pirce1'>会员价 ￥{{item.money1}}</text>
+            <text class='h-givipcom-content-pirce2'>￥{{item.money2}}</text>
+          </view>
+          <view class='h-givipcom-content-sharemoney'>自购返现{{item.sharemoney}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='h-govip-inter7'>
+    <image class='img101' src='https://img.iyuedian.com/mini/govip/vipiocn9.jpg'>
+
+    </image>
+    <view class='t-content-agree'>
+      <view class='t-content-quan' bindtap='govipsuego' wx:if="{{show==false}}"></view>
+      <view class='t-content-quan1' bindtap='govipsuego' wx:if="{{show==true}}">
+        <image class='w-100 h-100' src='https://img.iyuedian.com/mini/govipsuego.png'></image>
+      </view>
+      <view class='t-content-sue'>
+        <text bindtap='govipsuego'>我已阅读并同意</text>
+        <text class='t-content-sue2' bindtap='agreement'>《悦店VIP购买须知》</text>
+      </view>
+    </view>
+    <button class='t-content-agreement ltclass' bindtap="govippay" id='lt'>
+      立即开通VIP（¥399）
+    </button>
+  </view>
+</collect>

@@ -1,0 +1,455 @@
+/* packagepower/pages/memberdel/memberdel.wxss */
+
+.h-main {
+  /*height: 100vh;*/
+  width: 100vw;
+  padding: 0 26rpx;
+  background-color: #fff;
+}
+
+.h-info {
+  display: flex;
+  align-items: center;
+  padding: 38rpx 0;
+  width: 100%;
+}
+
+/* 暂时看的dome */
+
+.h-info-photo {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+}
+
+.h-info-box {
+  display: flex;
+  flex-flow: column;
+  margin-left: 20rpx;
+  width: 600rpx;
+}
+
+.h-ibox-list1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.h-ibox-list3 {
+  display: flex;
+  align-items: center;
+}
+
+.h-ibox-name {
+  font-size: 28rpx;
+  max-width: 120rpx;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.h-ibox-vipicon1 {
+  margin-left: 20rpx;
+  width: 50rpx;
+  height: 30rpx;
+}
+
+.h-ibox-vipicon2 {
+  margin-left: 20rpx;
+  width: 70rpx;
+  height: 30rpx;
+}
+
+.h-ibox-phone {
+  margin-left: 30rpx;
+  font-size: 24rpx;
+  color: #808080;
+}
+
+.h-ibox-lasttime {
+  font-size: 24rpx;
+  color: #c5c5c5;
+}
+
+.h-ibox-jiontime {
+  font-size: 24rpx;
+  color: #c5c5c5;
+}
+
+.h-vipdata {
+  display: flex;
+  flex-flow: wrap;
+  width: 100%;
+  height: 414rpx;
+  background-size: 100% 100%;
+}
+
+.h-earnings {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 24rpx;
+  height: 218rpx;
+  width: 50%;
+}
+
+.h-earnings-box {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 49.6%;
+}
+
+.h-ebox-text {
+  width: 100%;
+  font-size: 24rpx;
+  color: #cfb87b;
+}
+
+.h-ebox-data1 {
+  color: #5c5c5c;
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.h-ebox-data1-son {
+  font-size: 20rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.h-ebox-data2 {
+  color: #808080;
+  font-size: 24rpx;
+}
+
+.h-ebox-data2-son {
+  font-size: 20rpx;
+}
+
+.h-ebox-data3 {
+  color: #cfb87b;
+  font-size: 24rpx;
+}
+
+.h-team {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 24rpx 0;
+}
+
+.h-team-text {
+  width: 100%;
+  font-size: 28rpx;
+  color: #cfb87b;
+  padding: 0 24rpx;
+}
+
+.h-team-box {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 24.7%;
+}
+
+.h-team-number1 {
+  color: #5c5c5c;
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.h-team-number2 {
+  color: #cfb87b;
+  font-size: 24rpx;
+}
+
+.h-vipdata-fills {
+  height: 32rpx;
+  width: 2rpx;
+  background: rgba(207, 184, 123, 0.32);
+}
+
+.h-deldata {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 216rpx;
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 6rpx;
+  padding: 24rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.h-deldata-text {
+  width: 100%;
+  color: #5c5c5c;
+  font-size: 28rpx;
+}
+
+.h-delbox {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 49.8%;
+}
+
+.h-delbox-data1 {
+  color: #333;
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.h-delbox-data1-son {
+  font-size: 20rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.h-delbox-data2 {
+  color: #5c5c5c;
+  font-size: 24rpx;
+}
+
+.h-delbox-data2-son {
+  font-size: 20rpx;
+}
+
+.h-delbox-data3 {
+  font-size: 24rpx;
+  color: #5c5c5c;
+}
+
+.h-delbox-fills {
+  height: 66rpx;
+  width: 2rpx;
+  background-color: rgba(181, 179, 174, 0.32);
+}
+
+.h-change {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: bold;
+}
+
+.h-change-left {
+  display: flex;
+  align-items: center;
+  padding-left: 24rpx;
+}
+
+.h-change-right {
+  display: flex;
+  align-items: center;
+}
+
+.h-change-left-text1 {
+  color: #808080;
+}
+
+.h-change-left-text2 {
+  color: #303030;
+}
+
+.h-change-right-img {
+  margin-left: 10rpx;
+  width: 20rpx;
+  height: 10rpx;
+}
+
+.h-change-right-text1 {
+  color: #808080;
+}
+
+.h-change-right-text2 {
+  display: flex;
+  align-items: center;
+  min-width: 160rpx;
+  color: #303030;
+}
+
+.h-inddata {
+  padding-top: 40rpx;
+  color: #b9b9b9;
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.h-indlist1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  height: 62rpx;
+  padding: 0 22rpx;
+}
+
+.h-indlist1-left {
+  display: flex;
+  align-items: center;
+}
+
+.h-indlist1-right {
+  display: flex;
+  align-items: center;
+  color: #808080;
+}
+
+.h-indlist1-left2 {
+  color: #808080;
+}
+
+.h-indlist1-right1 {
+  padding-left: 10rpx;
+  color: #b9b9b9;
+}
+
+.h-indlist2 {
+  margin-top: 20rpx;
+  padding: 0 22rpx;
+  display: flex;
+  align-items: center;
+}
+
+.h-indlist2-right {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #808080;
+}
+
+.pickertime {
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.pickertime-box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  height: 300rpx;
+  width: 100%;
+}
+
+.pickertime-list {
+  height: 100rpx;
+  text-align: center;
+}
+
+/* 借来的样式 */
+
+.animation-element-wrapper {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.animation-element {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 470rpx;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.animation-button {
+  top: 20rpx;
+  width: 290rpx;
+  height: 100rpx;
+  align-items: center;
+}
+
+.left-bt, .right-bt {
+  color: #999;
+  display: inline-flex;
+  position: fixed;
+  margin-top: 20rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 34rpx;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.left-bt {
+  left: 30rpx;
+}
+
+.right-bt {
+  right: 30rpx;
+  color: red;
+}
+
+.line {
+  display: block;
+  position: fixed;
+  height: 1rpx;
+  width: 100%;
+  margin-top: 89rpx;
+  background-color: #eee;
+}
+
+/* 无数据样式 */
+
+.nonedata-box {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40rpx;
+  width: 100%;
+}
+
+.nonedata-box-img {
+  margin-top: 100rpx;
+  width: 222rpx;
+  height: 140rpx;
+  overflow: hidden;
+}
+
+.nonedata-box-text {
+  padding: 50rpx;
+  font-size: 24rpx;
+  color: #dbdbdb;
+}
+
+.img100 {
+  width: 100%;
+  height: 100%;
+}
+
+.h-bottom-hint {
+  padding: 40rpx 0 50rpx 0;
+  color: #dbdbdb;
+  line-height: 28rpx;
+  font-size: 24rpx;
+  text-align: center;
+}
+.h-indlist2-left{
+  min-width: 120rpx;
+  
+}

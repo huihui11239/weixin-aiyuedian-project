@@ -1,0 +1,85 @@
+<!--packagepower/pages/limittime/limittime.wxml-->
+<import src="/utils/pagestates/pagestates.wxml" />
+<collect>
+    <template is="pagestates" data="{{...pageState}}" />
+    <dialog id='dialog' bindmyCallb='autoBook'/>
+    
+    <view style="background-color: white">
+    <image class='h-spell-header' src='https://img.iyuedian.com/mini/activity/spellListTop.png'></image>
+        <scroll-view scroll-y='true' scroll-into-view='{{idIndex}}'>
+            <block wx:for="{{lists}}">
+                <view class="k-five">
+                    <view class='qj-dis-s-c' bindtap='detSkip' data-comid='{{item.goodsId}}'>
+                        <view class='k-five-image1 '>
+                            <image class="k-five-image" src="{{item.listImg}}"></image>
+                            <view class='h-sellout-text' wx:if='{{item.flag!="0"}}'>抢光了...</view>
+                            <view class='h-five-num'>{{item.peopleNum}}人团</view>
+                        </view>
+                        <view class="k-five-text qj-disc-b-c">
+                            <view>
+                                <view class="k-five-name">{{item.shortName}}</view>
+                                <view class="k-five-size">{{item.specification}}</view>
+                                <view class='h-vipspell-text'>
+                                  <block wx:if="{{item.subType==301}}">全民邀新团</block>
+                                  <block wx:elif="{{item.subType==303}}">VIP邀新团</block>
+                                </view>
+                            </view>
+                            <view class="k-time-num">
+                                <view class="qj-dis-b-c" >
+                                    <view class="qj-dis-s-c k-five-price">
+                                        <!--<view class="k-price-flag">抢购价</view>-->
+                                        <view class='qj-ls-4028 qj-color-ff6a6a qj-dis-s-b'>
+                                            <view class=' qj-ls-2820 font-w qj-color-ff6a6a'>¥</view>
+                                            <text class=' font-w qj-color-ff6a6a qj-marginl-3 qj-marginr-1 k-time-over'>{{item.sellPrice}}</text>
+                                            <view class='qj-marginl-16 qj-size-24 qj-color-cbcbcc qj-deltext k-lighter' hidden='{{item.marketPrice==item.sellPrice||item.marketPrice==0||item.marketPrice==null||item.marketPrice==""||item.marketPrice=="0.00"}}'>￥{{item.marketPrice}}</view>
+                                        </view>
+                                    </view>
+                                    <view class='k-time-bt2' wx:if='{{item.flag=="0"}}' >去拼团</view>
+                                    <view class='k-time-bt1' wx:else>抢光了</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="k-line"></view>
+            </block>
+            <block wx:if='{{lists.length}}'>
+                <view class='h-bottom-hint'>
+                    没有更多啦~
+                </view>
+            </block>
+            <block wx:else>
+                <view class='nonedata-box'>
+                    <view class='nonedata-box-img'>
+                        <image class='img100' src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+                    </view>
+                    <view class='nonedata-box-text' wx:if="{{isLoad}}">商品信息加载中</view>
+                    <view class='nonedata-box-text' wx:else>暂无商品</view>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+    <!-- <view class="share-shadow" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent' catchtap="boxCancel"></view> -->
+    <!-- <view class="h-sharelist {{isIphoneX?'p-b-68':''}}" hidden='{{shareBoxBl}}' catchtouchmove='nullEvent'>
+        <view class='h-sharelist-list1'>
+            <view></view>
+            <view class='qj-dis-s-b'>
+                <view>分享给小伙伴</view>
+            </view>
+            <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='boxCancel'></image>
+        </view>
+        <view class='h-sharelist-list2 '>
+            <button open-type='share' class='button-open-user h-sharelist-box '>
+                <image class='img100 ' src='https://img.iyuedian.com/mini/chat.png'></image>
+                <view class="share-text1">转发到微信</view>
+            </button>
+            <view class='h-sharelist-box ' bindtap='sendCircle'>
+                <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+                <view class="share-text">保存图片</view>
+            </view>
+        </view>
+    </view> -->
+    <back-top/>
+</collect>
+
+

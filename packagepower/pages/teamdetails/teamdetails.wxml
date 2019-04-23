@@ -1,0 +1,93 @@
+<!--packagepower/pages/teamdetails/teamdetails.wxml-->
+<collect>
+  <view class='bar1' style="background-image: url('https://img.iyuedian.com/mini/govip/team-bar1.png')">
+      <view >订单数量：</view>
+      <view class='h-bar-text1'>{{orderTotal}}笔</view>
+      <view bindtap='openTime'>购买时间</view>
+      <view class='h-bar-text2' bindtap='openTime' wx:if='{{payDate}}'>{{payDate}}</view>
+      <view class='h-bar-text2' bindtap='openTime' wx:else>全部</view>
+      <image class='h-bar-arrow z-index-901' src='/img/arrow3.png' bindtap='openTime'></image>
+  </view>
+  <view class='h-boxlist'>
+    <scroll-view scroll-y='true'>
+      <view class='list' wx:for="{{teamList}}">
+        <view class='h-minbox' wx:for="{{item}}">
+          <!-- <view class='h-yet-img1' wx:elif='{{item.isRefund==1}}'>部分退款</view> -->
+          <view class='h-minbox1'>
+            <image class='h-minbox1-userimg' src='{{item.headImgUrl}}'></image>
+            <view>
+              <view class='h-minbox1-list1'>
+                <view class='h-minbox1-list1-name'>{{item.nickName}}</view>
+                <block wx:if='{{item.levelId==2}}'>
+                  <image class='h-minbox1-list1-img1' src='../../../img/vip-iocn.png'></image>
+                </block>
+                <block wx:elif='{{item.levelId==3}}'>
+                  <image class='h-minbox1-list1-img2' src='../../../img/vip-giocn.png'></image>
+                </block>
+              </view>
+              <view class='h-minbox1-list1'>
+                <view class='h-minbox1-list1-text1'>购买时间</view>
+                <view class='h-minbox1-list1-text2'>{{item.orderTime}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='h-minbox2'>
+            <view class='h-minbox2-list1'>
+              <view class='h-minbox2-list1-text1'>商品名称</view> ：
+              <view class='h-minbox2-list1-text2'>{{item.goodsName}}</view>
+            </view>
+            <view class='h-minbox2-list1'>
+              <view class='h-minbox2-list1-text1'>订单号</view> ：
+              <view class='h-minbox2-list1-text2'>{{item.tradeCode}}</view>
+            </view>
+            <view class='h-minbox2-list1'>
+              <view class='h-minbox2-list1-text1'>订单金额</view> ：
+              <view class='h-minbox2-list1-text2'>¥{{item.orderMoney||item.orderMoney=='0.00'? item.orderMoney:'-.--'}}</view>
+            </view>
+          </view>
+          <view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <block wx:if='{{teamList[0].length}}'>
+      <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+        滑动查看更多
+      </view>
+      <view class='h-bottom-hint' wx:else>
+        没有更多啦~
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nonedata-box'>
+        <view class='nonedata-box-img'>
+          <image class='img100' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+        </view>
+        <view class='nonedata-box-text' wx:if='{{hasNextPage}}'>团队订单数据加载中...</view>
+        <view class='nonedata-box-text' wx:else>~ 暂无数据 ~</view>
+      </view>
+    </block>
+  </view>
+  <view class='pickertime' bindtap="enterTime" catchtouchmove='nullEvent'  hidden='{{pickerTiemBL}}'>
+    <view class="animation-element">
+      <text class="left-bt" catchtap="closeTime" data-id="555">取消</text>
+      <text class="right-bt" catchtap="enterTime" data-id="666">确定</text>
+      <view class="line"></view>
+      <!--省市区的处理  -->
+      <picker-view class='pickertime-box' indicator-style="height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+        <!--省-->
+        <picker-view-column>
+          <view class='pickertime-list' wx:for="{{allTime}}" wx:key="item.year">
+            {{item.year}}
+          </view>
+        </picker-view-column>
+        <picker-view-column>
+          <view class='pickertime-list' wx:for="{{allTime[yearIndexDome].month}}" wx:key="item.index">
+            {{item}}
+          </view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+  <back-top />
+</collect>

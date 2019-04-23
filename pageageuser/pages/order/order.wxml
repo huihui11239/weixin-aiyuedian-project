@@ -1,0 +1,114 @@
+<!--pageageuser/pages/order/order.wxml-->
+<collect>
+    <view class='t-order-state-content'>
+        <view class="t-order-state-zi {{num==100?'state':''}} " data-distance="46" data-num="100" bindtap='switchType'>
+            全部
+        </view>
+        <view class="t-order-state-zi {{num==0?'state':''}} " data-distance="185" data-num="0" bindtap='switchType'>
+            待付款
+        </view>
+        <view class="t-order-state-zi {{num==2?'state':''}} " data-distance="337" data-num="2" bindtap='switchType'>
+            待发货
+        </view>
+        <view class="t-order-state-zi {{num==3?'state':''}} " data-distance="485" data-num="3" bindtap='switchType'>
+            待收货
+        </view>
+        <view class="t-order-state-zi {{num==55?'state':''}} " data-distance="640" data-num="55" bindtap='switchType'>
+            已完成
+        </view>
+        <!--<view class="t-order-state-zi {{num==51?'state':''}} " data-distance="640" data-num="51" bindtap='switchType'>已取消</view>-->
+        <view class='t-state-line' style="left:{{distance}}rpx"></view>
+    </view>
+    <view class='t-tianchong'></view>
+    <view class='t-back-white' wx:if='{{show}}'>
+        <view class='t-addressque1'>
+            <image class='w-100 h-100'   src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+            <view class='t-address-queshen'>还没有订单呢～</view>
+        </view>
+    </view>
+    <view wx:for="{{form}}" wx:for-item="item" wx:for-index="index" wx:key="id"
+          class="t-order-list {{index==length?'m-b-0':''}} ">
+        <view class='t-order-title'>
+            <text class='t-order-order' decode="{{true}}">订单号&nbsp;</text>
+            {{item.trade.tradeCode}}
+            <view class='t-order-type' wx:if="{{item.trade.tradeStatus==54}}">交易关闭</view>
+            <view class='t-order-type' wx:elif="{{item.trade.tradeStatus==51}}">已取消</view>
+             <view class='t-order-type' wx:elif="{{item.trade.tradeStatus==50}}">用户拒签</view>
+            <text class='t-order-type' wx:elif="{{item.trade.payStatus<2}}">待付款</text>
+            <view class='t-order-type' wx:elif="{{item.trade.tradeStatus==55}}">已完成</view>
+            <view class='t-order-type' wx:elif="{{item.trade.tradeStatus==2}}">待发货</view>
+            <view class='t-order-type' wx:elif="{{item.trade.tradeStatus==3}}">待收货</view>
+            <view class='t-order-type' wx:elif="{{item.trade.tradeStatus==4}}">退款中</view>
+            <view class='t-order-type' wx:elif="{{item.trade.tradeStatus==1&&item.trade.payStatus==2}}">已确认</view>
+        </view>
+        <view class='t-order-list-logo' bindtap='goDetails' wx:for="{{item.orderList}}" wx:for-item="items"
+              data-item="{{item.trade.id}}"
+              data-isGift="{{item.orderList[0].isGift}}" data-payStatus="{{item.trade.payStatus}}"
+              wx:for-index="index1" wx:key="*this">
+            <view class='t-order-list-picture'>
+                <image src='{{items.itemImg}}' mode="aspectFill" class='w-100 h-100'></image>
+            </view>
+            <view class='t-order-list-content'>
+                <view class='t-order-list-content-title'>{{items.productName}}</view>
+                <!-- <view class='t-order-list-content-sku'>3斤装，无核荔枝</view> -->
+            </view>
+            <view class='t-order-list-spell' wx:if='{{item.trade.tradeType==3}}'>拼团</view>
+        </view>
+        <view class="t-order-list-content-commodity {{(item.trade.payStatus>1&&item.orderList[0].isGift==10)?'border-0':''}}">
+            <view class='t-order-list-content-price'>
+                <text>¥</text>
+                <block wx:if='{{item.trade.payCashFee&&item.trade.payCashFee!=0.00}}'>{{item.trade.payCashFee}}</block><block wx:else>{{item.trade.totalPayMoney}}</block>
+            </view>
+            <view class='t-order-list-content-payment' wx:if="{{item.trade.payStatus==1&&item.trade.tradeStatus!=51}}">
+                需支付
+            </view>
+            <view class='t-order-list-content-payment' wx:else>合计金额</view>
+            <view class='t-order-list-content-line'></view>
+            <view class='t-order-list-content-payment'>共{{item.trade.itemNum}}件商品</view>
+        </view>
+        <!--支付的按钮操作  -->
+        <view class="t-order-list-content-action {{item.trade.payStatus==1&&item.orderList[0].isGift==10?'h-0':''}}">
+            <view wx:if="{{item.trade.payStatus==1}}">
+                <view class='t-order-buttom-type' data-id="{{item.orderList[0].productId}}"
+                      wx:if='{{(item.trade.tradeStatus==51&&item.orderList[0].isGift!=10)||(item.trade.tradeStatus==54&&item.orderList[0].isGift!=10)}}'
+                      bindtap='againBuy'>
+                    <view class='t-order-commodity-b'>再次购买</view>
+                </view>
+                <view class='t-order-buttom-type1'
+                      wx:if='{{item.trade.tradeStatus!=51&&item.trade.tradeStatus!=55&&item.trade.tradeStatus!=54}}'
+                      data-tradeId='{{item.trade.id}}' bindtap='payOrder'>
+                    <view class='t-order-commodity-c'>去支付</view>
+                </view>
+                <!-- <view class='t-order-buttom-type1'
+                      wx:if='{{item.trade.tradeStatus!=51&&item.trade.tradeStatus!=55&&item.trade.tradeStatus!=54}}'
+                      data-tradeId='{{item.trade.id}}' bindtap='payOrder'>
+                    <view class='t-order-commodity-c'>去支付</view>
+                </view> -->
+            </view>
+
+            <view wx:else>
+                <view class='t-order-buttom-type' data-id="{{item.orderList[0].productId}}"
+                      wx:if="{{item.orderList[0].isGift!=10}}" bindtap='againBuy'>
+                    <view class='t-order-commodity-b'>再次购买</view>
+                </view>
+                <view class='t-order-buttom-type' wx:if='{{item.trade.tradeStatus==2&&item.orderList[0].isGift!=10&&item.trade.tradeType!="3"}}' data-tradeId='{{item.trade.tradeCode}}' data-img='{{item.orderList[0].itemImg}}' data-name='{{item.orderList[0].productName}}' data-money='{{item.trade.totalMoney}}'  bindtap='refund'>
+                    <view class='t-order-commodity-b' >申请退款</view>
+                </view>
+                <view class='t-order-buttom-type' bindtap='goLogistics'
+                      wx:if="{{item.trade.tradeStatus==3&&item.orderList[0].isGift!=10}}" data-item="{{item.trade.id}}"
+                      data-code="{{item.trade.tradeCode}}">
+                    <view class='t-order-commodity-b'>查看物流</view>
+                </view>
+                <view class='t-order-buttom-type1' data-item="{{item.trade.id }}"  bindtap='goDetails'
+                      wx:if="{{item.trade.tradeStatus==3&&item.orderList[0].isGift!=10}}">
+                    <view class='t-order-commodity-c'>确认收货</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='t-back-white'>
+        <view class='t-order-noMore' wx:if="{{datashow==true}}">没有更多啦～</view>
+    </view>
+    <back-top/>
+</collect>

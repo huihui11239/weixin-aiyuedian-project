@@ -1,0 +1,53 @@
+<!--pages/binding/binging.wxml-->
+<collect>
+    <view>
+        <image class='h-logoback' src='https://img.iyuedian.com/mini/logoback1.png'>
+        </image>
+       <view class='bind-white'>
+        <view class='t-binding-content'>
+            <view class='h-inputbox-son-t'>+86</view>
+            <view class='h-inputbox-iphone'>
+                <input type='number' class='t-content-iphone' maxlength='11' placeholder='请输入手机号' placeholder-class='binging-inp' bindinput='phoneIp'></input>
+            </view>
+        </view>
+        <view class='t-binding-content-verification'>
+            <view class='t-binding-content-veri'>
+                <input type='number' class='t-content-iphone' maxlength='6' placeholder='请输入验证码' placeholder-class='binging-inp' bindinput='codeIp'></input>
+                <view class='h-sendcode-btn1 {{(already)? "": "h-sendcode-btn2"}}' bindtap='{{(phoneBbl && already)? "codeSend":"errMessage"}}'>
+                    {{codetext}}
+                </view>
+            </view>
+        </view>
+  
+        <button class='t-binding-buttom-go' wx:if='{{phoneBbl&&codeBbl}}' bindtap='phoneBind' >绑定</button>
+        <view class='t-binding-buttom' wx:else>
+            绑定
+        </view>
+       </view>
+      
+    </view>
+</collect>
+
+
+<!-- 验证码 -->
+<!-- <view hidden='true' class='code'>
+  <view class='code-head'>
+    <view class='code-title'>
+      <text>图片验证码</text>
+    </view>
+    <view class='code-body'>
+      <view class='f1'>
+        <input class='code-input' bindinput='codeInput' type='number' maxlength='4' placeholder='请输入验证码'></input>
+      </view>
+      <view class='f1'>
+        <image class='code-img' src='{{imgUrl}}' bindtap='newCodeImg'></image>
+      </view>
+      
+    </view>
+    <view class='code-foot'>
+      <button bindtap='canelModal'>取消</button>
+      <view class='code-foot-line'></view>
+      <button bindtap='confirmModal' class='color-green'>确认</button>
+    </view>
+  </view> 
+</view> -->

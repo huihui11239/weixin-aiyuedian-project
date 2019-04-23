@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "支付成功",
+  "usingComponents": {
+    "dialog": "/utils/dialog/dialog",
+    "load-image": "/load-image/index",
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid",
+    "back-top": "/pagekagelist/pages/back-top/index"
+  },
+  "onReachBottomDistance": 50
+}  

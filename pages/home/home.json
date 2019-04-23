@@ -1,0 +1,13 @@
+{
+  "backgroundColor": "#f9f9f9",
+  "navigationBarTitleText": "悦店",
+  "usingComponents": {
+    "load-image": "../../load-image/index",
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid",
+    "back-top": "/pagekagelist/pages/back-top/index",
+    "dialog": "/utils/dialog/dialog"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance":	600
+}

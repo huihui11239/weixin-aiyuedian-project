@@ -1,0 +1,148 @@
+<!--packagepower/pages/pullnew/pullnew.wxml-->
+<collect>
+<dialog id='dialog' bindopenCallb='openShare'/>
+<view class='h-main {{isIphoneX? "h-main-pb":""}}' style='background-image: url("https://img.iyuedian.com/mini/govip/monthback1.png");'>
+  <view class='h-boxb-fill1'></view>
+  <view class='h-boxb-fill2'></view>
+  <!--盒子-->
+  <view class='h-box'>
+    <!--俩bar按钮-->
+    <view class='h-selectbar'>
+      <view class='h-selectbar-one {{barnum==1? "h-selectbar-one1":""}}' bindtap='selectbar1'>规则说明</view>
+      <view class='h-selectbar-one {{barnum==2? "h-selectbar-one1":""}}' bindtap='{{getAwardListBL? "selectbar2":""}}'>我的邀请记录</view>
+    </view>
+    <!--我的记录内容-->
+    <view class='h-select-box2' wx:if='{{barnum==2}}'>
+      <view class='h-record' wx:if='{{awardList[0].length}}'>
+        <block wx:for='{{awardList}}'>
+          <!--for循环双层嵌套-->
+          <block wx:for='{{item}}' wx:key='id'>
+            <view class='h-record-list'>
+              <view class='h-record-list-text1'>{{item.createDateStrNew}}月</view>
+              <view class='h-record-list-text2'>已邀请{{item.num}}人</view>
+              <view class='h-record-list-text4'>
+                <block wx:if='{{item.status==3}}'>+{{item.amount}}</block>
+                <block wx:else='{{item.status==1||item.status==2}}'>
+                  <block wx:if='{{item.nextLevelId!=item.currentLevelId&&item.status==1}}'>+{{item.nextLevelReward}}</block>
+                  <block wx:else>+{{item.amount}}</block>
+                </block>
+              </view>
+              <view class='h-record-list-text3'>
+                <block wx:if='{{item.status==3}}'>已到账</block>
+                <block wx:elif='{{item.status==2}}'>审核中</block>
+                <block wx:elif='{{item.nextLevelId===item.currentLevelId}}'>厉害了！月底可得</block>
+                <block wx:else>再邀{{item.nextLevelInvitateNum-item.num}}人月底可得</block>
+              </view>
+            </view>
+          </block>
+        </block>
+        <view class='h-record-slidetext1' wx:if='{{hasNextPage}}'>向下滑动查看更多</view>
+        <view class='h-record-slidetext2' wx:else>没有更多了～</view>
+      </view>
+      <!--无我的记录样式-->
+      <view class='h-record-empty' wx:else>
+        <image class='h-empty-img' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+        <view class='h-record-empty-text' wx:if='{{hasNextPage}}'>信息加载中～</view>
+        <view class='h-record-empty-text' wx:else>还没有明细记录～</view>
+      </view>
+    </view>
+    <!--规则说明-->
+    <view class='h-select-box1' wx:else>
+      <view class='h-ruletext'>
+        <view class='h-ruletext-item1'>1. 邀请奖金</view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>每成功邀请1位好友开通VIP，立即到账100元可提现金</view>
+        </view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>成功邀请2位可得200元，以此类推</view>
+        </view>
+      </view>
+      <view class='h-ruletext'>
+        <view class='h-ruletext-item1'>2.惊喜大奖</view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>每月统计成功邀请好友开通VIP的数量，达到指定人数即可获得额外的现金奖励</view>
+        </view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>用户通过您的专属链接开通VIP即算作成功邀请</view>
+        </view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>您的悦粉如通过他人邀请链接开通VIP，邀请计数将计入对应邀请人的统计中，而不计入您的统计中（悦粉与您的团队关系保持不变）</view>
+        </view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>每月1日0时至次月1日0时为一个活动周期，结算后邀请人数即会清零</view>
+        </view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>首期活动自2018年9月1日0时开始</view>
+        </view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>每期活动的审核时间为3个工作日，审核完成后奖金将直接发放至您在悦店的账户中</view>
+        </view>
+        <view class='h-ruletext-item2'>
+          <view class='h-ruletext-item2-li1'></view>
+          <view class='h-ruletext-item2-li2'>邀请人数与对应奖金如下</view>
+        </view>
+      </view>
+      <view class='h-rulelist'>
+        <view class='h-rulelist-item'>
+          <view class='h-rulelist-item-text1'>邀请VIP人数(人)</view>
+          <view class='h-rulelist-item-text1'>奖金(元)</view>
+        </view>
+        <block wx:for='{{ruleNum}}' wx:key='id'>
+          <view class='h-rulelist-item {{index==(ruleNum.length-1)? "h-rulelist-item-norber":""}}'>
+            <view class='h-rulelist-item-text2'>{{item.inviteAmount}}</view>
+            <view class='h-rulelist-item-text2'>{{item.reward}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="share-shadow" hidden='{{hiddenBl}}' catchtouchmove='nullEvent' catchtap="shareCancel"></view>
+  <view class="h-sharelist {{isIphoneX? 'h-btnbox-pb':''}}" hidden='{{hiddenBl}}' catchtouchmove='nullEvent' animation='{{animationData}}'>
+    <view class='h-sharelist-list1'>
+      <view></view>
+      <view class='qj-dis-s-b'>
+        <view class='pop-name'>分享给小伙伴</view>
+      </view>
+      <image class="share-close" src='https://img.iyuedian.com/mini/closeimg1.png' catchtap='shareCancel'></image>
+    </view>
+    <view class='h-sharelist-list2 '>
+      <button open-type='share' class='button-open-user h-sharelist-box '>
+        <image class='img100' src='https://img.iyuedian.com/mini/chat.png'></image>
+        <view class="share-text2">转发到微信</view>
+      </button>
+      <view class='h-sharelist-box ' bindtap='sendCircle'>
+        <image class='img100 ' src='https://img.iyuedian.com/mini/circle.png '></image>
+        <view class="share-text1">保存图片</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='h-btnbox {{isIphoneX? "h-btnbox-pb":""}}'>
+  <image class='h-btnbox-img' src='/img/monthbtn1.png' bindtap='{{getAwardListBL? "pullshare":""}}'></image>
+</view>
+<!-- <view class='h-backfill'>
+  <view class='h-mianbox'>
+    <view class='h-mianbox1'><view>
+    <view class='h-mianbox2'>
+      <view class='h-mianbox2-btn1'>返回</view>
+      <view class='h-mianbox2-btn2'>确定</view>
+    </view>
+  </view>
+</view> -->
+<view class='h-backfill' wx:if='{{backfillBL}}' bindtap='kong' catchtouchmove='ture'>
+  <view class='h-mianbox'>
+    <view class='h-mianbox1'>本活动限<text class='vip-none'>VIP</text>会员参与，请先开通<text class='vip-none'>VIP</text>身份</view>
+    <view class='h-mianbox2' bindtap="backenter">
+      确定
+    </view>
+  </view>
+</view>
+</collect>

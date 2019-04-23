@@ -1,0 +1,48 @@
+<!--packagepower/pages/sharecard/sharevip.wxml-->
+<import src="../../../utils/pagestates/pagestates.wxml"/>
+<collect>
+    <template is="pagestates" data="{{...pageState}}"/>
+    <view class="page_sty">
+        <swiper class="swiper-wh swiper-box" indicator-dots='true' bindchange='pageChange' circular="true"
+                indicator-color='#FFF8DC' indicator-active-color='#FFC93D'>
+            <block wx:for="{{mlist}}" class="swiper-wh">
+                <swiper-item wx:if="{{index==0}}">
+                    <view class="card-wh">
+                        <image src="{{mlist[index]}}" class="card-bg"></image>
+                        <view class='t-user-round-logo'>
+                            <open-data type="userAvatarUrl"></open-data>
+                        </view>
+                        <view class="bt-text qj-dis-s-c">「{{userName}}」已加入悦店
+                            <image src="/img/gold_vip.png" class="vip-img"></image>
+                        </view>
+                        <view class="bt-text1">邀请你也来加入哦~</view>
+                        <image class="qrcode-image" src="{{qrcodePath}}"></image>
+                    </view>
+                </swiper-item>
+                <swiper-item wx:else>
+                    <view class="card-wh">
+                        <image src="{{mlist[index]}}" class="card-bg"></image>
+                        <view class="bt1-text qj-dis-s-c">「{{userName}}」已加入悦店
+                            <image src="/img/gray_vip.png" class="vip-img"></image>
+                        </view>
+                        <view class="bt1-text1">邀请你也来加入哦～</view>
+                        <image class="qrcode-image1" src="{{qrcodePath}}"></image>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+        <!--<view class="canvas-wh" style="margin-left: 72rpx">-->
+        <canvas canvas-id="shareCanvas" class="canvas-wh" hidden="true"></canvas>
+        <canvas canvas-id="shareCanvas1" class="canvas-wh" hidden="true"></canvas>
+        <canvas canvas-id="shareCanvas2" class="canvas-wh" hidden="true"></canvas>
+        <canvas canvas-id="shareCanvas3" class="canvas-wh" hidden="true"></canvas>
+        <canvas canvas-id="shareCanvas4" class="canvas-wh" hidden="true"></canvas>
+        <canvas canvas-id="shareCanvas5" class="canvas-wh" hidden="true"></canvas>
+        <!--</view>-->
+        <!--<image src="https://img.iyuedian.com/mini/share_bg.png" class="bg-image"></image>-->
+        <view class="qj-dis-c-c">
+            <view class="bt-save" bindtap='saveClickOne'>保存本张海报</view>
+            <view class="bt-save1" bindtap='saveClick'>保存全部海报</view>
+        </view>
+    </view>
+</collect>

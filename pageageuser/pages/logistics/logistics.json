@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "查看物流",
+  "usingComponents": {
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid",
+    "back-top": "/pagekagelist/pages/back-top/index"
+  }
+}

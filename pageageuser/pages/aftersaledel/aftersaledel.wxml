@@ -1,0 +1,90 @@
+<!--pageageuser/pages/aftersaledel/aftersaledel.wxml-->
+
+<!--pageageuser/pages/orderdetails/orderdetails.wxml-->
+<collect>
+  <view class='t-order-type' wx:if="{{delobjdata.status==104||delobjdata.status==114}}" style="background-image: url('https://img.iyuedian.com/mini/ordertype2.png')">
+    <view class='t-color-8080 t-order-type-textnew2'>退款成功</view>
+  </view>
+  <view class='t-order-type' wx:if="{{delobjdata.status==102||delobjdata.status==105||delobjdata.status==112||delobjdata.status==115}}" style="background-image: url('https://img.iyuedian.com/mini/ordertype3.png')">
+    <view class='t-color-8080 t-order-type-textnew2' wx:if="{{delobjdata.status==102}}">拒绝退款！</view>
+    <view class='t-color-8080 t-order-type-textnew2' wx:if="{{delobjdata.status==105||delobjdata.status==115||delobjdata.status==112}}">退款失败！</view>
+    <view class="t-order-type-textnew1" wx:if='{{delobjdata.status==102}}'>您的退款申请被拒绝，请联系客服！</view>
+    <view class="t-order-type-textnew1" wx:if='{{delobjdata.status==115||delobjdata.status==112}}'>退款失败，请联系客服人员处理！</view>
+  </view>
+  <view class='t-order-type' wx:if="{{delobjdata.status==101||delobjdata.status==103||delobjdata.status==111||delobjdata.status==113}}" style="background-image: url('https://img.iyuedian.com/mini/ordertype1.png')">
+    <view class='t-color-8080 t-order-type-textnew2' wx:if="{{delobjdata.status==101}}">审核中</view>
+    <view class='t-color-8080 t-order-type-textnew2' wx:if="{{delobjdata.status==103||delobjdata.status==113||delobjdata.status==111}}">退款中</view>
+    <view class="t-order-type-textnew1" wx:if="{{delobjdata.status==103}}">退款金额将在1-3个工作日退回到您的原账</view>
+    <view class="t-order-type-textnew1" wx:if="{{delobjdata.status==113||delobjdata.status==111}}">请耐心等待工作人员处理！</view>
+  </view>
+  <!-- <view class='t-order-type' style="background-image: url('/img/ordertype1.png')">
+      <view class='t-color-8080' wx:if="{{form.trade.tradeStatus==54||form.trade.tradeStatus==51}}">交易已取消</view>
+      <text wx:elif="{{form.trade.payStatus<2}}">等待买家付款</text>
+      <view wx:elif="{{form.trade.tradeStatus==55}}">已完成</view>
+      <view wx:elif="{{form.trade.tradeStatus<7}}">待收货</view>
+    </view> -->
+
+  <view class='t-order-content'>
+    <view class='m-t-10'>
+      <view class="h-tuikuan">退款信息</view>
+      <view class='t-order-content-commodity'>
+        <view class='t-order-commodity-logo'>
+          <image class='w-100 h-100' mode="aspectFill" src='{{delobjdata.goodsFocusImg}}'></image>
+        </view>
+        <view class='t-order-commodity-content'>
+          <view class='t-order-commodity-title'>{{delobjdata.goodsName}}</view>
+          <!-- <view class='t-order-commodity-sku'>3斤装，无核荔枝</view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--订单详情  -->
+  <view class='t-order-details'>
+    <view class='t-order-details-list t-h-30 t-order-details-list11 t-h-36'>
+      <view class='t-order-details-header'>退款编号</view>
+      <view class='t-left'>{{delobjdata.returnsCode}}</view>
+    </view>
+    <view class='t-order-details-list'>
+      <view class='t-order-details-header'>退款原因</view>
+      {{delobjdata.remark}}
+    </view>
+    <view class='t-order-details-list'>
+      <view class='t-order-details-header'>订单金额</view>
+      ¥{{delobjdata.totalPayMoney? delobjdata.totalPayMoney:'0.00'}}
+    </view>
+    <view class='t-order-details-list'>
+      <view class='t-order-details-header'>优惠金额</view>
+      ¥{{delobjdata.payCouponAmount? delobjdata.payCouponAmount:'0.00'}}
+    </view>
+    <view class='t-order-details-list'>
+      <view class='t-order-details-header'>支付金额</view>
+      ¥{{delobjdata.payCashFee? delobjdata.payCashFee:'0.00'}}
+    </view>
+    <view class='t-order-details-list'>
+      <view class='t-order-details-header'>退款金额</view>
+      ¥{{delobjdata.refundsMoney? delobjdata.refundsMoney:"0.00"}}
+    </view>
+    <view class='t-order-details-list' wx:if="{{delobjdata.createDate}}">
+      <view class='t-order-details-header'>申请时间</view>
+      {{delobjdata.createDate}}
+    </view>
+    <view class='t-order-details-list' wx:if="{{delobjdata.handleDate}}">
+      <view class='t-order-details-header'>审核时间</view>
+      {{delobjdata.handleDate}}
+    </view>
+    <view class='t-order-details-list' wx:if="{{delobjdata.handleDate}}">
+      <view class='t-order-details-header'>退款方式</view>
+      {{delobjdata.refundsMode==2? '微信零钱':'微信支付(原路径返还)'}}
+    </view>
+    
+  </view>
+  <!--去支付  -->
+  <!--<view class="t-order-payment-go {{isIphoneX?'p-b-68 h-166':'h-98'}}" wx:if="{{show==true&&form.trade.payStatus==1&&form.trade.tradeStatus!=51}}">-->
+  <!--<view class='t-order-payment-buttom' data-id="{{form.trade.id}}" bindtap='gopay'>去支付</view>-->
+  <!--<view class='t-order-payment-price'>需支付：<text class='t-price-color'><text class='t-price-font'>¥</text>{{form.trade.totalPayMoney}}</text></view>-->
+  <!--<view class='t-order-payment-price1'>剩余时间：{{minute}}分{{second}}秒</view>-->
+  <!--</view>-->
+  <view class='h-after-hith' wx:if='{{(delobjdata.status==115||delobjdata.status==112)&&delobjdata.refuseReason}}'>您的商品已出库，订单拦截不成功，你可以到我的订单关注最新进展</view>
+  <!-- <view class='h-after-hith'>您的闪频已经出库链接不成功可到我的订单关注订单最新进展</view> -->
+  <back-top wx:if="{{form.trade.payStatus==2}}" />
+</collect>

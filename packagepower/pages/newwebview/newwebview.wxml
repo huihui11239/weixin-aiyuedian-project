@@ -1,0 +1,4 @@
+<!--packagepower/pages/newwebview/newwebview.wxml-->
+<!-- <web-view src="{{path}}"></web-view> -->
+<web-view  src='{{path}}'></web-view>
+

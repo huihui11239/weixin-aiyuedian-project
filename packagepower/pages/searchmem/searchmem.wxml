@@ -1,0 +1,91 @@
+<!--packagebuy/pages/partner/partner.wxml-->
+<collect>
+  <view class='h-search-pbox1'>
+    <form bindsubmit="formSubmit"   class="h-form">
+      <view class='h-search-box'>
+        <image class='h-search-img' src='https://img.iyuedian.com/mini/searchimg1.png'></image>
+        <input class='h-search-input' name="input" type='number' confirm-type='search' placeholder='输入成员手机号' value='{{attext}}' placeholder-class='h-search-inputp' bindinput='timelygettext' bindblur='(timely)? "":"gettext"' bindconfirm='clicksearch2' maxlength='11'></input>
+        <image class='delete1' src='/img/delete2.png' wx:if='{{attext}}' bindtap='deleteinput'></image>
+      </view>
+      <button class='h-search-text' formType='submit'>确定</button>
+    </form>
+  </view>
+  <view class='h-boxlist'>
+    <scroll-view scroll-y='true' scroll-into-view='{{idIndex}}'>
+      <view wx:for='{{partnerList}}' id='id{{index}}' wx:key='index'>
+        <block wx:for='{{item}}' wx:key='index'>
+          <view class='h-boxlist-one' data-userid='{{item.id}}' data-lasttime='{{item.lastLoginDateStr}}' bindtap='gomemberdel'>
+            <view class='h-minbox1'>
+              <image class='h-minbox1-userimg' src='{{item.headImgUrl}}'></image>
+              <view class='h-minbox1-after'>
+                <view class='qj-dis-b-c'>
+                  <view class='h-minbox1-list1'>
+                    <view class='h-minbox1-list1-name'>{{item.nickName}}</view>
+                    <block wx:if='{{item.levelId==2}}'>
+                      <image class='vip-iocn' src='../../../img/vip-iocn.png'></image>
+                    </block>
+                    <block wx:elif='{{item.levelId==3}}'>
+                      <image class='vip-iocn1' src='../../../img/vip-giocn.png'></image>
+                    </block>
+                    <view class='h-minbox1-list1-phone'>{{item.mobile}}</view>
+                  </view>
+                  <view class='h-minbox1-list1-text2'>{{item.lastLoginDateStr}}</view>
+                </view>
+                <view class='qj-dis-b-c'>
+                  <view class='h-minbox1-list1-text2'>加入时间 {{item.inviteDate}}</view>
+                  <image class='h-minbox1-arrow' src='https://img.iyuedian.com/mini/go.png'></image>
+                </view>
+              </view>
+            </view>
+            <view class='h-minbox2' wx:if='{{item.levelId>1}}'>
+              <view class='h-minbox2-box'>
+                <view class='h-minbox2-box-text1'>
+                  {{item.buyOrderNum}}
+                  <text class='h-minbox2-box-text2'>笔</text>
+                </view>
+                <view class='h-minbox2-box-text3'>自购订单</view>
+              </view>
+              <view class='h-minbox2-box'>
+                <view class='h-minbox2-box-text1'>
+                  {{item.cpsOrderNum}}
+                  <text class='h-minbox2-box-text2'>笔</text>
+                </view>
+                <view class='h-minbox2-box-text3'>分享成单</view>
+              </view>
+              <view class='h-minbox2-box'>
+                <view class='h-minbox2-box-text1'>
+                  {{item.teamNum}}
+                  <text class='h-minbox2-box-text2'>人</text>
+                </view>
+                <view class='h-minbox2-box-text3'>自购订单</view>
+              </view>
+            </view>
+            <view class='h-minbox3' wx:else>
+              <view class='h-minbox3-text1'>{{item.buyOrderNum}}</view>
+              <view class='h-minbox3-text3'>笔</view>
+              <view class='h-minbox3-text2'>自购订单</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <block wx:if='{{partnerList[0].length}}'>
+      <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+        滑动查看更多
+      </view>
+      <view class='h-bottom-hint' wx:else>
+        没有更多啦~
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nonedata-box'>
+        <view class='nonedata-box-img'>
+          <image class='img100' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+        </view>
+        <view class='nonedata-box-text' wx:if='{{hasNextPage}}'>团队数据加载中...</view>
+        <view class='nonedata-box-text' wx:else>啊哦 ~ 没有搜索到相关成员</view>
+      </view>
+    </block>
+  </view>
+  <back-top/>
+</collect>

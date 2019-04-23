@@ -1,0 +1,346 @@
+/* packagepower/pages/pullnew/pullnew.wxss */
+
+/*主题背景*/
+
+.h-main {
+    width: 100%;
+    min-height: 100%;
+    padding: 804rpx 24rpx 198rpx;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+
+}
+
+.h-boxb-fill1 {
+
+}
+
+/*盒子*/
+
+.h-box {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+}
+
+/*俩bar按钮*/
+
+.h-selectbar {
+    display: flex;
+    width: 100%;
+    height: 100rpx;
+    font-weight: bold;
+}
+
+.h-selectbar-one {
+    display: inline-block;
+    width: 59%;
+    line-height: 96rpx;
+    font-size: 28rpx;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1rpx solid #ffb22d;
+    color: #ffb22d;
+}
+
+.h-selectbar-one1 {
+    background-color: #ffb22d;
+    color: #fff;
+}
+
+/*规则说明*/
+
+.h-ruletext {
+    padding: 32rpx 24rpx 0;
+    font-weight: bold; /*规则说明*/
+}
+
+.h-ruletext-item1 {
+    font-size: 28rpx;
+    line-height: 40rpx;
+    color: #333;
+}
+
+.h-ruletext-item2 {
+    display: flex;
+    padding-top: 6rpx;
+    line-height: 34rpx;
+    font-size: 24rpx;
+    color: #808080;
+}
+
+.h-ruletext-item2-li1 {
+    margin: 6rpx;
+    width: 8rpx;
+    height: 8rpx;
+    background-color: #b99027;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.h-ruletext-item2-li2 {
+    margin-top: -4rpx;
+    padding-left: 10rpx;
+    width: 670rpx;
+}
+
+.h-rulelist {
+    padding: 52rpx 24rpx;
+}
+
+.h-rulelist-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 56rpx;
+    border-bottom: 1rpx dotted #d4b670;
+}
+
+.h-rulelist-item-text1 {
+    width: 49%;
+    height: 56rpx;
+    line-height: 56rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #977419;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.h-rulelist-item-text2 {
+    width: 49%;
+    height: 56rpx;
+    line-height: 56rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #333;
+    overflow: hidden;
+}
+
+/*嵌套结构暂时未确定*/
+
+.h-record {
+    max-height: 912rpx;
+    min-height: 912rpx;
+    overflow-y: visible;
+}
+
+/*我的记录*/
+
+.h-record-list {
+    padding: 0 24rpx;
+    width: 100%;
+    height: 94rpx;
+    line-height: 94rpx;
+    border-bottom: 2rpx solid #f3f3f3;
+    overflow: hidden;
+}
+
+.h-record-list-text1 {
+    float: left;
+    margin-left: 4rpx;
+    min-width: 60rpx;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.h-record-list-text2 {
+    float: left;
+    font-size: 20rpx;
+    color: #c5c5c5;
+}
+
+.h-record-list-text3 {
+    float: right;
+    font-size: 24rpx;
+    color: #333;
+}
+
+.h-record-list-text4 {
+    margin-left: 10rpx;
+    float: right;
+    font-size: 24rpx;
+    color: #ff5a5a;
+}
+
+/*我的内容底部提示*/
+
+.h-record-slidetext1 {
+    padding: 70rpx 0;
+    line-height: 34rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #dbdbdb;
+}
+
+.h-record-slidetext2 {
+    padding: 30rpx 0;
+    line-height: 34rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #dbdbdb;
+}
+
+/*无我的记录样式--*/
+
+.h-record-empty {
+    min-height: 912rpx;
+    padding: 120rpx 0;
+    text-align: center;
+}
+
+.h-empty-img {
+    width: 224rpx;
+    height: 140rpx;
+}
+
+.h-record-empty-text {
+    font-size: 24rpx;
+    color: #c5c5c5c5;
+}
+
+.h-rulelist-item-norber {
+    border: none;
+}
+
+.h-btnbox {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #ff7748;
+}
+
+.h-btnbox-img {
+    width: 600rpx;
+    height: 150rpx;
+}
+
+.h-sharelist {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 9999;
+}
+
+.h-sharelist-list1 {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 28rpx;
+    height: 88rpx;
+    background: #fff;
+    color: #808080;
+    border-top: 1rpx solid #f3f3f3;
+}
+
+.pop-name {
+    margin-left: 80rpx;
+}
+
+.share-close {
+    padding: 20rpx;
+    height: 30rpx;
+    width: 30rpx;
+    margin-right: 30rpx;
+}
+
+.h-sharelist-list2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100rpx;
+    height: 210rpx;
+    background: #fff;
+    border-top: 1rpx solid #f3f3f3;
+}
+
+.img100 {
+    margin-top: 45rpx;
+    margin-left: 46rpx;
+    width: 94rpx;
+    height: 94rpx;
+}
+
+.share-text2 {
+    height: 34rpx;
+    font-size: 24rpx;
+    color: #404040;
+    margin-left: 34rpx;
+}
+
+.share-text1 {
+    height: 34rpx;
+    font-size: 24rpx;
+    color: #404040;
+    margin-left: 48rpx;
+}
+
+.h-sharelist-box {
+    margin-left: 0rpx;
+    width: 200rpx;
+    height: 200rpx;
+    overflow: hidden;
+    /* display: flex; *//* justify-content: center;
+        align-items: center; */
+}
+
+.share-shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 1);
+    opacity: 0.35;
+}
+
+.h-main-pb {
+    padding-bottom: 292rpx;
+}
+
+.h-btnbox-pb {
+    padding-bottom: 100rpx;
+}
+
+.h-backfill {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .3);
+}
+.h-mianbox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    background-color: #fff;
+}
+.h-mianbox1{
+    width: 100%;
+    text-align: center;
+    font-size: 28rpx;
+    padding: 40rpx 20rpx;
+}
+
+.h-mianbox2{
+    font-size: 28rpx;
+    margin: 0 20rpx;
+    padding:20rpx 0; 
+    text-align: center;
+    color: #3CC51F;
+    border-top: 1rpx solid #fafafa; 
+}
+.vip-none{
+    white-space:nowrap;
+}

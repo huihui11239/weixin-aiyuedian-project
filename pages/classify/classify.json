@@ -1,0 +1,13 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "分类",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#eeeeee",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "load-image": "../../load-image/index",
+    "collect": "/pagekagelist/pages/collect-fromid/collect-fromid",
+    "back-top": "/pagekagelist/pages/back-top/index"
+  }
+}

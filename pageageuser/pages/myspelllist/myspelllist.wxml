@@ -1,0 +1,84 @@
+<!--packagepower/pages/limittime/limittime.wxml-->
+<import src="/utils/pagestates/pagestates.wxml" />
+<collect>
+  <template is="pagestates" data="{{...pageState}}" />
+  <dialog id='dialog' bind myCallb='autoBook' />
+  <view style="background-color: white">
+    <scroll-view scroll-y='true'>
+      <block wx:for="{{afterList}}">
+        <view wx:for="{{item}}">
+          <!-- groupOrderId -->
+          <view class="h-afterList" data-all='{{item}}' bindtap='listClick'>
+            <view class='t-order-title'>
+              <view class='t-order-order' decode="{{true}}">团编号 <view class='t-order-order-code'>{{item.groupCode}}</view></view>
+              <!-- <view class='t-order-type' wx:if="{{item.groupStatus==1&&item.payStatus==0}}">待付款</view> -->
+              <block wx:if='{{item.payStatus==0}}'>
+                <view class='t-order-type' wx:if="{{(item.groupStatus==0||item.groupStatus==1||item.groupStatus==2||item.groupStatus==10||item.groupStatus==11)&&item.orderStatus==1}}">待支付</view>
+                <view class='t-order-type' wx:else>已取消</view>
+              </block>
+              <block wx:else>
+                <view class='t-order-type' wx:if="{{item.groupStatus==53}}">拼团失败</view>
+                <view class='t-order-type' wx:if="{{item.groupStatus==11}}">
+                  <block wx:if='{{item.partakeNum<item.partakeNumMax}}'>
+                    拼团失败
+                  </block>
+                  <block wx:else>
+                    拼团截止
+                  </block>
+                </view>
+                <view class='t-order-type' wx:if="{{item.groupStatus==10}}">拼团中</view>
+                <view class='t-order-type' wx:if='{{item.groupStatus==52||item.groupStatus==51||item.groupStatus==50||item.groupStatus==12}}'>拼团成功</view>
+              </block>
+            </view>
+            <view class='t-order-list-logo'>
+              <view class='h-partakenummax'>{{item.partakeNumMax}}人团</view>
+              <view class='t-order-list-picture'>
+                <image src='{{item.productImg}}' mode='aspectFill' class='w-100 h-100'></image>
+              </view>
+              <view class='t-order-list-content'>
+                <view class='t-order-list-content-title'>{{item.productName}}</view>
+                <view class='t-order-list-content-sku'>{{item.specification}}</view>
+              </view>
+            </view>
+            <!--支付的按钮操作-->
+            <view class="t-order-list-content-action ">
+              <view>
+                <view class='t-order-buttom-type' wx:if='{{item.payStatus!="0"}}'>
+                  <view class='t-order-commodity-b'>拼团详情</view>
+                </view>
+                <!-- <view class='t-order-buttom-type' wx:if='{{item.groupOrderId}}' data-goid='{{item.groupOrderId}}' catchtap='goOrderDel'>
+                  <view class='t-order-commodity-b'>订单详情</view>
+                </view> -->
+                <!-- <view class='t-order-buttom-type1' wx:if='{{item.groupStatus==10}}'>
+                  <view class='t-order-commodity-c'>邀请好友</view>
+                </view> -->
+                <view class='t-order-buttom-type1' wx:if='{{item.payStatus==0&&(item.groupStatus==0||item.groupStatus==1||item.groupStatus==2||item.groupStatus==10)&&item.orderStatus==1}}'>
+                  <view class='t-order-commodity-c'>去支付</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:if='{{afterList[0].length}}'>
+        <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+          向下滑动加载更多~
+        </view>
+        <view class='h-bottom-hint' wx:else>
+          没有更多啦~
+        </view>
+      </block>
+      <block wx:else>
+        <view class='nonedata-box'>
+          <view class='nonedata-box-img'>
+            <image class='img100' src='https://img.iyuedian.com/mini/noneimg3.png'></image>
+          </view>
+          <view class='nonedata-box-text' wx:if="{{isLoad}}">商品信息加载中</view>
+          <view class='nonedata-box-text' wx:else>您暂时还没有相关拼团哦～</view>
+          <view class='gosepll' bindtap='goSellList' hidden='{{isLoad}}'>去开团</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <back-top/>
+</collect>

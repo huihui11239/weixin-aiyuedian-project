@@ -1,0 +1,7 @@
+{
+  
+    "navigationBarTitleText": "立即开通vip",
+    "usingComponents": {
+      "collect": "/pagekagelist/pages/collect-fromid/collect-fromid"
+    }
+  }

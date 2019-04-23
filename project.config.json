@@ -1,0 +1,96 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.2",
+	"appid": "wx301d7f04210baab5",
+	"projectname": "aiyuedian2",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "update",
+					"pathName": "pages/home/home",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "0eeC56PjjC2GAiZ74QRbpfAQTXqoVKQ57g86A01yWvw@cr4dev",
+						"shareKey": "CXnu5aiNvzU6UMxQ3wwwIMm0New2Xtjcr6CtjPzD_hHzOyb0PVGi0hMcUWKEzQ0shliVagonWPneANAyG2ssxA~~"
+					}
+				},
+				{
+					"id": 1,
+					"name": "shareTicket",
+					"pathName": "packagebuy/pages/details/details",
+					"query": "comid= 382",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "0eeC56PjjC2GAiZ74QRbpfAQTXqoVKQ57g86A01yWvw@cr4dev",
+						"shareKey": "CXnu5aiNvzU6UMxQ3wwwIMm0New2Xtjcr6CtjPzD_hHzOyb0PVGi0hMcUWKEzQ0shliVagonWPneANAyG2ssxA~~"
+					}
+				},
+				{
+					"id": 2,
+					"name": "qrCode",
+					"pathName": "packagepower/pages/earnings/earnings",
+					"query": "type3=today",
+					"scene": "1048"
+				},
+				{
+					"id": 3,
+					"name": "push",
+					"pathName": "packagebuy/pages/payresult/payresult",
+					"query": "orderId=36598&pay=1",
+					"scene": "1043",
+					"referrerInfo": {
+						"appId": "wx8d5136e211ae86d3"
+					}
+				},
+				{
+					"id": 4,
+					"name": "qrCode(VIP)",
+					"pathName": "pageageuser/pages/joinvip/joinvip",
+					"query": "userId=10000&inviteCode=CTDEBA",
+					"scene": "1048"
+				},
+				{
+					"id": 5,
+					"name": "sharegoods",
+					"pathName": "pageageuser/pages/sharegoods/sharegoods",
+					"query": "img=https://wx.qlogo.cn/mmopen/vi_32/VnT6IZiaUmojNXQoYQGQefibibR5Id6U55PfTDVhSdyHzEmCCGdRdmED5sjC99EAELdYEPVHflUHpJ8wicKVdmibUyg/132&qrcode=null&name=蕾&sukId=1006",
+					"scene": "1048"
+				}
+			]
+		}
+	}
+}

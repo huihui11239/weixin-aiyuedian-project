@@ -1,0 +1,226 @@
+/* pageageuser/pages/order/order.wxss */
+.t-order-list{
+  width: 100%;
+  min-height: 290rpx;
+  background: white;
+  margin-bottom: 6rpx;
+  padding: 40rpx 24rpx 0 24rpx;
+}
+.t-order-title{
+  font-size:24rpx;
+  color:#B9B9B9;
+  line-height:34rpx;
+}
+.t-order-order{
+  color: #808080;
+  font-weight: bold
+}
+.t-order-type{
+  font-size:24rpx;
+  color:#FF5137;
+  line-height:34rpx;
+  float: right;
+  font-weight: bold;
+}
+.t-order-list-logo{
+  position: relative;
+  margin-top: 16rpx;
+  width:100%;
+  padding: 12rpx;
+  min-height:124rpx;
+  background:#F9F9F9;
+}
+.t-order-list-picture{
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+  margin-right: 24rpx;
+}
+.t-order-list-content{
+  float: left;
+  width: 500rpx;
+  height: 100rpx;
+}
+.t-order-list-spell{
+  position: absolute;
+  right: 0;
+  top:  10rpx;
+  background:linear-gradient(237deg,rgba(255,139,84,1) 0%,rgba(255,72,72,1) 100%);
+  border-radius: 18rpx 0 0 18rpx;
+  padding: 4rpx 12rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+.t-order-list-content-title{
+  font-size:24rpx;
+  color:#333;
+  line-height:34rpx;
+  margin-bottom: 4rpx;
+  font-weight: bold;
+}
+.t-order-list-content-sku{
+  font-size:24rpx;
+  color:rgba(128,128,128,1);
+  line-height:34rpx;
+}
+.t-order-list-content-commodity{
+  width: 100%;
+  height: 82rpx;
+  border-bottom: 1rpx solid #F9F9F9;
+  padding: 24rpx 0;
+  overflow: hidden
+}
+.t-order-list-content-price{
+  font-size:24rpx;
+  color:#FF5137;
+  line-height:34rpx;
+  float: right;
+  margin-left: 12rpx;
+  font-weight: bold
+}
+.t-order-list-content-price text{
+  font-size:20rpx;
+}
+.t-order-list-content-payment{
+  font-size:24rpx;
+  color:rgba(197,197,197,1);
+  line-height:34rpx;
+  float: right;
+  margin-left: 12rpx;
+}
+.t-order-list-content-line{
+  width:2rpx;
+  height:28rpx;
+  float: right;
+  margin-left: 12rpx;
+  margin-top: 5rpx;
+  background:rgba(249,249,249,1);
+}
+.t-order-list-content-action{
+  width: 100%;
+  height: 100rpx;
+  overflow: hidden;
+  padding: 24rpx 0;
+}
+.t-order-buttom-type{
+  min-width:136rpx;
+  height:50rpx;
+  border-radius:36rpx;
+  border:1rpx solid rgba(197,197,197,1);
+  text-align: center;
+  padding-top: 8rpx;
+  font-size:24rpx;
+  color:#333;
+  line-height:34rpx;
+  float: right;
+  margin-left: 16rpx;
+}
+.t-order-buttom-type1{
+  min-width:136rpx;
+  height:50rpx;
+  border-radius:36rpx;
+  border:1rpx solid #FF3333;
+  text-align: center;
+  padding-top: 8rpx;
+  font-size:24rpx;
+  color:#FF3333;
+  line-height:34rpx;
+  float: right;
+  margin-left: 16rpx;
+}
+.t-tianchong{
+  width: 100%;
+  height: 70rpx;
+}
+.t-order-state-content{
+  z-index: 999999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 70rpx;
+  padding: 18rpx 10rpx 0;
+  display: flex;
+  flex-wrap: nowrap;
+  background: white;
+
+}
+.t-order-state-zi{
+  position: relative;
+  flex-grow: 1;
+  font-size:28rpx;
+  color:rgba(103,103,103,1);
+  line-height:40rpx;
+  text-align: center;
+}
+/*状态  */
+.state{
+  color: #333;
+  font-weight: bold;
+}
+.t-state-line{
+  position: absolute;
+  width:48rpx;
+  height:4rpx;
+  background:linear-gradient(137.4deg,rgba(255,101,57,1),rgba(255,51,51,1));
+  border-radius:3rpx;
+  top: 62rpx;
+  left: 46rpx;
+  transition: all  .25s  ease-in;
+}
+.t-order-commodity-b{
+  font-size:24rpx;
+  color:#333;
+  text-align: center;
+  width: 100%;
+  line-height:34rpx;
+}
+.t-order-commodity-c{
+  font-size:24rpx;
+  color:#FF3333;
+  text-align: center;
+  width: 100%;
+  line-height:34rpx;
+}
+.t-order-noMore{
+  font-size:20rpx;
+  color:#808080;
+  line-height:28rpx;
+  margin: 24rpx auto 30rpx;
+  text-align: center;
+  background: white
+}
+.t-back-white{
+  background: white
+}
+.m-b-0{
+  margin-bottom: 0
+}
+.t-addressque1{
+  width:530rpx;
+  height:360rpx;
+  margin:140rpx auto 0;
+  position:relative;
+  background:white;
+}
+.t-address-queshen{
+  position: absolute;
+  font-size:28rpx;
+  color:rgba(51,51,51,1);
+  line-height:40rpx;
+  text-align: center;
+  top: 320rpx;
+  left: 0;
+  width: 100%; 
+}
+.t-back-white{
+  background: white
+}
+.h-0{
+  height: 0;
+  width: 0;
+  padding: 0
+}
+.border-0{
+  border: none
+}

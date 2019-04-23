@@ -1,0 +1,53 @@
+
+.page-state-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+}
+
+.page-state-container {
+  animation: fadein 2s 1 ease-out;
+  height: 100vh;
+  width: 100%;
+}
+
+.page-state-container~view {
+  display: none;
+}
+
+page {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.message{
+  height: 40rpx;
+  font-size: 28rpx;
+  color: #808080;
+}
+
+.message-bt{
+  height: 40rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.retrybtn{
+  width: 176rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  color: #FF5A5A;
+  border-radius:30px;
+  margin-top: 70rpx;
+  background-color: #fff;
+  border:2rpx solid rgba(255,90,90,1);
+}
+.bgimage{
+  width: 530rpx;
+  height: 416rpx;
+}

@@ -1,0 +1,244 @@
+/* packagepower/pages/searchmem/searchmem.wxss */
+/* packagebuy/pages/partner/partner.wxss */
+
+
+/* 列表 */
+.h-boxlist {
+  padding: 0 24rpx;
+  background-color: #fff;
+}
+
+.h-boxlist-one {
+  margin: 24rpx 0;
+  background-color:#F9F9F9;
+  width: 100;
+  font-family:PingFangSC-Medium;
+  border-bottom: 1rpx solid #f3f3f3;
+}
+.h-minbox1 {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 2rpx solid #f3f3f3;
+  font-size: 24rpx;
+}
+
+.h-minbox1-userimg {
+  margin-right: 24rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.h-minbox1-after{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  width: 540rpx;
+  height: 76rpx;
+  color: #c9c9c9;
+}
+
+.h-minbox1-list1 {
+  display: flex;
+  align-items: center;
+  
+}
+
+.h-minbox1-list1-name {
+  max-width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 10rpx;
+  font-family:PingFangSC-Medium;
+  color: #333;
+}
+
+.h-minbox1-list1-text1 {
+  padding-right: 10rpx;
+}
+.h-minbox1-arrow{
+  height: 17rpx;
+  width: 17rpx;
+}
+.h-minbox2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24rpx 0;
+}
+.h-minbox2-box{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 98rpx;
+  width: 33.333333333%;
+  color: #5C5C5C;
+}
+.h-minbox2-box-text1{
+  font-size: 40rpx;
+}
+.h-minbox2-box-text2{
+  font-size: 20rpx;
+}
+.h-minbox2-box-text3{
+  color: #B9B9B9;
+  font-size: 24rpx;
+}
+.vip-iocn{
+  margin-right: 10rpx;
+  width: 50rpx;
+  height: 30rpx;
+}
+.vip-iocn1{
+  margin-right: 10rpx;
+  width: 68rpx;
+  height: 30rpx;
+}
+.nonedata-box{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40rpx;
+  width: 100%;
+}
+.nonedata-box-img{
+  margin-top: 100rpx;
+  width: 222rpx;
+  height: 140rpx;
+  overflow: hidden;
+}
+.nonedata-box-text{
+  padding: 50rpx;
+  font-size: 24rpx;
+  color: #DBDBDB;
+}
+.img100{
+  width: 100%;
+  height: 100%;
+}
+.h-bottom-hint{
+  padding: 40rpx 0 50rpx 0;
+  color: #DBDBDB;
+  line-height: 28rpx;
+  font-size: 24rpx;
+  text-align: center;
+}
+.t-vip-iocn{
+  width: 50rpx;
+  height: 30rpx;
+  margin-left: 12rpx;
+  margin-bottom: 2rpx;
+}
+.t-vip-iocn1{
+  width: 64rpx;
+  height: 30rpx;
+  margin-left: 12rpx;
+  margin-bottom: 2rpx;
+}
+.h-minbox3{
+  display: flex;
+  align-items: center;
+  padding: 14rpx 80rpx;
+  color: #5C5C5C;
+  font-size: 20rpx;
+}
+.h-minbox3-text1{
+  font-size: 40rpx;
+  margin-bottom:9rpx;
+  margin-right:3px;
+}
+.h-minbox3-text2{
+  font-size: 24rpx;
+  color: #B9B9B9;
+  padding-left: 10rpx;
+   margin-bottom: -3rpx;
+}
+.h-minbox3-text3{
+  margin-bottom: -3rpx;
+}
+.h-minbox1-list1-phone{
+  width: 165rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.h-search1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+}
+.h-search {
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+    padding: 24rpx;
+    background-color: #fff;
+}
+
+.h-search-pbox1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 28rpx 20rpx;   
+}
+
+.h-search-box {
+    display: flex;
+    align-items: center;
+    padding: 0 20rpx;
+    width: 596rpx;
+    height: 60rpx;
+    background:#fff;
+    border-radius: 30rpx;
+}
+
+.h-search-img {
+    width: 28rpx;
+    height: 28rpx;
+}
+
+.h-search-input {
+    display: inline-block;
+    margin-top: 1rpx;
+    margin-left: 20rpx;
+    width: 460rpx;
+    font-size: 26rpx;
+    background-color: transparent;
+    color: #333;
+}
+
+.h-search-inputp {
+    font-size: 26rpx;
+    color: #cbcbcc;
+}
+.h-search-text {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 98rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    color: #CBCBCB;
+    background-color: #f9f9f9;
+}
+.delete1{
+    width: 30rpx;
+    height: 30rpx;
+}
+.h-form{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}

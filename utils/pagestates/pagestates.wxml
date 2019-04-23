@@ -1,0 +1,21 @@
+<!-- utils/pageState/index.wxml -->
+<template name="pagestates">
+  <view class="page-state-container" wx:if="{{state == 'empty'||state == 'loading'||state == 'error'}}">
+    <view class="page-state-empty page-state-center" wx:if="{{state == 'empty'}}">
+      <icon type="info" size="70" />
+      <view class="message">{{message}}</view>
+    </view>
+    <view class="page-state-loading page-state-center" wx:if="{{state == 'loading'}}">
+      <icon type="waiting" size="70" />
+      <view class="message">{{message}}</view>
+    </view>
+    <view class="page-state-error page-state-center" wx:if="{{state == 'error'}}">
+      <image  src='/img/retry.png' class='bgimage'> </image> 
+      <view class='qj-dis-s-c'>
+          <view class="message">{{message}}</view>
+          <view class="message-bt" bindtap='goInfo'>温馨提示></view>
+      </view>
+      <button class="retrybtn qj-dis-c-c" catchtap="onRetry">点击重试</button>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,301 @@
+/* pages/classify/classify.wxss */
+
+/* .h-classbox{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.h-classbox-alone{
+  margin: 10rpx 0 0 10rpx;
+  width: 360rpx;
+  height: 240rpx;
+  
+} */
+
+/*商品列表滑动*/
+
+image {
+  width: 100%;
+  height: 100%;
+}
+
+.top-bar {
+  z-index: 1001;
+  background: white;
+  position: fixed;
+  width: 100%;
+  height: 165rpx;
+  top: 0;
+  left: 0;
+}
+
+.top-margin {
+  padding-top: 170rpx;
+}
+
+.h-scrollroots {
+  white-space: nowrap;
+}
+
+.h-scroll-rootbox {
+  padding: 18rpx 21rpx;
+  display: inline-block;
+  text-align: center;
+}
+
+.h-rootbox-title {
+  line-height: 40rpx;
+  color: #676767;
+  font-size: 28rpx;
+  margin-bottom: 4rpx;
+}
+
+.h-rootbox-title--s {
+  font-weight: 800;
+  color: #333;
+}
+
+.h-rootbox-fill {
+  margin: 0 auto;
+  width: 60rpx;
+  height: 4rpx;
+  border-radius: 3rpx;
+}
+
+.h-rootbox-fill--s {
+  background: linear-gradient(137.4deg, rgba(255, 101, 57, 1), rgba(255, 51, 51, 1));
+}
+
+/*条件排序选框*/
+
+.h-conditon-box {
+  width: 100%;
+  padding: 8rpx 50rpx;
+}
+
+.h-conditon-one {
+  border-right: 1rpx solid #f9f9f9;
+}
+
+.h-conditon-one-text {
+  font-size: 28rpx;
+  color: #c5c5c5;
+}
+
+.h-color-333 {
+  color: #333;
+}
+
+.h-conditonn-trianglebox {
+  margin-left: 14rpx;
+}
+
+.h-conditon-trianglebox--up {
+  margin-bottom: 5rpx;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-bottom: 10rpx solid #d8d8d8;
+}
+
+.h-conditon-trianglebox--upf {
+  border-bottom: 10rpx solid #808080;
+}
+
+.h-conditon-trianglebox--down {
+  margin-top: 5rpx;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 10rpx solid #d8d8d8;
+}
+
+.h-conditon-trianglebox--downf {
+  border-top: 10rpx solid #808080;
+}
+
+/*商品 */
+
+.h-scrollnew {
+  height: 100vh;
+}
+
+.h-scrollnew-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0 12rpx 0 14rpx;
+}
+
+.h-scrollall-combox {
+  margin: 12rpx;
+  width: 338rpx;
+  border: 1rpx solid #f2f2f2;
+  border-radius: 6rpx;
+}
+
+.h-scrollall-combox--img {
+  position: relative;
+  width: 100%;
+  height: 270rpx;
+  overflow: hidden;
+  border-radius: 6rpx;
+}
+
+.h-scrollall-combox--cotent {
+  width: 100%;
+  height: 200rpx;
+  padding: 22rpx 16rpx 0 16rpx;
+}
+
+.h-scrollall-combox--name {
+  width: 100%;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.h-scrollall-combox--storyn {
+  font-size: 28rpx;
+  padding-top: 6rpx;
+}
+
+.h-scrollall-combox--price {
+  font-size: 32rpx;
+  color: #ffaeb9;
+}
+
+.h-bottom-hint {
+  padding: 40rpx 0 50rpx 0;
+  color: #808080;
+  line-height: 28rpx;
+  font-size: 24rpx;
+  text-align: center;
+}
+
+.h-bottom-hint1 {
+  padding: 114rpx 0 114rpx 0;
+  color: #808080;
+  line-height: 24rpx;
+  font-size: 20rpx;
+  text-align: center;
+}
+
+.font-w {
+  font-weight: bold;
+}
+
+.h-suk-box_one {
+  line-height: 20rpx;
+  font-size: 20rpx;
+  padding: 2rpx 10rpx 0; 
+  color: #B99027;
+  height:34rpx;
+  max-width: 106rpx;
+  border-radius:17rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFE8C1;
+  float: right;
+  margin-bottom: 8rpx;
+}
+
+.t-margint-14 {
+  margin-top: 14rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.img-arr-up {
+  width: 12rpx;
+  height: 12rpx;
+  margin-bottom: 6rpx;
+}
+
+.img-arr-down {
+  width: 12rpx;
+  height: 12rpx;
+  transform: rotate(180deg);
+}
+
+.nonedata-box {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40rpx;
+  width: 100%;
+}
+
+.nonedata-box-img {
+  margin-top: 100rpx;
+  width: 530rpx;
+  height: 350rpx;
+}
+
+.nonedata-box-text {
+  padding: 50rpx;
+  font-size: 24rpx;
+  color: #DBDBDB;
+}
+
+.img100 {
+  width: 100%;
+  height: 100%;
+}
+
+.h-suk-num {
+  padding-top: 2rpx;
+  color: #DBDBDB;
+  font-size: 24rpx;
+  min-height: 34rpx;
+}
+
+.h-people-num {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10rpx 18rpx 4rpx 0;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  text-align: end;
+  font-size: 20rpx;
+  color: #fff;
+}
+
+.h-fill {
+  height: 1rpx;
+  background-color: transparent;
+}
+
+.h-sellout-text {
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 6rpx;
+  background-color: rgba(0, 0, 0, 0.45);
+  font-size: 24rpx;
+  color: #fff;
+}
+.k-number{
+  padding-right: 16rpx;
+}
+.k-time-flag{
+  width: 46rpx;
+  height: 69rpx;
+  position: absolute;
+  right: 17rpx;
+}
+.k-numberh{
+  overflow: hidden;
+}

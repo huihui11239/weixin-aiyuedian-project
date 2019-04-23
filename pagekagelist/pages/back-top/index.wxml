@@ -1,0 +1,82 @@
+
+<!--上拉  -->
+<view class="t-suspension-content {{getPagesRoute?'t-notag':''}}  {{isIphoneX?'t-notag-iphonex':''}}">
+
+<view
+  bind:tap="clickScrollTop"
+  class="back-top"
+  wx:if="{{floorstatus}}"
+  style="{{customStyle}}"
+>
+  <image
+    class="image"
+    src="https://img.iyuedian.com/mini/gotop.png"
+    mode="aspectFill"
+  />
+</view>
+<!--客服  -->
+<button open-type="contact"
+  wx:if="{{getPagesRouteshow}}" 
+  class=" button-open-user "
+>
+ <view
+  bind:tap="clickScrollTop"
+  class="server"
+  style="{{customStyle}}"
+
+>
+  <image
+    class="image"
+    src="https://img.iyuedian.com/mini/t_server_content.png"
+    mode="aspectFill"
+  />
+</view> 
+<!-- <image
+    class="image"
+    src="https://img.iyuedian.com/mini/t_server_content.png"
+    mode="aspectFill"
+  /> -->
+</button>
+
+<!--vip  -->
+<view
+  bind:tap="clickScrollTop"
+  wx:if="{{vipshow}}"
+  class="vip"
+  bindtap='onchangevip'
+  style="{{customStyle}}"
+>
+  <image 
+    class="image"
+    src="https://img.iyuedian.com/mini/govip.png"
+    mode="aspectFill"
+  />
+</view>
+<!--去首页  -->
+<view wx:if="{{homeshow}}"
+  bindtap='onchangehome'
+  bind:tap="clickScrollTop"
+  class="home "
+  style="{{customStyle}}"
+>
+  <image
+    class="image"
+    src="https://img.iyuedian.com/mini/gohome.png"
+    mode="aspectFill"
+  />
+</view>
+  <!--抢购专场-->
+  <view wx:if="{{limittime&&(acttype=='1'||acttype=='3')}}"
+        bind:tap="{{acttype==3?'goSpellList':'goLimit'}}"
+        class="home"
+        style="{{customStyle}}"
+  >
+    <image
+            class="image"
+            src="{{acttype==3?'https://img.iyuedian.com/mini/activity/spellList.png':'https://img.iyuedian.com/mini/go_limit.png'}}"
+            mode="aspectFill"
+    />
+  </view>
+  
+
+</view>

@@ -1,0 +1,9 @@
+<!--packagebuy/pages/spellgoods/spellgoods.wxml-->
+
+<view class='h-state' wx:for="{{stateData}}">
+  <view class='h-state-box1'>
+    <view class='h-state-text1'>{{1+index}}.</view>
+    <view class='h-state-text2'>{{item.tite}}</view>
+  </view>
+  <view class='h-state-box2'>{{item.content}}</view>
+</view>

@@ -1,0 +1,126 @@
+<!--packagebuy/pages/partner/partner.wxml-->
+<collect>
+  <!-- <view class='bar1' style="background-image:url('https://img.iyuedian.com/mini/govip/vipback4.jpg')">
+    <view class='h-bar1-text1'>成员总数</view>
+    <view class='h-bar1-text2'>{{(totalNum||totalNum==0)?totalNum:"-"}}
+      <text class='h-bar1-text3'>人</text>
+    </view>
+  </view> -->
+  <view class='h-panter-header' style="background-image: url('https://img.iyuedian.com/mini/govip/team-bar1.png')">
+    <view class='h-panheader-box'>
+      <view>成员总数：</view>
+      <view class='h-headerbox-num'>{{total||total==0?total:"-"}}人</view>
+    </view>
+    <view class='h-panheader-box' bindtap='changeStatus'>
+      <view>成员等级：</view>
+      <view class='h-headerbox-status'>{{status[statusIndex].name}}</view>
+      <image class='h-headerbox-arrowimg' src='/img/arrow3.png' mode='scaleToFill'></image>
+    </view>
+    <view class='h-headerbox-searchbox' bindtap='searchmem'>
+      <image class='h-headerbox-searchbox-img' src='/img/search2.png'></image>
+    </view>
+  </view>
+  <view class='qj-dis-c-c h-conditon-box'>
+    <block wx:for='{{conditonT}}' wx:key='{{conditon}}'>
+      <view class=' qj-dis-c-c' bindtap='conditonClick' style='width:{{100/conditonT.length}}%;' data-typeid='{{item.typeid}}'>
+        <view class="h-conditon-one-text {{(listCode.orderBy===item.typeid)? 'h-color-333':''}}"> {{item.name}}</view>
+        <view class='h-conditonn-trianglebox qj-disc-c-s'>
+          <image src="{{(listCode.orderByType==='desc'&&listCode.orderBy===item.typeid)?  'https://img.iyuedian.com/mini/arrows/arrows-up1.png' :'https://img.iyuedian.com/mini/arrows/arrows-up2.png'}}" class="img-arr-up"></image>
+          <image src="{{(listCode.orderByType==='asc'&&listCode.orderBy===item.typeid)?  'https://img.iyuedian.com/mini/arrows/arrows-up1.png' :'https://img.iyuedian.com/mini/arrows/arrows-up2.png'}}" class="img-arr-down"></image>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='h-boxlist'>
+    <scroll-view scroll-y='true' scroll-into-view='{{idIndex}}'>
+      <view wx:for='{{partnerList}}' id='id{{index}}' wx:key='index'>
+        <block wx:for='{{item}}' wx:key='index'>
+          <view class='h-boxlist-one' data-userid='{{item.id}}' data-lasttime='{{item.lastLoginDateStr}}' bindtap='gomemberdel'>
+            <view class='h-minbox1'>
+              <image class='h-minbox1-userimg' src='{{item.headImgUrl}}'></image>
+              <view class='h-minbox1-after'>
+                <view class='qj-dis-b-c'>
+                  <view class='h-minbox1-list1'>
+                    <view class='h-minbox1-list1-name'>{{item.nickName}}</view>
+                    <block wx:if='{{item.levelId==2}}'>
+                      <image class='vip-iocn' src='../../../img/vip-iocn.png'></image>
+                    </block>
+                    <block wx:elif='{{item.levelId==3}}'>
+                      <image class='vip-iocn1' src='../../../img/vip-giocn.png'></image>
+                    </block>
+                    <view class='h-minbox1-list1-phone'>{{item.mobile}}</view>
+                  </view>
+                  <view class='h-minbox1-list1-text2'>{{item.lastLoginDateStr}}</view>
+                </view>
+                <view class='qj-dis-b-c'>
+                  <view class='h-minbox1-list1-text2'>加入时间 {{item.inviteDate}}</view>
+                  <image class='h-minbox1-arrow' src='https://img.iyuedian.com/mini/go.png'></image>
+                </view>
+              </view>
+            </view>
+            <view class='h-minbox2' wx:if='{{item.levelId>1}}'>
+              <view class='h-minbox2-box'>
+                <view class='h-minbox2-box-text1'>
+                  {{item.buyOrderNum}}
+                  <text class='h-minbox2-box-text2'>笔</text>
+                </view>
+                <view class='h-minbox2-box-text3'>自购订单</view>
+              </view>
+              <view class='h-minbox2-box'>
+                <view class='h-minbox2-box-text1'>
+                  {{item.cpsOrderNum}}
+                  <text class='h-minbox2-box-text2'>笔</text>
+                </view>
+                <view class='h-minbox2-box-text3'>分享成单</view>
+              </view>
+              <view class='h-minbox2-box'>
+                <view class='h-minbox2-box-text1'>
+                  {{item.teamNum}}
+                  <text class='h-minbox2-box-text2'>人</text>
+                </view>
+                <view class='h-minbox2-box-text3'>团队成员数</view>
+              </view>
+            </view>
+            <view class='h-minbox3' wx:else>
+              <view class='h-minbox3-text1'>{{item.buyOrderNum}}</view>
+              <view class='h-minbox3-text3'>笔</view>
+              <view class='h-minbox3-text2'>自购订单</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <block wx:if='{{partnerList[0].length}}'>
+      <view class='h-bottom-hint' wx:if='{{hasNextPage}}'>
+        滑动查看更多
+      </view>
+      <view class='h-bottom-hint' wx:else>
+        没有更多啦~
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nonedata-box'>
+        <view class='nonedata-box-img'>
+          <image class='img100' src='https://img.iyuedian.com/mini/noneimg2.png'></image>
+        </view>
+        <view class='nonedata-box-text' wx:if='{{hasNextPage}}'>团队数据加载中...</view>
+        <view class='nonedata-box-text' wx:else>~ 无团队成员数据 ~</view>
+      </view>
+    </block>
+  </view>
+  <view class='pickertime' catchtap="enterTime" catchtouchmove='nullEvent' bindtap='enterTime' hidden='{{pickerTiemBL}}'>
+    <view class="animation-element">
+      <text class="left-bt" catchtap="closeTime" data-id="555">取消</text>
+      <text class="right-bt" catchtap="enterTime" data-id="666">确定</text>
+      <view class="line"></view>
+      <picker-view class='pickertime-box' indicator-style="height: 50rpx;" value="{{index}}" bindchange="bindChange" catchtap="nono">
+        <picker-view-column>
+          <view class='pickertime-list' wx:for="{{status}}" wx:key="item.type">
+            {{item.name}}
+          </view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+  <back-top/>
+</collect>

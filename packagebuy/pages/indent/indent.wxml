@@ -1,0 +1,147 @@
+<!--pages/indent/indent.wxml-->
+<!--生成订单页-->
+<collect>
+  <back-top/>
+  <view class='pages'>
+    <view class='t-paddinglr-26 qj-backc-fff'>
+      <view class='t-indent-content' bindtap='addChange' wx:if="{{addAtData}}">
+        <!--图片  -->
+        <image class='t-address-icon' src='https://img.iyuedian.com/mini/locaimg2.png'></image>
+        <image class='t-address-icon1' src='https://img.iyuedian.com/mini/arrowimg1.png' />
+        <view class='qj-dis-s-c'>
+          <view class='qj-color-333 qj-ls-4028 qj-family-m'>{{addAtData.receiverName}}</view>
+          <view class='qj-color-808080 qj-marginl-36 qj-ls-3424 qj-family-m'>{{addAtData.reveiverPhone}}</view>
+        </view>
+        <view class=' qj-margint-10 h-address-xsw qj-dis-b-c'>
+          <view class='qj-dis-c-s'>
+            <view class='h-indentadd-text qj-ls-4028 qj-color-333 h-float-l qj-family-m'>收货地址:{{addAtData.city}}{{addAtData.area}}{{addAtData.street}}</view>
+          </view>
+        </view>
+      </view>
+      <block wx:else>
+        <view class='t-indent-content' bindtap='addChange' wx:if="{{defaultAddress}}">
+          <!--图片  -->
+          <image class='t-address-icon' src='https://img.iyuedian.com/mini/locaimg2.png'></image>
+          <image class='t-address-icon1' src='https://img.iyuedian.com/mini/arrowimg1.png' />
+          <view class='qj-dis-s-c'>
+            <view class='qj-color-333 qj-ls-4028 qj-family-m'>{{ defaultAddress.receiverName}}</view>
+            <view class='qj-color-808080 qj-marginl-36 qj-ls-3424 qj-family-m'>{{ defaultAddress.reveiverPhone}}</view>
+          </view>
+          <view class=' qj-margint-10 h-address-xsw qj-dis-b-c'>
+            <view class='qj-dis-c-s'>
+              <view class='h-indentadd-text qj-ls-4028 qj-color-333 h-float-l qj-family-m'>收货地址: {{ defaultAddress.city}}{{ defaultAddress.area}}{{ defaultAddress.street}}</view>
+            </view>
+          </view>
+        </view>
+        <view class='qj-dis-b-c h-addbox1' bindtap='addChange' wx:else>
+          <text class='qj-size-28'>选择收货地址</text>
+          <view class='h-arrowbox1 h-float-r'>
+            <image class='w-100 h-100' src='https://img.iyuedian.com/mini/arrowimg1.png' />
+          </view>
+        </view>
+      </block>
+    </view>
+    <image src='/img/partition-bar1.png' class='h-partition-bar1'></image>
+    <view class='h-indent-content'>
+
+      <!--详情  -->
+      <view class='h-comdatabox'>
+        <image class='h-indent-img1' mode='aspectFill' src='{{orderdata.comImg}}' />
+        <view class=' h-comdatabox-text' wx:if='{{(comOkNum>0 && dispatching)||(!addAtData&&!defaultAddress)||judgeAther}}' >
+          <view class='qj-ls-4028 qj-color-333'>{{orderdata.comName}}</view>
+          <view class='qj-ls-3424 qj-color-808080 qj-margint-2'>规格：{{orderdata.comSku}}</view>
+          <view class='qj-dis-b-c qj-margint-12'>
+            <view class='qj-ls-3424 qj-color-ff6a6a qj-family-m'>￥{{orderdata.comPrice}}</view>
+            <view class='qj-ls-3424 qj-color-979797' decode="emsp">
+              <text class='t-font-30'>×</text> {{orderdata.comNum}}</view>
+          </view>
+        </view>
+        <view class='h-comdatabox-text' wx:else >
+          <view class='qj-ls-4028 qj-color-c5c5c5 qj-family-m'>{{orderdata.comName}}</view>
+          <view class='qj-ls-3424 qj-color-c5c5c5 qj-margint-2 qj-family-m'>规格：{{orderdata.comSku}}</view>
+          <view class='qj-dis-b-c qj-margint-12'>
+            <view class='qj-ls-3424 qj-color-c5c5c5 qj-family-m'>￥{{orderdata.comPrice}}</view>
+            <view>
+              <image class='plaint-img' src='/img/plaint-red.png'></image>
+              <view class='h-delivery-text qj-family-m' wx:if='{{comOkNum<1}}'>无货</view>
+              <view class='h-delivery-text qj-family-m' wx:else>当前地址无法配送</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--运费  -->
+      <view class='qj-dis-b-c h-freightybox'>
+        <view class='qj-ls-4028 qj-color-333 qj-family-m'>运费：</view>
+        <view class='qj-ls-4028 qj-color-a6a6a6 qj-family-m'>包邮</view>
+      </view>
+      <!--合计  -->
+      <view class='qj-dis-e-c h-allpriecbox'>
+        <view class='qj-ls-3424 qj-color-a6a6a6 qj-family-m'>共 {{orderdata.comNum}} 件商品</view>
+        <view class='qj-ls-3424 qj-color-d8d8d8 qj-family-m fee-line'>|</view>
+        <view class='qj-ls-3424 qj-color-a6a6a6 qj-family-m'> 小计：</view>
+        <view class='qj-ls-4028 qj-color-333 qj-family-m font-w indet-pad'>
+          <text class='font-size-24'>￥</text>{{money}}</view>
+      </view>
+    </view>
+    <!-- 送货时间 -->
+    <view class='h-delivertime' bindtap='{{isDirectDelivery!=1? "showChangeTime":""}}' wx:if='{{(productDataTime.length&&dispatching&&comOkNum)||(!defaultAddress&&!addAtData)||(isDirectDelivery==1&&dispatching)}}'>
+      <view class='h-delivertime-title'>送货时间</view>
+      <view class='h-delivertime-box-none' wx:if='{{isDirectDelivery==1}}'>
+       该商品为产地直发，不能选择送货时间
+      </view> 
+      <view class='h-delivertime-box' wx:else>
+        <view class='h-delivertime-text1' wx:if='{{productDataTime.length}}'>
+          {{productDataTime[timeStatus].newtime}}
+        </view>
+        <view class='h-delivertime-text' wx:else>
+          请填写收货地址后，再更改送货时间
+        </view>
+        <image class='h-delivertime-icon1' src='https://img.iyuedian.com/mini/arrowimg1.png' />
+      </view>
+    </view>
+    <!-- <view class='h-delivertime'  wx:else='{{isDirectDelivery==1}}'>
+      <view class='h-delivertime-title'>送货时间</view>
+      <view class='h-delivertime-box'>
+        该商品为产地直发，不能选择送货时间
+      </view>
+    </view> -->
+    <!-- 支付方式 -->
+    <view class='qj-dis-b-c  h-zffsbox qj-margint-16 qj-backc-fff'>
+      <view class='qj-ls-4028 qj-family-m  qj-color-333'>支付方式</view>
+      <view class='qj-dis-s-c '>
+        <view class='h-wxzf-img1'>
+          <image class='w-100 h-100' src='https://img.iyuedian.com/mini/wxpayimg1.png' />
+        </view>
+        <view class='qj-ls-4028 qj-family-m  qj-color-a6a6a6'>微信支付</view>
+      </view>
+    </view>
+    <view class="linkCon2 {{isIphoneX?'p-b-68':'h-98'}}">
+      <view class="h-btnb qj-dis-b-c ">
+        <view class='h-btnb-price qj-dis-s-c'>
+          <view class='h-btnb-price1 qj-dis-s-b qj-family-m'>实付金额:</view>
+          <view class='h-btnb-price3 qj-dis-s-b qj-family-m'>
+            <text class='font-size-20' decode="{{true}}">&nbsp; ￥</text>
+          </view>
+          <view class='h-btnb-price2 qj-dis-s-b'>{{money}}</view>
+          <view class='qj-ls-2820 k-buy-pop-info' wx:if="{{vipBl&&!orderdata.activityId}}">（返现<text class='k-buy-pop-info-price-s'>￥</text><text class='k-buy-pop-info-price'>{{orderdata.selfEarningsPrice}}</text>）</view>
+        </view>
+        <view class="qj-dis-c-c h-btnb-submit1" bindtap='submitOrder'>提交订单</view>
+      </view>
+    </view>
+  </view>
+  <view class='h-delivertime-c' wx:if='{{showTimeBL}}' bindtap='enterTime'>
+    <view class='h-delivertime-change' catchtap='kong' animation='{{animationData}}'>
+    
+      <image class='h-change-close' src='https://img.iyuedian.com/mini/closeimg1.png' bindtap='enterTime'></image>
+      <view class='h-change-title'>选择送货时间</view>
+      <scroll-view class='h-change-scroll' scroll-y>
+        <view class='h-change-one' wx:for='{{productDataTime}}' data-timestatus='{{index}}' bindtap='changeTime'>
+          <view class='{{timeStatus==index? "h-color-333":""}}'>{{item.newtime}}</view>
+          <image class='h-change-one-c2' src='/img/car-yellow.png' wx:if="{{timeStatus==index}}"></image>
+          <view class='h-change-one-c1' wx:else></view>
+        </view>
+      </scroll-view>
+      <view class='h-change-enter {{isIphoneX? "h-change-enter1":""}}' bindtap='enterTime'>确定</view>
+    </view>
+  </view>
+</collect>

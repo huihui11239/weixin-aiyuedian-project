@@ -1,0 +1,128 @@
+/* pages/binding/binging.wxss */
+
+
+/*新样式*/
+.h-inputbox{ 
+  width: 640rpx;
+  height: 72rpx;
+  padding: 0 24rpx;
+}
+.binging-inp{
+  font-size:28rpx;
+  color:#DBDBDB;
+  line-height:40rpx;
+}
+.h-logoback{
+  width: 100%;
+  height: 350rpx;
+  margin-top: 0; 
+  display: block;
+  margin-bottom: 26rpx;
+}
+.h-sendcode-btn1{
+  font-size: 28rpx;
+  color:#FF6539;
+  right: 12rpx;
+  top: 27rpx;
+  position: absolute;
+  line-height:40rpx;
+}
+.h-sendcode-btn2{
+  font-size: 28rpx;
+  color: #DBDBDB;
+}
+.h-binding-btn1{
+width:590rpx;
+height:84rpx;
+background:linear-gradient(137.4deg,rgba(255,101,57,1),rgba(255,51,51,1));
+margin-top: 64rpx; 
+border-radius:6rpx;
+}
+.h-binding-btn2{
+width:590rpx;
+height:84rpx;
+background-color: #d0d0d0;
+margin-top: 64rpx; 
+border-radius:6rpx;
+}
+.t-binding-content{
+  width: 100%;
+  height: 80rpx;
+  overflow: hidden;
+  padding: 0 80rpx 0 176rpx;
+  position: relative;
+  background-color: #fff; 
+}
+.h-inputbox-iphone{
+  width: 100%;
+  height: 100%;
+  padding-top: 20rpx;
+  padding-left: 10rpx;
+  border-bottom:1rpx solid #eee;
+}
+.h-inputbox-son-t{
+  font-size:28rpx;
+  color:#333;
+  font-weight: bold;
+  line-height:40px;
+  position: absolute;
+  width:76rpx;
+  border-bottom:1rpx solid #eee;
+  top: 0;
+  left: 80rpx;
+  height: 100%;
+  padding-left: 10rpx;
+  padding-top: 10rpx;
+  overflow: hidden;
+}
+.t-binding-buttom{
+  width:590rpx;
+  height:84rpx;
+  background:#D0D0D0;
+  border-radius:6rpx;
+  font-size:36rpx;
+  color:white;
+  line-height:50rpx;
+  text-align: center;
+  padding-top: 18rpx;
+  margin: 68rpx auto 0;
+}
+.t-binding-buttom-go{
+  background:linear-gradient(137.4deg,rgba(255,101,57,1),rgba(255,51,51,1));
+  width:590rpx;
+  height:84rpx;
+  border-radius:6rpx;
+  font-size:36rpx;
+  color:white;
+  line-height:50rpx;
+  text-align: center;
+  padding-top: 18rpx;
+  margin: 68rpx auto 0;
+}
+.t-content-iphone{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size:28rpx;
+  color:#333;
+  line-height:40rpx;
+}
+.t-binding-content-verification{
+  width: 100%;
+  height: 100rpx;
+  padding: 20rpx 80rpx 0;
+  position: relative;
+  background-color: #fff;
+}
+.t-binding-content-veri{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-bottom:1rpx solid #eee;
+  position: relative;
+  padding: 20rpx 160rpx 0 10rpx;
+}
+.bind-white{
+  background-color: #fff;
+}
